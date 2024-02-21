@@ -33,7 +33,6 @@ This assignment is designed to test that you can:
 - There are 14 subfolders (a1, a2, a3, etc), so when completed the folder ```out``` should have 14 CSV files.
 
 ## Additional comments
-
 Your code should include functions that you have written wherever possible. Try to break your code down into smaller self-contained parts, rather than having it as one long set of instructions.
 
 For this assignment, you are welcome to submit your code either as a Jupyter Notebook, or as ```.py``` script. If you do not know how to write ```.py``` scripts, don't worry - we're working towards that!
