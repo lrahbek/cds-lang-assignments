@@ -1,4 +1,15 @@
-# Extracting linguistic features using spaCy
+# Assignment 1: Extracting linguistic features using spaCy
+Laura Givskov Rahbek 
+
+The cds-lang-assignment-1 folder contains: 
+- 14 subfolders with different essays in the 'in' folder, for more see the readme file in the folder. 
+- 14 .csv files in the 'out' folder, each corresponding to one subfolder, with a row per essay from the given subfolder. 
+- A notebook with the code that extracts the following linguistic features using spaCy, for each essay
+    - The relative frequency per 10,000 words of nouns, verbs, adjectives and adverbs 
+    - The number of unique persons, locations and organisations. 
+
+
+## Assignment description and objectives 
 
 This assignment concerns using ```spaCy``` to extract linguistic information from a corpus of texts.
 
@@ -18,7 +29,7 @@ For this exercise, you should write some code which does the following:
 |file2.txt|---|---|---|---|---|---|---|
 |etc|---|---|---|---|---|---|---|
 
-## Objective
+### Objective
 
 This assignment is designed to test that you can:
 
@@ -26,13 +37,13 @@ This assignment is designed to test that you can:
 2. Use ```spaCy``` to extract linguistic information from text data;
 3. Save those results in a clear way which can be shared or used for future analysis
 
-## Some notes
+### Some notes
 
 - The data is arranged in various subfolders related to their content (see the [README](in/README.md) for more info). You'll need to think a little bit about how to do this. You should be able do it using a combination of things we've already looked at, such as ```os.listdir()```, ```os.path.join()```, and for loops.
 - The text files contain some extra information that such as document ID and other metadata that occurs between pointed brackets ```<>```. Make sure to remove these as part of your preprocessing steps!
 - There are 14 subfolders (a1, a2, a3, etc), so when completed the folder ```out``` should have 14 CSV files.
 
-## Additional comments
+### Additional comments
 Your code should include functions that you have written wherever possible. Try to break your code down into smaller self-contained parts, rather than having it as one long set of instructions.
 
 For this assignment, you are welcome to submit your code either as a Jupyter Notebook, or as ```.py``` script. If you do not know how to write ```.py``` scripts, don't worry - we're working towards that!
