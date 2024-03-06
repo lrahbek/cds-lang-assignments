@@ -1,6 +1,11 @@
 import os
 import sys
 
+import pandas as pd
+import numpy as np
+import scipy as sp
+from joblib import dump, load
+import pickle
 from sklearn import metrics
 from sklearn.neural_network import MLPClassifier
 
@@ -20,4 +25,7 @@ y_pred_MLP = classifier_MLP.predict(X_test_features)
 
 # Calculate evalutation metrics and save them as txt file in 'out'folder 
 classifier_MLP_metrics = metrics.classification_report(y_test, y_pred_MLP)
-save_metrics(classifier_MLP_metrics)
+
+filepath_metrics_MLP = open(r'../out/classifier_MLP_metrics.txt', 'w')
+filepath_metrics_MLP.write(classifier_MLP_metrics)
+filepath_metrics_MLP.close()

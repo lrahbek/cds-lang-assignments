@@ -7,7 +7,7 @@ import scipy as sp
 from joblib import dump, load
 from sklearn.model_selection import train_test_split, ShuffleSplit
 from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
-
+import pickle
 
 # Read fake or real news data and define test and train split
 filepath_data = os.path.join("..", "in","fake_or_real_news.csv")
@@ -27,11 +27,9 @@ feature_names = vectorizer.get_feature_names_out()
 # Save vectorizer in 'models' folder
 dump(vectorizer, "../models/tfidf_vectorizer.joblib")
 
-# Save vectorized data, extracted features etc to 'features' folder
-filepath_features = "../features"
-
+# Save vectorized data, extracted features etc
 vectorized_data = [X_train, X_test, y_train, y_test, X_train_features, X_test_features, feature_names]
-vectorized_data_names = ("X_train, X_test, y_train, y_test, X_train_features, X_test_features, feature_names").split(', ')
 
-for (data, names) in zip(vectorized_data, vectorized_data_names):
-    save_features(data, names, filepath_features)
+f = open('../out/features.pkl', 'wb' )
+pickle.dump(vectorized_data, f)
+f.close()
