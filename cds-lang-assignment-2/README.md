@@ -1,4 +1,19 @@
 # Assignment 2 - Text classification benchmarks
+Language Analytics, Cultural Data Science 2024 
+
+Laura Givskov Rahbek 
+
+## Descritpion of code and solution to assignment 2
+The folder ```cds-lang-assignment-2``` contains four folders with the solution to the prompt given for assignment 2 in language analytics: 
+
+```in```: contains a .csv file with texts from different articles and a label indicating whether the given text is 'real' or 'fake'
+```models```: contains a tfidf vectorizer, a fitted logistic regression classifier and a fitted MLP (neural network) classifier. 
+```out```: contains evalutation metrics for both the logistic regression classifier and the MLP classifier, as well as a .pkl file with vectorised data. 
+```src```: contains three scripts:
+- vectorizer.py: data is loaded and split into test and train, 
+
+
+
 
 This assignment is about using ```scikit-learn``` to train simple (binary) classification models on text data. For this assignment, we'll continue to use the Fake News Dataset that we've been working on in class.
 
