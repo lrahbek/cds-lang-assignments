@@ -1,19 +1,22 @@
 # Assignment 2 - Text classification benchmarks
 Language Analytics, Cultural Data Science 2024 
 
+*07-03-2024*
+
 Laura Givskov Rahbek 
 
-## Descritpion of code and solution to assignment 2
-The folder ```cds-lang-assignment-2``` contains four folders with the solution to the prompt given for assignment 2 in language analytics: 
+## Repository structure
 
-```in```: contains a .csv file with texts from different articles and a label indicating whether the given text is 'real' or 'fake'
-```models```: contains a tfidf vectorizer, a fitted logistic regression classifier and a fitted MLP (neural network) classifier. 
-```out```: contains evalutation metrics for both the logistic regression classifier and the MLP classifier, as well as a .pkl file with vectorised data. 
-```src```: contains three scripts:
-- vectorizer.py: data is loaded and split into test and train, 
+The folder ```cds-lang-assignment-2``` contains four subfolders, with the solution to assignment 2 in language analytics: 
 
+- ```in```: Contains a .csv file with texts from different newsarticles and a label indicating whether the given text is 'real' or 'fake'
+- ```models```: Contains a TFIDF vectorizer, a fitted logistic regression classifier and a fitted MLP (neural network) classifier. 
+- ```out```: Contains the evalutation metrics for both the logistic regression classifier and the MLP classifier, as well as a .pkl file with the vectorised data. 
+- ```src```: Contains three scripts;
+    - vectorizer.py: The data is loaded and split into test and train. The TFIDF vectorizer is defined and used to vectorize and fit the training data, and vectorize the test data, and the features are extracted.The vectroizer, vectorized data and features are saved. 
+    - LR_classifier.py and MLP_classifier.py: In each script the saved data is retreived, the given classifier is defined and fit on the training set, and tested on the test set. The classifiers are saved, and the evaluation metrics for each are calculated and saved. 
 
-
+## Description of assignment 2:
 
 This assignment is about using ```scikit-learn``` to train simple (binary) classification models on text data. For this assignment, we'll continue to use the Fake News Dataset that we've been working on in class.
 
@@ -22,7 +25,7 @@ For this exercise, you should write *two different notebooks*. One script should
 - Save the classification report to a text file the folder called ```out```
 - Save the trained models and vectorizers to the folder called ```models```
 
-## Objective
+### Objective
 
 This assignment is designed to test that you can:
 
@@ -30,12 +33,10 @@ This assignment is designed to test that you can:
 2. Produce understandable outputs and trained models which can be reused;
 3. Save those results in a clear way which can be shared or used for future analysis
 
-## Some notes
+### Some notes
 
 - Saving the classification report to a text file can be a little tricky. You will need to Google this part!
 - You might want to challenge yourself to create a third script which vectorizes the data separately, and saves the new feature extracted dataset. That way, you only have to vectorize the data once in total, instead of once per script. Performance boost!
-
-## Additional comments
 
 Your code should include functions that you have written wherever possible. Try to break your code down into smaller self-contained parts, rather than having it as one long set of instructions.
 

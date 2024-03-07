@@ -8,7 +8,7 @@ from joblib import dump, load
 from sklearn import metrics
 from sklearn.linear_model import LogisticRegression
 import pickle
-
+ 
 # Load the stored data 
 X_train, X_test, y_train, y_test, X_train_features, X_test_features, feature_names = pd.read_pickle('../out/features.pkl')
 
