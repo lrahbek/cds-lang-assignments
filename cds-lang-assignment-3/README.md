@@ -16,6 +16,7 @@ You should write a script which does the following:
 - Print and/or save results in an easy-to-understand way
     - For example, "45% of {ARTIST}'s songs contain words related to {SEARCH TERM}"
 
+
 ## Starter coder
 
 For convenience, I recommend using a small, pretrained model from ```gensim``` like the following. However, this is by no means compulsory - feel free to use a different model if you so wish!
