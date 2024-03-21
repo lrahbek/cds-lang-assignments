@@ -1,0 +1,8 @@
+
+bad: ['worse', 'unfortunately', 'too', 'really', 'little', 'bit', 'things', 'nothing', 'gone', 'trouble']
+love: ['dream', 'life', 'dreams', 'loves', 'me', 'my', 'mind', 'loving', 'wonder', 'soul']
+love: ['dream', 'life', 'dreams', 'loves', 'me', 'my', 'mind', 'loving', 'wonder', 'soul']
+hi: ['ho', 'ai', 'otlk', 'tu', 'se', 'wthr', 'na', 'jaane', 'yo', 'ti']
+hello: ['goodbye', 'hey', '!', 'kiss', 'wow', 'daddy', 'mama', 'bitch', 'dear', 'cry']
+hello: ['goodbye', 'hey', '!', 'kiss', 'wow', 'daddy', 'mama', 'bitch', 'dear', 'cry']
+hello: ['goodbye', 'hey', '!', 'kiss', 'wow', 'daddy', 'mama', 'bitch', 'dear', 'cry']
