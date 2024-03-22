@@ -3,6 +3,7 @@ import pandas as pd
 import gensim.downloader as api
 from collections import Counter
 import string
+from csv import writer
 import argparse
 
 def get_arguments():
@@ -55,6 +56,7 @@ def query_expansion(keyword):
     query_ls.append(keyword)
     return query_ls
 
+
 def clean_tokens(text):
     """
     The function takes a text as an input tokenizes it, makes it lowercase and 
@@ -68,13 +70,26 @@ def clean_tokens(text):
             tokens_cleaned.append(strip_punct)
     return tokens_cleaned
 
+
+def save_output(row):
+    """
+    Save output to .csv file
+    """
+    with open('out/output.csv', 'a') as output:
+        write_output = writer(output)
+        write_output.writerow(row)
+        output.close()
+
+
 def keyword_count(keyword, song_texts, artist_input):
     """
     The function takes a keyword and a list of song texts, it returns the percentage 
     of the given songs that contains any of the 10 words mostly related to the keyword,
     and the keyword, of the number of songs from that artist. 
     """
-    query_c = Counter(query_expansion(keyword))
+    query_ls = query_expansion(keyword)
+    query_c = Counter(query_ls)
+    total_songs = len(song_texts)
     song_count = 0
 
     for text in range(len(song_texts)):
@@ -85,13 +100,9 @@ def keyword_count(keyword, song_texts, artist_input):
             song_count +=1
 
     songs_perc = round(((song_count/len(song_texts))*100), 2)
-
+    row = [keyword, query_ls[0:10], artist_input, total_songs, song_count, songs_perc]
+    save_output(row)
     return print(f"{songs_perc}% of {artist_input}'s songs contains words related to {keyword}")    
-
-def save_output(keyword):
-    keywords_output = open("keywords.txt", "a")
-    keywords_output.write(query_expansion(keyword))
-    keywords_output.close()
 
 
 def main():

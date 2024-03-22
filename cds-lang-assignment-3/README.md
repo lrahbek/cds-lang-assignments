@@ -1,4 +1,22 @@
 # Assignment 3 - Query expansion with word embeddings
+**Language Analytics, Cultural Data Science**
+*22/03/2024*
+
+Laura Givskov Rahbek 
+
+## Description 
+
+
+
+## Data
+
+The data used can be found here: https://www.kaggle.com/datasets/joebeachcapital/57651-spotify-songs, and is a corpus of 57,650 English-language songs. For each song, the artist, the title, a link and the lyrics are included. 
+
+
+
+
+
+# Assignment 3 - Query expansion with word embeddings
 
 Have you ever wondered which of your favourite pop stars sing most about "love"? I bet you have.
 
