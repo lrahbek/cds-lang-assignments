@@ -1,5 +1,22 @@
-# Assignment 1: Extracting linguistic features using spaCy
+# Assignment 1 - Extracting Linguistic Features Using spaCy
+
+*Date: 23/02/2024*
+
 Laura Givskov Rahbek 
+
+## Description 
+
+
+
+## Data
+
+The data used is the *The Uppsala Student English Corpus (USE)*, which is a collection of essays in English written by Swedish students. To run the code the ```USEcoprus``` folder should be placed in the ```in``` folder in the repository. The data can be accesed at [this link] (https://ota.bodleian.ox.ac.uk/repository/xmlui/handle/20.500.12024/2457), where additional information on the corpus can be found too. 
+
+## Usage and Reproducing of Analysis
+
+## Discussion 
+
+___________
 
 The cds-lang-assignment-1 folder contains: 
 - 14 subfolders with different essays in the 'in' folder, for more see the readme file in the folder. 
