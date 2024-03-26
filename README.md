@@ -1,4 +1,4 @@
-# Repository with the Portfolio Exam in Language Analytics 
+# Portfolio Exam in Language Analytics 
 
 *Cultural Data Science, Spring 2024*
 
