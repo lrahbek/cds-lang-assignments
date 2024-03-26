@@ -16,6 +16,7 @@ To run the code:
 - Place the .csv file with the song data in the ```in``` folder.
 - Run the bash script ```setup.sh``` from the command line.
 - Then run the bash script ```run.sh``` from the commandline, passing the two arguments of choice with it;
+
   ```
   bash run.sh -a {'artist name'} -k {keyword of choice}
   ```
