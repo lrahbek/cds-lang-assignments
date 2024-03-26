@@ -1,11 +1,28 @@
 # Assignment 3 - Query expansion with word embeddings
-**Language Analytics, Cultural Data Science**
 
-*22/03/2024*
+*Date: 22/03/2024*
 
 Laura Givskov Rahbek 
 
+## Description 
 
+## Data
+
+The data used is a corpus containing 57,650 English-language songs with their titles, the artist, a link and the lyrics. The corpus can be found [here](https://www.kaggle.com/datasets/joebeachcapital/57651-spotify-songs). When downloaded the .csv file shoule be placed in the ```in``` folder in the repository, to be able to run the code.
+
+## Usage and Reproducing of Analysis 
+
+To run the code:
+- Place the .csv file with the song data in the ```in``` folder.
+- Run the bash script ```setup.sh``` from the command line.
+- Then run the bash script ```run.sh``` from the commandline, passing the two arguments of choice with it;
+  ```
+  bash run.sh -a {'artist name'} -k {keyword of choice}
+  ```
+
+## Discussion 
+
+______
 ## Description 
 
 The objective of the assignment is to:
@@ -17,14 +34,3 @@ The objective of the assignment is to:
 The code written returns the percentage of songs by a given artist that contain words related to the given query. The corpus used is described in the ```Data``` section. The expanded query is extracted using the gensim pretrained model ```glove-wiki-gigaword-50``` and the method ```model.most_similar()```, resulting in a list of 11 words, the ten closest words to the keyword, and the keyword. 
 The output is printed in the terminal and appended to the .csv file in the ```out``` folder. 
 
-
-## Data
-
-The data used can be found here: https://www.kaggle.com/datasets/joebeachcapital/57651-spotify-songs, and is a corpus of 57,650 English-language songs. For each song, the artist, the title, a link and the lyrics are included. 
-
-
-## Usage 
-
-To use the code to find how many songs of a given artist contains words related to the keyword, do the following: 
-- Run the bash script ``` setup.sh``` in the terminal (bash setup.sh)
-- Run the bash script  ```run.sh``` in the terminal with the two arguments of choice (bash run.sh -a {arrtist}, -k {keyword})
