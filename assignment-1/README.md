@@ -8,13 +8,24 @@ Laura Givskov Rahbek
 
 
 
+
 ## Data
 
 The data used is the *The Uppsala Student English Corpus (USE)*, which is a collection of essays in English written by Swedish students. To run the code the ```USEcoprus``` folder should be placed in the ```in``` folder in the repository. The data can be accesed at [this link](https://ota.bodleian.ox.ac.uk/repository/xmlui/handle/20.500.12024/2457), where additional information on the corpus can be found too. 
 
 ## Usage and Reproducing of Analysis
 
+To reproduce the analysis: 
+- Download and unzip the ```USEcoprus``` folder, and place it in the ```in``` folder in the repository. 
+- Run the bash script ```setup.sh``` from the command line.
+- Run the bash script ```run.sh``` from the command line. If another spaCy model than en_core_web_md should be used, run the bash script in with another model as input (either en_core_web_sm or en_core_web_lg). 
+
+  ```
+  bash run.sh -m {'model'} 
+  ```
+
 ## Discussion 
+
 
 ___________
 

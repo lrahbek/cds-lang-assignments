@@ -4,8 +4,7 @@ import pandas as pd
 import glob
 import re
 import argparse
-#import en_core_web_sm, en_core_web_md, en_core_web_lg  
-import en_core_web_md
+import en_core_web_sm, en_core_web_md, en_core_web_lg  
 
 def get_arguments():
     """
@@ -16,10 +15,12 @@ def get_arguments():
                         "--model",
                         "-m", 
                         required = False,
-                        default = en_core_web_md,
-                        help="The artist should be given as a string")               
+                        default = "en_core_web_md",
+                        help="The spacy model of choice, has to be one of: en_core_web_sm, en_core_web_md, en_core_web_lg")               
     args = parser.parse_args()
     return args
+
+
 
 def rel_freq(count, len_doc): 
     """
@@ -28,7 +29,6 @@ def rel_freq(count, len_doc):
     """
     rel = round((count/len_doc * 10000), 2)
     return rel
-
 
 def unique_NE(doc):
     """ 
@@ -55,7 +55,7 @@ def clean_text(text, model):
     """
     text = text.read()
     text = re.sub(r'<*?>', '', text)
-    doc = nlp(text)
+    doc = model(text)
     len_doc = len(doc)
     text_name = text.split("/")[-1]
     return doc, len_doc, text_name
@@ -84,11 +84,11 @@ def feature_extract(spacy_model):
     of nouns, verbs, adjectives and adverbs, and the number of unique persons, locations and 
     organisations in the text is returned in the out folder.
     """
-    for subfolder in sorted(os.listdir(os.path.join("..", "in", "USEcorpus"))):
-        subfolder_path = os.path.join("..", "in", "USEcorpus", subfolder)
+    for subfolder in sorted(os.listdir(os.path.join( "in", "USEcorpus"))):
+        subfolder_path = os.path.join("in", "USEcorpus", subfolder)
         out_df = pd.DataFrame(columns=("Filename", "RelFreq NOUN","RelFreq VERB","RelFreq ADJ",
         "RelFreq ADV","Unique PER","Unique LOC","Unique ORG"))
-        outpath = os.path.join("..", "out", f"{subfolder}.csv")
+        outpath = os.path.join("out", f"{subfolder}.csv")
 
         for file in sorted(glob.glob(os.path.join(subfolder_path, "*.txt"))):
             with open(file, "r", encoding="latin-1") as f:
@@ -105,7 +105,8 @@ def feature_extract(spacy_model):
 
 def main():
     args = get_arguments()
-    feature_extract(args.model)
+    nlp = spacy.load(args.model)
+    feature_extract(nlp)
 
 if __name__ == "__main__":
     main()
