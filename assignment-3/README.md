@@ -1,4 +1,4 @@
-# Assignment 3 - Query expansion with word embeddings
+# Assignment 3 - Query Expansion with Word Embeddings
 
 *Date: 22/03/2024*
 
@@ -22,6 +22,8 @@ To run the code:
   ```
 
 ## Discussion 
+
+
 
 ______
 ## Description 
