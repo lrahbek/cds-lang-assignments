@@ -20,8 +20,6 @@ def get_arguments():
     args = parser.parse_args()
     return args
 
-
-
 def rel_freq(count, len_doc): 
     """
     The function takes the number of the given POS in a document, and the total number of tokens in that document.
@@ -76,7 +74,7 @@ def POS_count(doc):
             adv_count +=1
     return noun_count, verb_count, adj_count, adv_count
 
-def feature_extract(spacy_model):
+def feature_extract(nlp_obj):
     """
     The function takes the spacy model of choice to perform the feature extraction. 
     It runs through each subfolder in the USEcorpus, creating a .csv file for each, where 
@@ -84,7 +82,7 @@ def feature_extract(spacy_model):
     of nouns, verbs, adjectives and adverbs, and the number of unique persons, locations and 
     organisations in the text is returned in the out folder.
     """
-    for subfolder in sorted(os.listdir(os.path.join( "in", "USEcorpus"))):
+    for subfolder in sorted(os.listdir(os.path.join("in", "USEcorpus"))):
         subfolder_path = os.path.join("in", "USEcorpus", subfolder)
         out_df = pd.DataFrame(columns=("Filename", "RelFreq NOUN","RelFreq VERB","RelFreq ADJ",
         "RelFreq ADV","Unique PER","Unique LOC","Unique ORG"))
@@ -92,21 +90,21 @@ def feature_extract(spacy_model):
 
         for file in sorted(glob.glob(os.path.join(subfolder_path, "*.txt"))):
             with open(file, "r", encoding="latin-1") as f:
-                doc, len_doc, text_name = clean_text(f, spacy_model)
-
+                doc, len_doc, text_name = clean_text(f, nlp_obj)
                 noun_count, verb_count, adj_count, adv_count = POS_count(doc)         
                 noun_rel, verb_rel, adj_rel, adv_rel = rel_freq(noun_count, len_doc), rel_freq(verb_count, len_doc), rel_freq(adj_count, len_doc), rel_freq(adv_count, len_doc)
                 per, loc, org = unique_NE(doc)
-        
                 file_row = [text_name, noun_rel, verb_rel, adj_rel, adv_rel, per, loc, org]
                 out_df.loc[len(out_df)] = file_row
         out_df.to_csv(outpath)
         print(outpath)                    
 
+
 def main():
     args = get_arguments()
     nlp = spacy.load(args.model)
     feature_extract(nlp)
+
 
 if __name__ == "__main__":
     main()
