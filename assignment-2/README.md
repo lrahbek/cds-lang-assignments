@@ -1,10 +1,20 @@
-# Assignment 2 - Text classification benchmarks
-Language Analytics, Cultural Data Science 2024 
+# Assignment 2 - Text Classification Benchmarks
 
-*07-03-2024*
+*Date: 07-03-2024*
 
 Laura Givskov Rahbek 
 
+## Description 
+
+## Data
+
+## Usage and Reproducing of Analysis 
+
+## Discussion 
+
+
+
+________
 ## Repository structure
 
 The folder ```cds-lang-assignment-2``` contains four subfolders, with the solution to assignment 2 in language analytics: 
