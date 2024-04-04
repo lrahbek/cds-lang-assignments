@@ -8,6 +8,9 @@ Laura Givskov Rahbek
 
 ## Data
 
+The data used as a default in the classification tasks, is a dataset including text
+
+
 ## Usage and Reproducing of Analysis 
 
 ## Discussion 
@@ -44,6 +47,7 @@ This assignment is designed to test that you can:
 3. Save those results in a clear way which can be shared or used for future analysis
 
 ### Some notes
+
 
 - Saving the classification report to a text file can be a little tricky. You will need to Google this part!
 - You might want to challenge yourself to create a third script which vectorizes the data separately, and saves the new feature extracted dataset. That way, you only have to vectorize the data once in total, instead of once per script. Performance boost!
