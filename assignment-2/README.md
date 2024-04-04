@@ -6,54 +6,35 @@ Laura Givskov Rahbek
 
 ## Description 
 
+This folder contains assignment 2 for Language Analytics. The objective of the assignment is to train benchmark machine learning classifiers on structured text data, using ```scikit-learn```, make and save understandable outputs and models, and save the results in clear ways. 
+
+The code written for this assignment is seperated into three scripts that do the following: 
+- vectorizer.py: 
+    - The data is loaded and split into training anf test set. 
+    - A vectorizer is defined and saved.
+    - The data is vectorised and saved.
+- LR_classifier.py: 
+    - The vectorised data, and the labels are loaded 
+
+- MLP_classifier.py: 
+
+The output when running the code is two classifier models and a saved in ```models```, a classification report for each of the models and the vectorised data saved in ```out```.
+
 ## Data
 
-The data used as a default in the classification tasks, is a dataset including text
-
+The data used as a default in the classification tasks, is a dataset including 6335 articles, their titles, as well as a label indicating whether the article has been deemed *fake* or *real* news. 
 
 ## Usage and Reproducing of Analysis 
 
+To reproduce the analysis: 
+- Run the bash script ```setup.sh``` from the command line.
+- Run the bash script ```run.sh``` from the command line, which runs the three scripts in the ```src``` folder: 
+    - vectorizer.py is run first, it vectorizes the input data and saves it in the ```out``` folder. It is possible to specify another dataset as input, for the script to run, it should have a column with the text that should be classified and a column with classification labels. The names of the labels should also be specified. Finally if the vectorizer should be saved somewhere else or with another name, this should also be specified.
+    - LR_classifier.py is run second, and does not take any arguments. 
+    - MLP_classifier.py is run third, and it should be specified if the activation function used when defining the classifier should be something other than 'relu'. Activation function options can be found in the [sckit-learn documentation](https://scikit-learn.org/stable/modules/generated/sklearn.neural_network.MLPClassifier.html).
+
+    ```
+    bash run.sh -i {"input path"} -t {"column name with text"} -l {"column name with labels"} -v {"vectorizer path"} -a {"the activation function used for the MLP"}
+    ```
+
 ## Discussion 
-
-
-
-________
-## Repository structure
-
-The folder ```cds-lang-assignment-2``` contains four subfolders, with the solution to assignment 2 in language analytics: 
-
-- ```in```: Contains a .csv file with texts from different newsarticles and a label indicating whether the given text is 'real' or 'fake'
-- ```models```: Contains a TFIDF vectorizer, a fitted logistic regression classifier and a fitted MLP (neural network) classifier. 
-- ```out```: Contains the evalutation metrics for both the logistic regression classifier and the MLP classifier, as well as a .pkl file with the vectorised data. 
-- ```src```: Contains three scripts;
-    - vectorizer.py: The data is loaded and split into test and train. The TFIDF vectorizer is defined and used to vectorize and fit the training data, and vectorize the test data, and the features are extracted.The vectroizer, vectorized data and features are saved. 
-    - LR_classifier.py and MLP_classifier.py: In each script the saved data is retreived, the given classifier is defined and fit on the training set, and tested on the test set. The classifiers are saved, and the evaluation metrics for each are calculated and saved. 
-
-## Description of assignment 2:
-
-This assignment is about using ```scikit-learn``` to train simple (binary) classification models on text data. For this assignment, we'll continue to use the Fake News Dataset that we've been working on in class.
-
-For this exercise, you should write *two different notebooks*. One script should train a logistic regression classifier on the data; the second notebook should train a neural network on the same dataset. Both notebooks should do the following:
-
-- Save the classification report to a text file the folder called ```out```
-- Save the trained models and vectorizers to the folder called ```models```
-
-### Objective
-
-This assignment is designed to test that you can:
-
-1. Train simple benchmark machine learning classifiers on structured text data;
-2. Produce understandable outputs and trained models which can be reused;
-3. Save those results in a clear way which can be shared or used for future analysis
-
-### Some notes
-
-
-- Saving the classification report to a text file can be a little tricky. You will need to Google this part!
-- You might want to challenge yourself to create a third script which vectorizes the data separately, and saves the new feature extracted dataset. That way, you only have to vectorize the data once in total, instead of once per script. Performance boost!
-
-Your code should include functions that you have written wherever possible. Try to break your code down into smaller self-contained parts, rather than having it as one long set of instructions.
-
-For this assignment, you are welcome to submit your code either as a Jupyter Notebook, or as ```.py``` script. If you do not know how to write ```.py``` scripts, don't worry - we're working towards that!
-
-Lastly, you are welcome to edit this README file to contain whatever information you like. Remember - documentation is important.
