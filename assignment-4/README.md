@@ -1,5 +1,23 @@
 # Assignment 4 - Emotion analysis with pretrained language models
 
+*Date: 18/04/2024*
+
+Laura Givskov Rahbek 
+
+## Description 
+
+
+
+## Data 
+
+The data used in this assignment can be found [here](https://www.kaggle.com/datasets/albenft/game-of-thrones-script-all-seasons?select=Game_of_Thrones_Script.csv). It is a .csv file containing every line in the scripts for the eight seasons of Game of Thrones. The .csv file also contains information on the season and episode the line was said, as well as which character said the line. 
+
+## Usage and Reproducing of Analysis 
+
+
+## Discussion
+
+
 Winter is... just finished, actually.
 
 In class this week, we've seen how pretrained language models can be used for a range of tasks. In this assignment, we're going to use these models to perform some computational text analysis of some culturally significant data - scripts from the television show *Game of Thrones*. The scripts have been split into lines, with additional metadata showing who spoke each line, which episode that line comes from, and which season that episode belongs to.
