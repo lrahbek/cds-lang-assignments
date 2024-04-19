@@ -1,0 +1,102 @@
+,Release Date,Season,Episode,Episode Title,Name,Sentence,emotion_label,emotion_score
+0,2011-04-17,Season 1,Episode 1,Winter is Coming,waymar royce,"What do you expect? They're savages. One lot steals a goat from another lot and before you know it, they're ripping each other to pieces.",disgust,0.8400837182998657
+1,2011-04-17,Season 1,Episode 1,Winter is Coming,will,"I've never seen wildlings do a thing like this. I've never seen a thing like this, not ever in my life.",disgust,0.6117003560066223
+2,2011-04-17,Season 1,Episode 1,Winter is Coming,waymar royce,How close did you get?,surprise,0.7143812775611877
+3,2011-04-17,Season 1,Episode 1,Winter is Coming,will,Close as any man would.,neutral,0.9114251732826233
+4,2011-04-17,Season 1,Episode 1,Winter is Coming,gared,We should head back to the wall.,fear,0.4208104610443115
+5,2011-04-17,Season 1,Episode 1,Winter is Coming,royce,Do the dead frighten you?,fear,0.9559083580970764
+6,2011-04-17,Season 1,Episode 1,Winter is Coming,gared,Our orders were to track the wildlings. We tracked them. They won't trouble us no more.,neutral,0.6202908754348755
+7,2011-04-17,Season 1,Episode 1,Winter is Coming,royce,You don't think he'll ask us how they died? Get back on your horse.,surprise,0.7657095789909363
+8,2011-04-17,Season 1,Episode 1,Winter is Coming,will,Whatever did it to them could do it to us. They even killed the children.,anger,0.5590818524360657
+9,2011-04-17,Season 1,Episode 1,Winter is Coming,royce,"It's a good thing we're not children. You want to run away south, run away. Of course, they will behead you as a deserter … If I don't catch you first. Get back on your horse. I won't say it again.",anger,0.6356117129325867
+10,2011-04-17,Season 1,Episode 1,Winter is Coming,royce,Your dead men seem to have moved camp.,neutral,0.5159032344818115
+11,2011-04-17,Season 1,Episode 1,Winter is Coming,will,They were here.,neutral,0.8349234461784363
+12,2011-04-17,Season 1,Episode 1,Winter is Coming,gared,See where they went.,neutral,0.9458221197128296
+13,2011-04-17,Season 1,Episode 1,Winter is Coming,royce,What is it?,surprise,0.5850769281387329
+14,2011-04-17,Season 1,Episode 1,Winter is Coming,gared,It's …,neutral,0.8170827031135559
+15,2011-04-17,Season 1,Episode 1,Winter is Coming,jon snow,Go on. Father's watching.,neutral,0.38425952196121216
+16,2011-04-17,Season 1,Episode 1,Winter is Coming,jon snow,And your mother.,anger,0.4297434687614441
+17,2011-04-17,Season 1,Episode 1,Winter is Coming,septa mordane,"Fine work, as always. Well done.",neutral,0.6922546029090881
+18,2011-04-17,Season 1,Episode 1,Winter is Coming,sansa stark,Thank you.,neutral,0.6663600206375122
+19,2011-04-17,Season 1,Episode 1,Winter is Coming,septa mordane,I love the detail that you've managed to get in this corners. … Quite beautiful … the stitching …,joy,0.7820842266082764
+20,2011-04-17,Season 1,Episode 1,Winter is Coming,eddard stark,"And which one of you was a marksman at ten? Keep practicing, Bran. Go on.",neutral,0.6362766027450562
+21,2011-04-17,Season 1,Episode 1,Winter is Coming,jon snow,"Don't think too much, Bran.",neutral,0.6491796374320984
+22,2011-04-17,Season 1,Episode 1,Winter is Coming,robb stark,Relax your bow arm.,neutral,0.5642501711845398
+23,2011-04-17,Season 1,Episode 1,Winter is Coming,jonrobb,"Quick, Bran, faster!",surprise,0.4863581955432892
+24,2011-04-17,Season 1,Episode 1,Winter is Coming,cassel,Lord Stark. My lady. A guardsman just rode in from the hills. They've captured a deserter from the Night's Watch.,disgust,0.7373818755149841
+25,2011-04-17,Season 1,Episode 1,Winter is Coming,eddard stark,Get the lads to saddle their horses.,neutral,0.8917436003684998
+26,2011-04-17,Season 1,Episode 1,Winter is Coming,catelyn stark,Do you have to?,surprise,0.5205239653587341
+27,2011-04-17,Season 1,Episode 1,Winter is Coming,eddard stark,"He swore an oath, Cat.",disgust,0.369029700756073
+28,2011-04-17,Season 1,Episode 1,Winter is Coming,cassel,"The law is law, my lady.",neutral,0.6730466485023499
+29,2011-04-17,Season 1,Episode 1,Winter is Coming,eddard stark,"Tell Bran he's coming, too.",neutral,0.8187596201896667
+30,2011-04-17,Season 1,Episode 1,Winter is Coming,catelyn stark,Ned. Ten is too young to see such things.,neutral,0.6891790628433228
+31,2011-04-17,Season 1,Episode 1,Winter is Coming,eddard stark,He won't be a boy forever. And winter is coming.,neutral,0.8098019361495972
+32,2011-04-17,Season 1,Episode 1,Winter is Coming,robb stark,"Lad, go run back and get the rest.",neutral,0.595931351184845
+33,2011-04-17,Season 1,Episode 1,Winter is Coming,will,"White Walkers. I saw the White Walkers. White Walkers. The White Walkers, I saw them.",neutral,0.6369803547859192
+34,2011-04-17,Season 1,Episode 1,Winter is Coming,will,"I know I broke my oath. And I know I'm a deserter. I should have gone back to the Wall and warned them. But I saw what I saw. I saw the White Walkers. People need to know. If you can get word to my family, tell them I'm no coward. Tell them I'm sorry.",sadness,0.3498455882072449
+35,2011-04-17,Season 1,Episode 1,Winter is Coming,eddard stark,"nods yes, and WILL is positioned on the tree limb that serves as a block.",neutral,0.9185885190963745
+36,2011-04-17,Season 1,Episode 1,Winter is Coming,will,"Forgive me, lord.",anger,0.7700166702270508
+37,2011-04-17,Season 1,Episode 1,Winter is Coming,eddard stark,"In the name of Robert of the House Baratheon, first of his name …",neutral,0.8067060708999634
+38,2011-04-17,Season 1,Episode 1,Winter is Coming,jon snow,Don't look away.,fear,0.6874536871910095
+39,2011-04-17,Season 1,Episode 1,Winter is Coming,eddard stark,King of the Andals and the First Men …,neutral,0.6458390355110168
+40,2011-04-17,Season 1,Episode 1,Winter is Coming,jon snow,Father will know if you do.,neutral,0.9144962430000305
+41,2011-04-17,Season 1,Episode 1,Winter is Coming,eddard stark,"Lord of the Seven Kingdoms and protector of the realm, I, Eddard of the House Stark, Lord of Winterfell and Warden of the North, sentence you to die.",sadness,0.3977236747741699
+42,2011-04-17,Season 1,Episode 1,Winter is Coming,jon snow,You did well.,neutral,0.6610082387924194
+43,2011-04-17,Season 1,Episode 1,Winter is Coming,eddard stark,You understand why I did it?,surprise,0.5485744476318359
+44,2011-04-17,Season 1,Episode 1,Winter is Coming,bran stark,Jon said he was a deserter.,disgust,0.5175106525421143
+45,2011-04-17,Season 1,Episode 1,Winter is Coming,eddard stark,But do you understand why I had to kill him?,anger,0.448323130607605
+46,2011-04-17,Season 1,Episode 1,Winter is Coming,bran stark,Our way is the old way?,neutral,0.8701439499855042
+47,2011-04-17,Season 1,Episode 1,Winter is Coming,eddard stark,The man who passes the sentence should swing the sword.,anger,0.4762665629386902
+48,2011-04-17,Season 1,Episode 1,Winter is Coming,bran stark,Is it true he saw the White Walkers?,surprise,0.7165472507476807
+49,2011-04-17,Season 1,Episode 1,Winter is Coming,eddard stark,The White Walkers have been gone for thousands of years.,neutral,0.9359434247016907
+50,2011-04-17,Season 1,Episode 1,Winter is Coming,bran stark,So he was lying?,surprise,0.33806857466697693
+51,2011-04-17,Season 1,Episode 1,Winter is Coming,eddard stark,A madman sees what he sees.,anger,0.4970565140247345
+52,2011-04-17,Season 1,Episode 1,Winter is Coming,jon snow,What is it?,surprise,0.5850769281387329
+53,2011-04-17,Season 1,Episode 1,Winter is Coming,theon greyjoy,Mountain lion?,neutral,0.571818470954895
+54,2011-04-17,Season 1,Episode 1,Winter is Coming,eddard stark,There are no mountain lions in these woods.,neutral,0.8922235369682312
+55,2011-04-17,Season 1,Episode 1,Winter is Coming,theon greyjoy,It's a freak.,disgust,0.7113785147666931
+56,2011-04-17,Season 1,Episode 1,Winter is Coming,eddard stark,It's a direwolf.,disgust,0.4223426580429077
+57,2011-04-17,Season 1,Episode 1,Winter is Coming,eddard stark,Tough old beast.,disgust,0.5945839285850525
+58,2011-04-17,Season 1,Episode 1,Winter is Coming,robb stark,There are no direwolves south of the Wall.,neutral,0.9180469512939453
+59,2011-04-17,Season 1,Episode 1,Winter is Coming,jon snow,Now there are five.,neutral,0.8109205365180969
+60,2011-04-17,Season 1,Episode 1,Winter is Coming,jon snow,You want to hold it?,anger,0.3967694342136383
+61,2011-04-17,Season 1,Episode 1,Winter is Coming,bran stark,Where will they go? Their mother's dead.,sadness,0.6840713620185852
+62,2011-04-17,Season 1,Episode 1,Winter is Coming,cassel,They don't belong down here.,neutral,0.494937539100647
+63,2011-04-17,Season 1,Episode 1,Winter is Coming,eddard stark,Better a quick death. They won't last without their mother.,neutral,0.5008941888809204
+64,2011-04-17,Season 1,Episode 1,Winter is Coming,theon greyjoy,Right. Give it here.,neutral,0.8379881978034973
+65,2011-04-17,Season 1,Episode 1,Winter is Coming,bran stark,NO!,anger,0.3283572494983673
+66,2011-04-17,Season 1,Episode 1,Winter is Coming,robb stark,Put away your blade.,anger,0.7931814789772034
+67,2011-04-17,Season 1,Episode 1,Winter is Coming,theon greyjoy,"I take orders from your father, not you.",anger,0.6864615082740784
+68,2011-04-17,Season 1,Episode 1,Winter is Coming,bran stark,"Please, father!",anger,0.44347673654556274
+69,2011-04-17,Season 1,Episode 1,Winter is Coming,eddard stark,"I'm sorry, Bran.",sadness,0.8756554126739502
+70,2011-04-17,Season 1,Episode 1,Winter is Coming,jon snow,Lord Stark? There are five pups. One for each of the Stark children. The direwolf is the sigil of your House. They were meant to have them.,neutral,0.9567826390266418
+71,2011-04-17,Season 1,Episode 1,Winter is Coming,eddard stark,"You will train them yourselves. You will feed them yourselves. And if they die, you will bury them yourselves.",anger,0.3991626501083374
+72,2011-04-17,Season 1,Episode 1,Winter is Coming,bran stark,What about you?,surprise,0.3835502564907074
+73,2011-04-17,Season 1,Episode 1,Winter is Coming,jon snow,I'm not a Stark. Get on.,anger,0.7058917880058289
+74,2011-04-17,Season 1,Episode 1,Winter is Coming,robb stark,What is it?,surprise,0.5850769281387329
+75,2011-04-17,Season 1,Episode 1,Winter is Coming,theon greyjoy,"The runt of the litter. That one's yours, Snow.",neutral,0.7360535860061646
+76,2011-04-17,Season 1,Episode 1,Winter is Coming,jaime lannister,"As your brother, I feel it's my duty to warn you",fear,0.8997836112976074
+77,2011-04-17,Season 1,Episode 1,Winter is Coming,cersei lannister,"And you never worry about anything. When we were seven, you jumped off the cliffs as Casterly Rock. One hundred foot drop into the water. And you were never afraid.",fear,0.9411090016365051
+78,2011-04-17,Season 1,Episode 1,Winter is Coming,jaime lannister,"There was nothing to be afraid of until you told father. [In a whisper, mimicking] We're Lannisters. Lannisters don't act like fools.",fear,0.8835877180099487
+79,2011-04-17,Season 1,Episode 1,Winter is Coming,cersei lannister,What if Jon Arryn told someone?,anger,0.5744749903678894
+80,2011-04-17,Season 1,Episode 1,Winter is Coming,jaime lannister,But who would he tell?,neutral,0.47003093361854553
+81,2011-04-17,Season 1,Episode 1,Winter is Coming,cersei lannister,My husband.,sadness,0.9185436367988586
+82,2011-04-17,Season 1,Episode 1,Winter is Coming,jaime lannister,"If he told the king, both our heads would be skewered on the city gates by now. Whatever Jon Arryn knew or didn't know, it died with him. And Robert will choose a new Hand of the king, someone to do his job while he's off fucking boars and hunting whores. Or is it the other way around? And life will go on.",anger,0.774837076663971
+83,2011-04-17,Season 1,Episode 1,Winter is Coming,cersei lannister,You should be the Hand of the king.,disgust,0.3538665771484375
+84,2011-04-17,Season 1,Episode 1,Winter is Coming,jaime lannister,"That's an honor I can do without. Their days are too long, their lives are too short.",neutral,0.716787576675415
+85,2011-04-17,Season 1,Episode 1,Winter is Coming,catelyn stark,All these years and I still feel like an outsider when I come here.,neutral,0.30645495653152466
+86,2011-04-17,Season 1,Episode 1,Winter is Coming,eddard stark,You have five northern children. You're not an outsider.,neutral,0.9583103656768799
+87,2011-04-17,Season 1,Episode 1,Winter is Coming,catelyn stark,I wonder if the old gods agree.,surprise,0.9607738852500916
+88,2011-04-17,Season 1,Episode 1,Winter is Coming,eddard stark,It's your gods with all the rules.,neutral,0.9269111752510071
+89,2011-04-17,Season 1,Episode 1,Winter is Coming,catelyn stark,"I am so sorry, my love.",sadness,0.9784905314445496
+90,2011-04-17,Season 1,Episode 1,Winter is Coming,eddard stark,Tell me.,neutral,0.8325088620185852
+91,2011-04-17,Season 1,Episode 1,Winter is Coming,catelyn stark,There was a raven from Kings Landing. Jon Arryn is dead. A fever took him. I know he was like a father to you.,sadness,0.5987623333930969
+92,2011-04-17,Season 1,Episode 1,Winter is Coming,eddard stark,Your sister. The boy …,neutral,0.6324612498283386
+93,2011-04-17,Season 1,Episode 1,Winter is Coming,catelyn stark,They both have their health. Gods be good. [pause] The raven brought more news. The king rides for Winterfell. With the queen and all the rest of them.,neutral,0.8705742359161377
+94,2011-04-17,Season 1,Episode 1,Winter is Coming,eddard stark,"He's coming this far North, there's only one thing he's after.",neutral,0.9505849480628967
+95,2011-04-17,Season 1,Episode 1,Winter is Coming,catelyn stark,"You can always say no, Ned.",neutral,0.5494971871376038
+96,2011-04-17,Season 1,Episode 1,Winter is Coming,catelyn stark,We need plenty of candles for Lord Tyrion's chamber. I'm told he reads all night.,neutral,0.9116387367248535
+97,2011-04-17,Season 1,Episode 1,Winter is Coming,maester luwin,I'm told he drinks all night.,neutral,0.7257022857666016
+98,2011-04-17,Season 1,Episode 1,Winter is Coming,catelyn stark,How much could he possibly drink? A man of his … stature.,surprise,0.46754539012908936
+99,2011-04-17,Season 1,Episode 1,Winter is Coming,luwin,We've brought up eight barrels of ale from the cellar. Perhaps we'll find out.,neutral,0.9101256132125854
+100,2011-04-17,Season 1,Episode 1,Winter is Coming,catelyn stark,"In any case, candles.",neutral,0.8996877670288086
