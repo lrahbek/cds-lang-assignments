@@ -15,7 +15,13 @@ def get_arguments():
                         "-f", 
                         required = False,
                         default = "in/GoT-scripts/Game_of_Thrones_Script.csv",
-                        help="The path where the data can be found")                  
+                        help="The path where the data can be found")         
+    parser.add_argument(
+                        "--neutral",
+                        "-n", 
+                        required = True,
+                        choices = ["w_neut", "rm_neut"],
+                        help="Choose whether or not to keep the neutral emotion when saving the plots")         
     args = parser.parse_args()
     return args
 
@@ -67,7 +73,73 @@ def emotion_classifier(data_in, data_emotions, classifier, data_emotions_path):
     return print("Emotion scores and labels for each sentence in the dataset have been saved to the outfolder")
 
 
+def reshape_data(data_emotions_path):
+    """
+    The function takes path where the emotions data was saved, and reshapes it. The returned 
+    dataframe has three columns, Season and emotion_label and count. For each season the 
+    number of each of the seven emotion labels are counted, divided by the total number of 
+    lines in the given season and multiplied by 100, resulting in relative requency of each 
+    emotion label per 100 lines for each season. 
+    """
+    data_emotions = pd.read_csv(data_emotions_path, index_col=0, usecols=[0,2,7])
+    Seasons = list(data_emotions.Season.unique())
+    season_len = []
+    for n in range(len(Seasons)):
+        season = Seasons[n]
+        season_len = season_len + [len(data_emotions.loc[data_emotions["Season"] == f"{season}"])]
+    data_counts =  data_emotions.value_counts().reset_index().rename(columns={"index": "value", 0: "counts"})
+    data_counts["Relative Frequency"] = ""
+    for season, length in zip(Seasons, season_len):
+        data_counts.loc[data_counts["Season"] == season, "Relative Frequency"] = data_counts.loc[data_counts["Season"] == season, "count"]/length * 100
+    return data_counts
 
+
+def bar_plot(data, xcol, subsep, suborder, xorder, neut, subcols):
+    """
+    The function creates a collection of barplots, conditioned on different parameters. 
+    In this case the following variables should be defined: 
+    
+    data: The dataframe used for plotting, should contain a Relative Frequency column. 
+    xcol: The column used for the x-axis 
+    subsep: The column used to base the split into subplots on 
+    suborder: Order of subplots 
+    xorder: Order of labels on x-axis
+    neut: string representing whether or not to keep the neutral emotion label 
+    subcols: The number of columns the subplots are arranged in. 
+
+    The function saves the plot to the out folder, its name indicates how the subplots 
+    are defined and whether neutral is included.
+    """
+    g = sns.catplot(data, 
+                    x= xcol, 
+                    y = "Relative Frequency",
+                    hue = xcol,  
+                    col = subsep, 
+                    kind = "bar",
+                    col_wrap = subcols,
+                    col_order = suborder,
+                    fill = True, 
+                    order = xorder)
+    g.set_xticklabels(labels=xorder, rotation=30) 
+    plt.savefig(f"../out/{subsep}_subplot_{neut}.png")
+
+
+def plot_emotions(dataframe, neut):
+    """
+    The function takes a dataframe and a string indicating whether or not to keep the neutral
+    emotion label. It utilises the bar_plot() function, and saves both a plot with subplots
+    based on seasons and emotion labels. 
+    """
+    seasons =  ["Season 1", "Season 2", "Season 3", "Season 4", "Season 5", "Season 6", "Season 7", "Season 8"]
+    if neut == "w_neut":
+        emotions_w_neut = ["anger", "disgust", "fear", "joy", "neutral", "sadness", "surprise"]
+        bar_plot(dataframe, "emotion_label", "Season", seasons, emotions_w_neut, neut, 4)
+        bar_plot(dataframe, "Season", "emotion_label", emotions_w_neut, seasons, neut, 4)
+    elif neut == "rm_neut":
+        dataframe_rm_neut = dataframe[dataframe["emotion_label"] != "neutral"]
+        emotions_rm_neut = ["anger", "disgust", "fear", "joy", "sadness", "surprise"]
+        bar_plot(dataframe_rm_neut, "emotion_label", "Season", seasons, emotions_rm_neut, neut, 4)
+        bar_plot(dataframe_rm_neut, "Season", "emotion_label", emotions_rm_neut, seasons, neut, 3)
 
 
 def main():
@@ -75,7 +147,8 @@ def main():
     classifier = load_classifier()    
     data_in, data_emotions, data_emotions_path = load_data(args.filepath)
     emotion_classifier(data_in, data_emotions, classifier, data_emotions_path)
-    
+    data_counts = reshape_data(data_emotions_path)
+    plot_emotions(data_counts, args.neutral)
 
 if __name__ == "__main__":
     main()
