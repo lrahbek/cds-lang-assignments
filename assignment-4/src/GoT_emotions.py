@@ -110,10 +110,14 @@ def bar_plot(data, xcol, subsep, suborder, xorder, neut, subcols):
     The function saves the plot to the out folder, its name indicates how the subplots 
     are defined and whether neutral is included.
     """
+    colours = list(sns.color_palette("husl", 7))
+    colour_dict = {"anger": colours[0], "disgust": colours[2], "fear": colours[1], "joy": colours[6], 
+                   "neutral": colours[3], "sadness": colours[4], "surprise": colours[5]}
+    sns.set_theme(style = "whitegrid")
     g = sns.catplot(data, 
                     x= xcol, 
                     y = "Relative Frequency",
-                    hue = xcol,  
+                    hue = "emotion_label",  
                     col = subsep, 
                     kind = "bar",
                     col_wrap = subcols,
@@ -131,15 +135,15 @@ def plot_emotions(dataframe, neut):
     based on seasons and emotion labels. 
     """
     seasons =  ["Season 1", "Season 2", "Season 3", "Season 4", "Season 5", "Season 6", "Season 7", "Season 8"]
+    emotions = ["anger", "disgust", "fear", "joy", "neutral", "sadness", "surprise"]
     if neut == "w_neut":
-        emotions_w_neut = ["anger", "disgust", "fear", "joy", "neutral", "sadness", "surprise"]
-        bar_plot(dataframe, "emotion_label", "Season", seasons, emotions_w_neut, neut, 4)
-        bar_plot(dataframe, "Season", "emotion_label", emotions_w_neut, seasons, neut, 4)
+        bar_plot(dataframe, "emotion_label", "Season", seasons, emotions, neut, 4)
+        bar_plot(dataframe, "Season", "emotion_label", emotions, seasons, neut, 4)
     elif neut == "rm_neut":
+        emotions.remove("neutral")
         dataframe_rm_neut = dataframe[dataframe["emotion_label"] != "neutral"]
-        emotions_rm_neut = ["anger", "disgust", "fear", "joy", "sadness", "surprise"]
-        bar_plot(dataframe_rm_neut, "emotion_label", "Season", seasons, emotions_rm_neut, neut, 4)
-        bar_plot(dataframe_rm_neut, "Season", "emotion_label", emotions_rm_neut, seasons, neut, 3)
+        bar_plot(dataframe_rm_neut, "emotion_label", "Season", seasons, emotions, neut, 4)
+        bar_plot(dataframe_rm_neut, "Season", "emotion_label", emotions, seasons, neut, 3)
 
 
 def main():
