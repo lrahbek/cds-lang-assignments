@@ -1,7 +1,9 @@
 from transformers import pipeline
+import tensorflow
+import keras
 import pandas as pd
 import os
-import matplotlib as plt
+import matplotlib.pyplot as plt
 import seaborn as sns
 import argparse
 
@@ -123,9 +125,10 @@ def bar_plot(data, xcol, subsep, suborder, xorder, neut, subcols):
                     col_wrap = subcols,
                     col_order = suborder,
                     fill = True, 
-                    order = xorder)
+                    order = xorder, 
+                    palette = colour_dict)
     g.set_xticklabels(labels=xorder, rotation=30) 
-    plt.savefig(f"../out/{subsep}_subplot_{neut}.png")
+    plt.savefig(f"out/{subsep}_subplot_{neut}.png")
 
 
 def plot_emotions(dataframe, neut):
