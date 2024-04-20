@@ -29,11 +29,15 @@ The data used in this assignment can be found [here](https://www.kaggle.com/data
 To reproduce the analysis: 
 - Download the dataset from the source described above, and place it in the in folder, the default filepath from the folder ```assignment-4``` to the data, is 'in/GoT-scripts/Game_of_Thrones_Script.csv
 - Run the bash script ```setup.sh```
-- Run the bash script ```run.sh```
+- Run the bash script, ```run.sh```, specifying whether or not the emotion label 'neutral' should be kept in the plots, using -n with either 'w_neut' or 'rm_neut', with neutral or remove neutral, respectively. 
 
 It is possible to specify an altnative filepath when running the bash script by specifing it with -f {new path} after ```bash run.sh```
 
 ## Discussion
 
-The visualization of the emotions in the eight seasons show;;
+The immidiate visuzalization of the emotional profile of Game of Thrones, shows a very large amount of neutral lines across all seasons. Above 40% of lines i all eight seasons had the highest score in the label neutral. A further analysis, would be able to shed light on whether many of these lines might have had another emotion label as prominent also, but as the neutral emotion is very similar across seasons, and obscures visual inspection of the other emotions, plots without neutral label was also made. 
+
+
+
+
 
