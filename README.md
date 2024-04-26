@@ -17,5 +17,3 @@ Assignment 3 - Query expansion with word embeddings
 Assignment 4 - Emotion analysis with pretrained language models
 
 Assignment 5 - Evaluating environmental impact of your exam portfolio
-
-Assignment 5 - 
