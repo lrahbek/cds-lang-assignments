@@ -1,5 +1,8 @@
 # Assignment 5 - Evaluating environmental impact of your exam portfolio
 
+
+
+
 In the lecture and code along session, we were introduced to CodeCarbon which allows to track the impact of our code in various different ways. The main contribution of this package is that we end up with an approximate value for CO₂ emissions expressed as kilograms of CO₂-equivalent (CO₂eq).
 
 Which leads us to ask - how much of an environmental impact has your work in Cultural Data Science had this semester?

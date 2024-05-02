@@ -1,7 +1,7 @@
 
-# activate the environment
+#open the virtual environment 
 source ./env/bin/activate
-# run the code
-python src/feature_extraction.py "$@"
-# close the environment
+#run the feature extraction 
+python src/feature_extraction2.py "$@"
+#exit enviorment 
 deactivate
