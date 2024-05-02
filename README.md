@@ -13,3 +13,7 @@ Assignment 1 - Extracting Linguistic features using spaCy
 Assignment 2 - Text classification benchmarks 
 
 Assignment 3 - Query expansion with word embeddings 
+
+Assignment 4 - Emotion analysis with pretrained language models
+
+Assignment 5 - Evaluating environmental impact of your exam portfolio
