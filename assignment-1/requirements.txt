@@ -2,5 +2,7 @@ codecarbon==2.3.5
 en_core_web_lg==3.7.1
 en_core_web_md==3.7.1
 en_core_web_sm==3.7.1
+matplotlib==3.8.4
 pandas==2.2.2
+seaborn==0.13.2
 spacy==3.7.4

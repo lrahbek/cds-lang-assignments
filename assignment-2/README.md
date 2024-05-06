@@ -24,6 +24,8 @@ The output when running the code is two classifier models and a saved in ```mode
 
 The data used as a default in the classification tasks, is a dataset including 6335 articles, their titles, as well as a label indicating whether the article has been deemed *fake* or *real* news. 
 
+https://www.kaggle.com/datasets/jillanisofttech/fake-or-real-news 
+
 ## Usage and Reproducing of Analysis 
 
 To reproduce the analysis: 
