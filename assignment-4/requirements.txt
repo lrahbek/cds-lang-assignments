@@ -1,6 +1,8 @@
+codecarbon==2.3.5
 keras==3.2.1
 matplotlib==3.8.4
 pandas==2.2.2
 seaborn==0.13.2
 tensorflow==2.16.1
+tqdm==4.66.2
 transformers==4.40.0

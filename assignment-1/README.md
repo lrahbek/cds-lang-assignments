@@ -34,8 +34,8 @@ The subfolders reflect the term the essay was written in, subfolder starting wit
 
 To reproduce the analysis: 
 - Download and unzip the ```USEcoprus``` folder, and place it in the ```in``` folder in the repository. 
-- Run the bash script ```setup.sh``` from the command line, it creates a virtual enviorment and installs packages and dependencies in to it. 
-- Run the bash script ```run.sh``` from the command line, this opens the virtual enviorenment and runs both scripts in ```src``` folder. 
+- Run the bash script ```setup.sh``` from the command line, it creates a virtual environment and installs packages and dependencies in to it. 
+- Run the bash script ```run.sh``` from the command line, this opens the virtual environment  and runs both scripts in ```src``` folder. 
 
 To use another spaCy model than ```en_core_web_md```, pass another model when running ```run.sh```, either ```en_core_web_sm``` or ```en_core_web_lg```. 
 
