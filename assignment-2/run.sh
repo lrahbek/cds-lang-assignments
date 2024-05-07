@@ -1,9 +1,8 @@
-
-# activate the environment
+#open the virtual environment 
 source ./env/bin/activate
-# run the code
+# run the three scripts
 python src/vectorizer.py "$@"
 python src/LR_classifier.py
 python src/MLP_classifier.py "$@"
-# close the environment
+#exit the environment
 deactivate

@@ -1,4 +1,3 @@
-
 #open the virtual environment 
 source ./env/bin/activate
 #run the feature extraction and plotting scripts

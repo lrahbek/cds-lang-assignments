@@ -1,6 +1,5 @@
 import os
 import sys
-
 import pandas as pd
 import numpy as np
 import scipy as sp
@@ -11,8 +10,8 @@ import pickle
 
 def load_data():
     """
-    The function loads the pickled data from the out folder and returns, the training and test labels, 
-    the feature names, and the training and test vectorised data. 
+    The function loads the pickled data from the out folder and returns, the training and test labels, the 
+    feature names, and the training and test vectorised data. 
     """
     y_train, y_test, X_train_features, X_test_features, feature_names = pd.read_pickle('out/features.pkl')
     return y_train, y_test, X_train_features, X_test_features, feature_names
@@ -28,8 +27,8 @@ def LR_fit(X_train_features, y_train):
 
 def LR_evaluate(X_test_features, y_test):
     """
-    The function takes the vectorised test data and labels. It loads the logistic regrssion classifier
-    and tests it on the test data, and saves the classification report to the out folder. 
+    The function takes the vectorised test data and labels. It loads the logistic regrssion classifier and tests 
+    it on the test data, and saves the classification report to the out folder. 
     """
     classifier_LR = load("models/classifier_LR.joblib")
     y_pred_LR = classifier_LR.predict(X_test_features)

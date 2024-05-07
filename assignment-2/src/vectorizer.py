@@ -1,6 +1,5 @@
 import os
 import sys
-
 import pandas as pd
 import numpy as np
 import scipy as sp
@@ -41,9 +40,8 @@ def get_arguments():
 
 def load_and_split(in_path, text_col, label_col):
     """
-    The function takes the filepath for a given dataset, and the name of the 
-    column with the text and the name of the column with the classification 
-    labels. It returns the dataset split into test and train, 20% for test and 
+    The function takes the filepath for a given dataset, and the name of the column with the text and the name of
+    the column with the classification labels. It returns the dataset split into test and train, 20% for test and
     80% for train.
     """
     data = pd.read_csv(in_path, index_col=0)
@@ -54,8 +52,8 @@ def load_and_split(in_path, text_col, label_col):
 
 def def_save_vectorizer(vect_path):
     """
-    The function takes the path where the vectorizer should be saved, defines a tfidf 
-    vectorizer, with set parameters, as seen below, saves and returns the vectorizer.
+    The function takes the path where the vectorizer should be saved, defines a tfidf vectorizer, with set 
+    parameters, as seen below, saves and returns the vectorizer.
     """
     vectorizer = TfidfVectorizer(ngram_range = (1,2), 
                                 lowercase =  True, 
@@ -67,10 +65,9 @@ def def_save_vectorizer(vect_path):
 
 def fit_vectorizer(vect_path, X_train, X_test, y_train, y_test):
     """
-    This function takes the path where the vectoizer is saved, and the split dataset, 
-    it fits and transforms the training data, transforms the test data and extracts the 
-    feature names. It saves the vectorised data, as well as the labels and feature names
-    to the out folder in pickle format. 
+    This function takes the path where the vectoizer is saved, and the split dataset, it fits and transforms the
+    training data, transforms the test data and extracts the feature names. It saves the vectorised data, as well
+    as the labels and feature names to the out folder in pickle format. 
     """
     vectorizer = load(f"{vect_path}.joblib")
     X_train_features = vectorizer.fit_transform(X_train)

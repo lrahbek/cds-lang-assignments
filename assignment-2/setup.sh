@@ -1,10 +1,11 @@
-
-# create virtual enviorment
+#make virtual enviorement
 python -m venv env
-# activate enviorment
+#open virtual enviorement
 source ./env/bin/activate
-# install requirements
+#finde dependencies and install requirements 
 pip install --upgrade pip
+pip install pipreqs
+pipreqs src --savepath requirements.txt
 pip install -r requirements.txt
-# close the environment
+#exit the virtual environment
 deactivate

@@ -162,4 +162,3 @@ cython_debug/
 #ignore data within in-folders 
 in/
 !.gitkeep
-!assignment-2/in/
