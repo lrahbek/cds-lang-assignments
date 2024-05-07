@@ -25,9 +25,9 @@ def load_data(outfolder):
 def plot_NER(data, outpath):
     """ Saves a plot of the named entety recognition results in the data, as mean count per subfolder """
     fig, axs = plt.subplots(1, 3, figsize = (12,5))
-    sns.barplot(data=data, x="subfolder", y="Unique LOC", hue="subfolder", errorbar=None, ax=axs[0])
-    sns.barplot(data=data, x="subfolder", y="Unique PER", hue="subfolder", errorbar=None, ax=axs[1])
-    sns.barplot(data=data, x="subfolder", y="Unique ORG", hue="subfolder", errorbar=None, ax=axs[2])
+    sns.barplot(data=data, x="subfolder", y="Unique LOC", hue="subfolder",  ax=axs[0])
+    sns.barplot(data=data, x="subfolder", y="Unique PER", hue="subfolder",  ax=axs[1])
+    sns.barplot(data=data, x="subfolder", y="Unique ORG", hue="subfolder", ax=axs[2])
     plt.savefig(os.path.join(outpath, "NER.png"))
 
 def pairplot_POS(data, outpath):

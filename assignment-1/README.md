@@ -18,8 +18,12 @@ The ```feature_extraction.py``` script does the folllowing:
   - The word frquencies and named enteties are saved in a row in a .csv file, named according to the given subfolder, placed in the ```out``` folder. 
 
 The ```plot_features.py``` script does the following: 
-- 
-
+- Loads in the .csv files with the extracted features from the ```out``` folder and adds three columns; 
+  - subfolder: the name of the subfolder, indicating which specific essay prompt the text was written from. 
+  - term: a, b or c, indicating whether the essay was written in term 1, 2 or 3. 
+  - type: in the documentation for the corpus, the subfolders all belong to one of the following categories (in terms of type of text); Evaluation, Argumentation, Discussion, Linguistics, Literature and Culture. 
+- Saves different plots, viusaling the different features by the different possible groups. The plots are saved in the ```out``` folder.
+ 
 ## Data
 
 The data used is the *The Uppsala Student English Corpus (USE)*, which is a collection of essays in English written by Swedish university students. The data can be accesed at [this link](https://ota.bodleian.ox.ac.uk/repository/xmlui/handle/20.500.12024/2457), where additional information on the corpus can be found too. 
@@ -41,9 +45,16 @@ To use another spaCy model than ```en_core_web_md```, pass another model when ru
 
 ## Discussion 
 
-The visualization of the feature extraction performed on the *USE corpus* showed...
+Before discussing the potential tendencies found in the visualization of the features extracted from the *USE corpus*, several limitations to this method are worth mentioning. First, ```en_core_web_md``` was trained on web data, (blogs, news, comments etc. [see the documentation for more](https://github.com/explosion/spacy-models)). Which is not the same type of text used on in this assignment. Word use, phrasing and the theme of the texts are very different to general web text, which might introduce some issues or a loss of information. Further, the different texts are of varying length, and the different essay categories and subfolders contain a different number of essays, which makes it more difficult to investigate differences properly. 
 
+With that, I will discuss tendencies found in the plots. First the Named Entety Recognition plot (```NER.png```), the first thing that stands out are the subfolders with much higher means than the rest. Specifically across all three NERs (location, persons and organisations) the following subfolders all have a high mean; ```a5```, ```b3```, ```b8``` and ```c1```.  However, for ```b8``` the errorbar reveals high variance, in this case due to only three texts in this category. Different variables sets the remaining three subfolders apart from the rest, ```a5``` and ```b3``` are the only subfolders in their respective text-type categories, Culture and Linguistics. ```c1``` contains Literature essays, along with other subfolders, but is the only written in the third term. 
 
-Several limitations to this method are worth mentioning. First, ```en_core_web_md``` was trained on web data, (blogs, news, comments etc. [see the documentation for more](https://github.com/explosion/spacy-models)). Which is not the same type of text it used on in this assignment. Word use, phrasing and the theme of the texts are very different to general web text, which might introduce some issues or a loss of information. Further, the different texts are of varying length, and the different essay categories and subfolders contain a different number of essays, which makes it more difficult to investigate differences properly. 
+I have visualised the Parts Of Speech found in the text in three plots:
+- ```pair_POS.png``` a pair plot visualising the correlation between the four POS variables in the data, grouped by subfolder.
+- ```box_POS.png``` a boxplot visualising the spread of relative frequency in the four POS variables, grouped by subfolder.
+- ```pair_POStype.png``` a pair plot visualising the correlation between the four POS variables in the data, grouped by text type. 
+
+The pairplot grouped by subfolder indicates a couple of things. First, their seems to be a vague negative correlation between relative frequency of nouns and verbs, as well as between verbs and adjective and nouns and adverbs. These tendencies are then matched with positive correlation between verbs and adverbs and nouns and adjectives. These correlations seem to conform to the expectations of word use (verbs go with adverbs and nouns go with adjectives). Further, the diagonal distributions seem to reveal that the distributions of ```a1``` are distinct to the rest for relative frequency of nouns and verbs. However, with a purely visual inspection conclusions cannot be drawn. To inspect these distributions further, the boxplot was made. The boxplot affirms that ```a1``` has a lower relative frequency of nouns. Further, ```b3``` seem to have a lower relative frequency of verbs. Because of the many different subfolders, or groups, in the data, it is difficult to find clusters or tendencies. Therefore, the last plot that was inspected was the pairplot grouped by text-type. 
+
 
 A final note, ```codecarbon``` was used to track the enviormental impact when running this code, the results and an exploration of this can be found in the ```Assignment-5``` folder in the repository. 
