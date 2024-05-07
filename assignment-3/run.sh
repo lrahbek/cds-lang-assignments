@@ -1,7 +1,6 @@
-
-# activate the environment
+#open the virtual environment 
 source ./env/bin/activate
-# run the code
+# run the code keywordcounter.py script
 python src/keywordcounter.py "$@"
-# close the environment
+#exit environment 
 deactivate

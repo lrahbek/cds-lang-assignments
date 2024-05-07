@@ -42,6 +42,4 @@ When inspecting the plots, where the neutral emotion lavel have been removed, th
 A further inspection, could include an episode wise timeseries for each season or the scores for each emotion. 
 
 
-
-
-
+*```codecarbon``` was used to track the environmental impact when running this code, the results and an exploration of this can be found in the ```Assignment-5``` folder in the repository.*

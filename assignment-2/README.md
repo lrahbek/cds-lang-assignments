@@ -4,13 +4,6 @@
 
 Laura Givskov Rahbek 
 
-
-
-For this exercise, you should write two different notebooks. One should train a logistic regression classifier on the data; the second notebook should train a neural network on the same dataset. Both notebooks should do the following:
-
-Save the classification report to a text file the folder called out
-Save the trained models and vectorizers to the folder called models
-
 ## Description 
 
 This folder contains assignment 2 for Language Analytics. The objective of the assignment is to train benchmark machine learning classifiers on structured text data, using ```scikit-learn```, make and save understandable outputs and models, and save the results in clear ways. More specifically two different binary classification models will be trained on the *Fake or Real News* dataset, a logistic regression classifier and a neural network. Three scripts were made for this assignment, each described below: 
@@ -26,7 +19,7 @@ The ```LR_classifier.py``` script does the following:
 - Evaluates the performance of the model on the test data and saves the evaluation metrics to the ```out``` folder. 
 
 The ```MLP_classifier.py``` script does the following: 
-- 
+
 
 - Different options for the gridsearch can be found in the [sckit-learn documentation](https://scikit-learn.org/stable/modules/generated/sklearn.neural_network.MLPClassifier.html).
 
@@ -38,8 +31,8 @@ The data used in this assignment is the *Fake or Real News* dataset, which can b
 
 To reproduce the analysis: 
 - Download the ```fake_or_real_news.csv``` file from the source given above, and place it in the ```in``` folder.
-- Run the bash script ```setup.sh``` from the command line, it creates a virtual enviorment and installs packages and dependencies in to it.
-- Run the bash script ```run.sh``` from the command line, this opens the virtual enviornment and runs all three scripts in ```src``` folder. 
+- Run the bash script ```setup.sh``` from the command line, it creates a virtual environment and installs packages and dependencies in to it.
+- Run the bash script ```run.sh``` from the command line, this opens the virtual environment and runs all three scripts in ```src``` folder. 
     - ```vectorizer.py``` can take some arguments, written out in the table below (the default arguments fit the dataset *fake_or_real_news* if it is correctly placed in the ```in``` folder). 
     - ```MLP_classifier.py``` can also take some arguments, specfying the gridsearch, these are also written out in the table below. 
 
@@ -54,3 +47,7 @@ To reproduce the analysis:
 ## Discussion 
 
 The classification reports show ... 
+
+
+
+*```codecarbon``` was used to track the environmental impact when running this code, the results and an exploration of this can be found in the ```Assignment-5``` folder in the repository.*

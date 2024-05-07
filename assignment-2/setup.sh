@@ -1,6 +1,6 @@
-#make virtual enviorement
+#make virtual environment
 python -m venv env
-#open virtual enviorement
+#open virtual environment
 source ./env/bin/activate
 #finde dependencies and install requirements 
 pip install --upgrade pip

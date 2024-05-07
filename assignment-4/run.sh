@@ -1,7 +1,6 @@
-
-# activate the environment
+#open the virtual environment 
 source ./env/bin/activate
-# run the code
+#run the GOT_emotions.py script
 python src/GoT_emotions.py "$@"
-# close the environment
+#exit environment 
 deactivate

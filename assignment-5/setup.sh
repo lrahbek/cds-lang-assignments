@@ -7,7 +7,6 @@ pip install --upgrade pip
 pip install pipreqs
 pipreqs src --savepath requirements.txt
 pip install -r requirements.txt
-pip install tf-keras
 #exit the virtual environment
 deactivate
 

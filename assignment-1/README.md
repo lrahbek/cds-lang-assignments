@@ -60,4 +60,4 @@ The most obvious distnictions can be found in the distribution showing relative 
 
 Across the visualizations there seems to be some tendencies unique to some of the essay prompts and text types, however to properly evaluate whether these tendencies are signficant to the individual groupings, further analysis would have to take place. 
 
-A final note, ```codecarbon``` was used to track the enviormental impact when running this code, the results and an exploration of this can be found in the ```Assignment-5``` folder in the repository. 
+*```codecarbon``` was used to track the environmental impact when running this code, the results and an exploration of this can be found in the ```Assignment-5``` folder in the repository.*
