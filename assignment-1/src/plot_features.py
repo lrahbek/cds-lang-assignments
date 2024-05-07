@@ -6,12 +6,20 @@ import seaborn as sns
 def load_data(outfolder):
     """ Loads the .csv files saved to the out folder and returns them as one data frame """ 
     data = pd.DataFrame()
+    type_dict ={'a1': "Evaluation",   'a2': "Argumentation", 
+            'a3': "Discussion",   'a4': "Literature", 
+            'a5': "Culture",      'b1': "Discussion",
+            'b2': "Argumentation",'b3': "Linguistics",
+            'b4': "Literature",   'b5': "Literature",
+            'b6': "Discussion", 'b7': "Discussion",
+            'b8': "Evaluation", 'c1': "Literature"}
     for file in sorted(os.listdir(outfolder)):
         if file.endswith(".csv"):
             dat = pd.read_csv(os.path.join(outfolder, file), index_col=0)
             dat["subfolder"] = file.split(".")[0]
             dat["term"] = file[0]
             data = pd.concat([data, dat])
+    data['Type'] = data['subfolder'].map(type_dict)
     return data
 
 def plot_NER(data, outpath):
@@ -31,6 +39,15 @@ def pairplot_POS(data, outpath):
                  corner = True)
     plt.savefig(os.path.join(outpath, "pair_POS.png"))
 
+def pairplot_POStype(data, outpath):
+    """ Saves a plot of the named parts of speech found in the essays in relative frequencies, coloured by type of text """
+    sns.pairplot(data, 
+                 hue="Type", 
+                 vars=["RelFreq VERB", "RelFreq NOUN", "RelFreq ADV", "RelFreq ADJ"], 
+                 kind = "scatter", 
+                 corner = True)
+    plt.savefig(os.path.join(outpath, "pair_POStype.png"))
+
 def boxplot_POS(data, outpath):
     """ Saves a boxplot of the named parts of speech found in the essays in relative frequencies """
     fig, axs = plt.subplots(2, 2, figsize = (10,7))
@@ -44,6 +61,7 @@ def main():
     data = load_data("out")
     plot_NER(data, "out/plots")
     pairplot_POS(data, "out/plots")
+    pairplot_POStype(data, "out/plots")
     boxplot_POS(data, "out/plots")
 
 if __name__ == "__main__":
