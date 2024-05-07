@@ -2,6 +2,13 @@ import os
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+from codecarbon import EmissionsTracker
+
+def carbon_tracker(em_outpath):
+    """ The function initalizes the carbon tracker """
+    tracker = EmissionsTracker(project_name="Assignment-1",
+                               output_dir=em_outpath)
+    return tracker
 
 def load_data(outfolder):
     """ Loads the .csv files saved to the out folder and returns them as one data frame """ 
@@ -58,11 +65,15 @@ def boxplot_POS(data, outpath):
     plt.savefig(os.path.join(outpath, "box_POS.png"))
 
 def main():
+    tracker = carbon_tracker("../assignment-5/out")
+    tracker.start_task("Visualising features")                               
     data = load_data("out")
     plot_NER(data, "out/plots")
     pairplot_POS(data, "out/plots")
     pairplot_POStype(data, "out/plots")
     boxplot_POS(data, "out/plots")
+    tracker.stop_task()
+    tracker.stop()
 
 if __name__ == "__main__":
     main()

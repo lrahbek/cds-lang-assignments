@@ -5,7 +5,7 @@ import glob
 import re
 import argparse
 import en_core_web_sm, en_core_web_md, en_core_web_lg  
-from codecarbon import EmissionsTracker, track_emissions
+from codecarbon import EmissionsTracker
 
 
 def carbon_tracker(em_outpath):

@@ -35,4 +35,5 @@ To perform the expanded query by running the script ```keywordcounter.py``` do t
 
 
 
+
 *```codecarbon``` was used to track the environmental impact when running this code, the results and an exploration of this can be found in the ```Assignment-5``` folder in the repository.*
