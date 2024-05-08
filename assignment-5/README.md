@@ -14,20 +14,20 @@ The ```assignment-5``` folder contains two folders:
 
 
 
-- Which assignment generated the most emissions in terms of CO₂eq? Explain why this might be.
-- Which specific tasks generated the most emissions in terms of CO₂eq? Again, explain why this might be.
-- How robust do you think these results are and how/where might they be improved? 
 
-*change code to have less enviormental impact*
 
 ## Usage and Reproducing of Analysis
 
 All code used to handle the emmisions data as well as visualisations of these can be found in the notebook in the ```src``` folder. Packages and dependencies to the run the notebook can be installed by running the bash script ```setup.sh```. To view the packages that are installed when running this, see the ```requirements.txt``` file. 
 
-
-
+To track the emissions from the assignments the ```EmissionTracker``` from ```CoddeCarbon``` was used, to see how precisely this was done, the code can be found in the scripts in the assignments. Loosely however, the tracker was ininialised and then used to track individual taksks, to be able to investigate the differences. The emissions were added up to infer the total emissions per assignment. 
 
 ## Discussion 
 
 
+- Which assignment generated the most emissions in terms of CO₂eq? Explain why this might be.
+- Which specific tasks generated the most emissions in terms of CO₂eq? Again, explain why this might be.
+- How robust do you think these results are and how/where might they be improved? 
+
+*change code to have less enviormental impact*
 
