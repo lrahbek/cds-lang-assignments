@@ -21,6 +21,7 @@ The ```LR_classifier.py``` script does the following:
 The ```MLP_classifier.py``` script does the following: 
 
 
+
 - Different options for the gridsearch can be found in the [sckit-learn documentation](https://scikit-learn.org/stable/modules/generated/sklearn.neural_network.MLPClassifier.html).
 
 ## Data
