@@ -14,7 +14,7 @@ The ```keywordcounter.py``` script does the following:
 - Loads the ```glove-wiki-gigaword-50``` wordembedding model and returns a list of the ten most similar words, to the given keyword, and the keyword itself. 
 - Cleans the texts by the given artists, by tokenising, making each token lower case and stripping punctuation. 
 - Counts the number of texts any of the keywords are present in, by the given artist, and appends the results to the ```output.csv``` file. Each row in the file contains the keyword, the ten similar words, the name of the artist, the total number of songs by the artist, the total number of songs by the artist containing any of the words and finally the percentage of songs by the artist containing any of the words. 
-- In the terminal the percentage of the artist's songs containg the words is returned. 
+- In the terminal the percentage of the artist's songs containing the words is returned. 
 
 ## Data
 
@@ -33,7 +33,6 @@ To perform the expanded query by running the script ```keywordcounter.py``` do t
   
 ## Discussion 
 
-
-
+The results of the expanded keyword query are reflective of the method used; word embeddings and the data those are trained on, in this case a very large amount of wikipedia articles. Further, the individual word embeddings are kept as different conjugations and versions of the same word. An example of this is in the ```output.csv``` file, where both 'loves' and 'loving' are returned as some of the closest words to 'love'. When performing the exapnded query, there are limits to how much additional information is given when these words are included additionally to 'love'. There are of course work arounds to this, for example extracting the root of the returned words and only keeping them if they aren't identical to the keyword. This could potentially be implemented to increase the scope of the query. 
 
 *```codecarbon``` was used to track the environmental impact when running this code, the results and an exploration of this can be found in the ```Assignment-5``` folder in the repository.*
