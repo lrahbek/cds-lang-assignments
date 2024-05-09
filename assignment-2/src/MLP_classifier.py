@@ -1,6 +1,5 @@
 import os
 import sys
-
 import pandas as pd
 import numpy as np
 import scipy as sp
@@ -23,18 +22,18 @@ def get_arguments():
 
 def load_data():
     """
-    The function loads the pickled data from the out folder and returns, the training and test labels, 
-    the feature names, and the training and test vectorised data. 
+    The function loads the pickled data from the out folder and returns, the training and test labels, the feature 
+    names, and the training and test vectorised data. 
     """
     y_train, y_test, X_train_features, X_test_features, feature_names = pd.read_pickle('out/features.pkl')
     return y_train, y_test, X_train_features, X_test_features, feature_names
 
 def MLP_fit(X_train_features, y_train, activation_fun):
     """
-    The function takes the vectorised training data and labels, as well as the activation function
-    wanted, as a string. An MLP classifier is fitted to the data, with the given activation 
-    funcition. It saves the classifier in the 'models' folder, where the activation function is 
-    included in the file name, and returns the classifier as well. 
+    The function takes the vectorised training data and labels, as well as the activation function wanted, as a 
+    string. An MLP classifier is fitted to the data, with the given activation funcition. It saves the classifier 
+    in the 'models' folder, where the activation function is included in the file name, and returns the classifier 
+    as well. 
     """
     classifier_MLP = MLPClassifier( activation = activation_fun,
                                     hidden_layer_sizes = (100,), 
@@ -47,10 +46,9 @@ def MLP_fit(X_train_features, y_train, activation_fun):
 
 def MLP_evaluate(X_test_features, y_test, activation_fun):
     """
-    The function takes the vectorised test data and labels, as well as the activation function used
-    when fitting the classifier, as this denotes which MLP model is wanted from the models folder.
-    It loads the MLP classifier and tests it on the test data, and saves the classification report 
-    to the out folder. 
+    The function takes the vectorised test data and labels, as well as the activation function used when fitting the 
+    classifier, as this denotes which MLP model is wanted from the models folder. It loads the MLP classifier and 
+    tests it on the test data, and saves the classification report to the out folder. 
     """
     classifier_MLP = load(f"models/classifier_MLP_{activation_fun}.joblib")
     y_pred_MLP = classifier_MLP.predict(X_test_features)

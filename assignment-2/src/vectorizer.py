@@ -18,18 +18,6 @@ def get_arguments():
                         default = "in/fake_or_real_news.csv",
                         help="The path for the input dataset, if it isn't the default, the column names arguments should also be changed")               
     parser.add_argument(
-                        "--text_column",
-                        "-t", 
-                        required = False,
-                        default = "text",
-                        help="The name for the column in the dataset with the text, the default is 'text' which is the column name in the default dataset")               
-    parser.add_argument(
-                        "--label_column",
-                        "-l", 
-                        required = False,
-                        default = "label",
-                        help="The name for the column in the dataset with the labels, the default is 'label' which is the column name in the default dataset")               
-    parser.add_argument(
                         "--vectorizer_path",
                         "-v", 
                         required = False,
@@ -38,11 +26,11 @@ def get_arguments():
     args = parser.parse_args()
     return args
 
-def load_and_split(in_path, text_col, label_col):
+def load_and_split(in_path):
     """
-    The function takes the filepath for a given dataset, and the name of the column with the text and the name of
-    the column with the classification labels. It returns the dataset split into test and train, 20% for test and
-    80% for train.
+    The function takes the filepath for a dataset, the column containing the text data should be labeled 'text' and 
+    the column containing the labels, should be labeled 'label'. It returns the dataset split into test and train, 
+    20% for test and 80% for train.
     """
     data = pd.read_csv(in_path, index_col=0)
     X = data[text_col]
@@ -80,7 +68,7 @@ def fit_vectorizer(vect_path, X_train, X_test, y_train, y_test):
 
 def main():
     args = get_arguments()
-    X_train, X_test, y_train, y_test = load_and_split(args.input_path, args.text_column, args.label_column)
+    X_train, X_test, y_train, y_test = load_and_split(args.input_path)
     def_save_vectorizer(args.vectorizer_path)
     fit_vectorizer(args.vectorizer_path, X_train, X_test, y_train, y_test)
 
