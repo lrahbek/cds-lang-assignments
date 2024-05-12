@@ -1,13 +1,17 @@
-# Portfolio Exam in Language Analytics 
+# Language Analytics 
 
-*Cultural Data Science*
-
-Hand-in: 03-06-2024
-
+<p align="center">
 
 Laura Givskov Rahbek
 
-202106182@post.au.dk
+*e-mail:* 202106182@post.au.dk
+
+
+*Cultural Data Science*
+
+*Hand-in:* 03-06-2024
+
+</p>
 
 
 ## Portfolio Structure 
