@@ -1,16 +1,13 @@
 # Language Analytics 
 
 <p align="center">
-
 Laura Givskov Rahbek
 
 *e-mail:* 202106182@post.au.dk
 
-
 *Cultural Data Science*
 
 *Hand-in:* 03-06-2024
-
 </p>
 
 
