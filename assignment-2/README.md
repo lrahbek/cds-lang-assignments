@@ -30,23 +30,29 @@ All hyperparameters included in the gridsearch can be found at the [sckit-learn 
 For the Logistic Regression classifier ```solver```, ```penalty```, ```C``` and ```tol``` were tuned. Different penalties are available for different solvers, all possible combinations were investigated. 
 
 - *solvers* = "lbfgs", "saga", "liblinear"
+
 The solver determines the algorithm used when optimizing, three solvers were included for different reasons; 'lbfgs' is robust and the default solver for ```LogisticRegression```, 'liblinear' is recommended on smaller datasets, which the *Fake or Real News* dataset is, and 'saga' is overall well performing. 
 
 - *penalties* = "l1", "l2", "None"
+
 The penalties represent different regularization techinques, which helps balance between model fit and complexity. Not all solvers support all penalties, different penalties were included, as well as no penalty.  
 
 - *C* = 1.0, 0.1, 0.01
+
 The C hyperparameter defines the strength of the regulrazation on the model, smaller values regulates more and creates simpler models and bigger values allow for more complex models. The default is 1.0. 0.1 and 0.01 has also been included.
 
 - *tol* = 0.00001, 0.0001, 0.001
+
 Tolerance defines the threshold for when the model should stop training, the default is 0.0001. A smaller and a larger values was also included to introduce more range. 
 
 For the MLP classifier ```activation```, ```hidden_layer_sizes``` and ```tol``` were tuned. The ```solver``` was kept at the default 'adam', and ```early_stopping``` included, which set 10% of the training data aside and validates continously, and stops when the validation accuracy is not improving by ```tol```for 10 epochs. The tolerance hyperparameter was set to the same three values used in the Logistic regression gridsearch.
 
 - *activation* = "logistic", "relu"
+
 The activation function is set to "relu", the "logistic" was included to evaluate wether the typical sigmoid activation function performed better. 
 
 - *hidden_layer_sizes* = 50, 100, 150
+
 The default is 100, 50 and 150 was included too, to evaluate wether more or less is necesary for the model to perform the best. 
 
 ## Data
@@ -74,7 +80,16 @@ python src/MLP_classifier.py -s "recall"
 
 ## Discussion 
 
-The classification reports show ... 
+Before comparing the performance of the two different classifiers, I would like to compare the classification reports from the two runs of the ```LogisticRegression``` classifier; one with gridsearch and one with the default parameters from ```scikit-learn```. All classification reports can be found in the ```out``` folder, where recall, precision and f1 is also given. The default parameters lead to an accuracy of 0.89 and the parameters found via gridsearch lead to an accuracy of 0.88. The difference is very little, but indicates that the amount of time and power used to perform the gridsearch in this situtation might be unnecessary. Educated estimates or just the default parameters, seem to be more than enough to get a very well performing model. 
+
+   
+
+
+|model                |random_state|max_iter|solver|penalty|C |tol |
+|:--------------------|------------|--------|------|-------|--|----|
+|LR with gridsearch   | 42         | 1000   |
+|LR without gridsearch| 42         | 1000   |
+
 
 
 

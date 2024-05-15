@@ -11,6 +11,13 @@ from sklearn.pipeline import Pipeline
 from sklearn.model_selection import GridSearchCV
 import argparse
 import vectorizer
+from codecarbon import EmissionsTracker
+
+def carbon_tracker(em_outpath):
+    """ The function initalizes the carbon tracker """
+    tracker = EmissionsTracker(project_name="Assignment-2",
+                               output_dir=em_outpath)
+    return tracker
 
 def get_arguments():
     parser = argparse.ArgumentParser()
@@ -27,11 +34,13 @@ def get_arguments():
     args = parser.parse_args()
     return args
 
-def load_data():
+def load_data(tracker):
     """ Load the vectorised data, if the data has not been vectorised the vectorizer.py script will be run """
+    tracker.start_task("Load vectorised data (LR)")
     if os.path.isfile('out/features.pkl') == False:
         main()
     y_train, y_test, X_train_features, X_test_features, feature_names = pd.read_pickle('out/features.pkl')
+    tracker.stop_task()
     return y_train, y_test, X_train_features, X_test_features, feature_names
 
 def grid_params(score):
@@ -53,7 +62,7 @@ def grid_params(score):
                        verbose = 1) 
     return LRC
 
-def LR_fit(X_train_features, y_train, gridsearch, score):
+def LR_fit(X_train_features, y_train, gridsearch, score, tracker):
     """ 
     The function either fits the vectorised data to a default Logistic Regression model or performs a gridsearch
     on the parameters defined in grid_params() and fits to the best performing of these. If gridsearch is implemented
@@ -61,19 +70,24 @@ def LR_fit(X_train_features, y_train, gridsearch, score):
     to the 'models' folder. 
     """
     if gridsearch == "%GS":
+        tracker.start_task("Fit LR model")
         LRC = LogisticRegression(max_iter=1000, random_state=42).fit(X_train_features, y_train)
+        tracker.stop_task()
     elif gridsearch == "GS":
+        tracker.start_task("Fit LR model with GS")
         LRC = grid_params(score)
         LRC = LRC.fit(X_train_features, y_train)
+        tracker.stop_task()
     dump(LRC, f"models/LRC_{gridsearch}.joblib")
 
 
-def LR_evaluate(X_test_features, y_test, gridsearch, score):
+def LR_evaluate(X_test_features, y_test, gridsearch, score, tracker):
     """
     The function takes the vectorised test data and labels, and evaluates the given logistic regression classifier 
     on these. The classification report will be saved to the out folder, and named according to whether gridsearch
     was performed or not. 
     """
+    tracker.start_task("Evaluate LR model")
     LRC = load(f"models/LRC_{gridsearch}.joblib")
     y_pred_LR = LRC.predict(X_test_features)
     if gridsearch == "%GS":
@@ -83,13 +97,16 @@ def LR_evaluate(X_test_features, y_test, gridsearch, score):
     outpath_report = open(f'out/LRC_metrics_{gridsearch}.txt', 'w')
     outpath_report.write(class_report)
     outpath_report.close()
+    tracker.stop_task()
     return print("Classification report for the Logistic Regression Classifier is saved to the out folder")
 
 def main():
+    tracker = carbon_tracker("../assignment-5/out")
     args = get_arguments()
-    y_train, y_test, X_train_features, X_test_features, feature_names = load_data()
-    LR_fit(X_train_features, y_train, args.gridsearch, args.score)
-    LR_evaluate(X_test_features, y_test, args.gridsearch, args.score)
+    y_train, y_test, X_train_features, X_test_features, feature_names = load_data(tracker)
+    LR_fit(X_train_features, y_train, args.gridsearch, args.score, tracker)
+    LR_evaluate(X_test_features, y_test, args.gridsearch, args.score, tracker)
+    tracker.stop() 
 
 if __name__ == "__main__":
     main()
