@@ -1,3 +1,5 @@
+Classification Report:
+
               precision    recall  f1-score   support
 
         FAKE       0.89      0.88      0.89       628
@@ -6,3 +8,6 @@
     accuracy                           0.89      1267
    macro avg       0.89      0.89      0.89      1267
 weighted avg       0.89      0.89      0.89      1267
+
+
+The parameters are all the default parameters define by scikit-learn, except the max_iter was set to 1000 and random_state to 42

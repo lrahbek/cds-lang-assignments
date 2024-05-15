@@ -6,7 +6,7 @@ Laura Givskov Rahbek
 
 ## Description 
 
-This folder contains assignment 2 for Language Analytics. The objective of the assignment is to train benchmark machine learning classifiers on structured text data, using ```scikit-learn```, make and save understandable outputs and models, and save the results in clear ways. More specifically two different binary classification models will be trained on the *Fake or Real News* dataset, a logistic regression classifier and a neural network. Three scripts were made for this assignment, each described below: 
+This folder contains assignment 2 for Language Analytics. The objective of the assignment is to train benchmark machine learning classifiers on structured text data, using ```scikit-learn```, make and save understandable outputs and models, and save the results in clear ways. More specifically, a ```TfidfVectorizer``` will be used to vectorize and extract features from the *Fake or Real News* dataset, these features will be used in training two binary classification models to classify news articles as either 'REAL' or 'FAKE'. The ```LogisticRegression``` classifier and ```MLPClassifier``` will be used for this purpose, for both, gridsearch parameters will be set up to be able to identify the parameters that perform the best. Further, the evaluation metric the gridsearch should tune for can be passed as an argument, the default is accuracy. Three scripts were made for this assignment, each described below: 
 
 The ```vectorizer.py``` script does the following: 
 - Loads and splits the data into a test and train set. 
@@ -15,14 +15,39 @@ The ```vectorizer.py``` script does the following:
 
 The ```LR_classifier.py``` script does the following: 
 - Loads the vectorised features saved in the ```out``` folder. 
-- Fits a logistic regression classifier to the training data, and saves the fitted model to the ```models``` folder. 
+- Fits a logistic regression classifier to the training data, and saves the fitted model to the ```models``` folder. When running the script, it can be specified that gridsearch should be implemented, the parameters and hyperparameters used to tune the model are discussed in the Gridsearch section below.
 - Evaluates the performance of the model on the test data and saves the evaluation metrics to the ```out``` folder. 
 
 The ```MLP_classifier.py``` script does the following: 
+- Loads the vectorised features saved in the ```out``` folder. 
+- Fits a MLP classifier to the training data, and saves the fitted model to the ```models``` folder, gridsearch is implemented, the parameters and hyperparameters used to tune the model are discussed in the Gridsearch section below. 
+- Evaluates the performance of the model on the test data and saves the evaluation metrics to the ```out``` folder, and saves a plot of training loss and validation accuracy for the best performing model. 
 
+### Gridsearch
 
+All hyperparameters included in the gridsearch can be found at the [sckit-learn documentation](https://scikit-learn.org/stable/modules/generated/sklearn.neural_network.MLPClassifier.html).
 
-- Different options for the gridsearch can be found in the [sckit-learn documentation](https://scikit-learn.org/stable/modules/generated/sklearn.neural_network.MLPClassifier.html).
+For the Logistic Regression classifier ```solver```, ```penalty```, ```C``` and ```tol``` were tuned. Different penalties are available for different solvers, all possible combinations were investigated. 
+
+- *solvers* = "lbfgs", "saga", "liblinear"
+The solver determines the algorithm used when optimizing, three solvers were included for different reasons; 'lbfgs' is robust and the default solver for ```LogisticRegression```, 'liblinear' is recommended on smaller datasets, which the *Fake or Real News* dataset is, and 'saga' is overall well performing. 
+
+- *penalties* = "l1", "l2", "None"
+The penalties represent different regularization techinques, which helps balance between model fit and complexity. Not all solvers support all penalties, different penalties were included, as well as no penalty.  
+
+- *C* = 1.0, 0.1, 0.01
+The C hyperparameter defines the strength of the regulrazation on the model, smaller values regulates more and creates simpler models and bigger values allow for more complex models. The default is 1.0. 0.1 and 0.01 has also been included.
+
+- *tol* = 0.00001, 0.0001, 0.001
+Tolerance defines the threshold for when the model should stop training, the default is 0.0001. A smaller and a larger values was also included to introduce more range. 
+
+For the MLP classifier ```activation```, ```hidden_layer_sizes``` and ```tol``` were tuned. The ```solver``` was kept at the default 'adam', and ```early_stopping``` included, which set 10% of the training data aside and validates continously, and stops when the validation accuracy is not improving by ```tol```for 10 epochs. The tolerance hyperparameter was set to the same three values used in the Logistic regression gridsearch.
+
+- *activation* = "logistic", "relu"
+The activation function is set to "relu", the "logistic" was included to evaluate wether the typical sigmoid activation function performed better. 
+
+- *hidden_layer_sizes* = 50, 100, 150
+The default is 100, 50 and 150 was included too, to evaluate wether more or less is necesary for the model to perform the best. 
 
 ## Data
 
@@ -33,17 +58,19 @@ The data used in this assignment is the *Fake or Real News* dataset, which can b
 To reproduce the analysis: 
 - Download the ```fake_or_real_news.csv``` file from the source given above, and place it in the ```in``` folder.
 - Run the bash script ```setup.sh``` from the command line, it creates a virtual environment and installs packages and dependencies in to it.
-- Run the bash script ```run.sh``` from the command line, this opens the virtual environment and runs all three scripts in ```src``` folder. 
-    - ```vectorizer.py``` can take some arguments, written out in the table below (the default arguments fit the dataset *fake_or_real_news* if it is correctly placed in the ```in``` folder). 
-    - ```MLP_classifier.py``` can also take some arguments, specfying the gridsearch, these are also written out in the table below. 
+- Open the virtual enviornment by writting ```source ./env/bin/activate``` in the terminal. 
+- Preprocess the data by running ```python src/vectorizer.py``` in the terminal. (Alternatively, if the classifier scripts are run, and the vectorised data is not in the ```out``` folder, they will call the script and run it themselves). 
+- To run the ```LR_classifier.py``` script, whether or not to implement gridsearch, and in the case of gridsearch, which evaluation metric should be tuned after should be passed in the terminal. An example on how to run the script with gridsearch and tuning for f1 score: 
 
-|Flag | Description                                                  | 
-|-----|--------------------------------------------------------------|
-|-i   | The path where the dataset is stored                         |
-|-t   | Name of the column containing text that should be vectorised |
-|-l   | Name of the column containing binary classification labels   |
-|-v   | The path were the vectorizer should be saved to              |
+```
+python src/LR_classifier.py -g "GS" -s "f1"
+```
 
+- To run the ```MLP_classifier.py``` script, the metric that there should be tuned for should be specified (if anything other than accuracy). Following is an example of running the script and tuning for recall: 
+
+```
+python src/MLP_classifier.py -s "recall"
+```
 
 ## Discussion 
 

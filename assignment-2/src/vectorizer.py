@@ -7,27 +7,10 @@ from joblib import dump, load
 from sklearn.model_selection import train_test_split, ShuffleSplit
 from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 import pickle
-import argparse
 
-def get_arguments():
-    parser = argparse.ArgumentParser()
-    parser.add_argument(
-                        "--input_path",
-                        "-i", 
-                        required = False,
-                        default = "in/fake_or_real_news.csv",
-                        help="The path for the input dataset, if it isn't the default, the column names arguments should also be changed")               
-    parser.add_argument(
-                        "--vectorizer_path",
-                        "-v", 
-                        required = False,
-                        default = "models/tfidf_vectorizer",
-                        help="The path were the defined vectorizer should be dumped and loaded from")               
-    args = parser.parse_args()
-    return args
 
 def load_and_split(in_path):
-    """
+    """ 
     The function takes the filepath for a dataset, the column containing the text data should be labeled 'text' and 
     the column containing the labels, should be labeled 'label'. It returns the dataset split into test and train, 
     20% for test and 80% for train.
@@ -38,18 +21,14 @@ def load_and_split(in_path):
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
     return X_train, X_test, y_train, y_test
 
-def def_save_vectorizer(vect_path):
-    """
-    The function takes the path where the vectorizer should be saved, defines a tfidf vectorizer, with set 
-    parameters, as seen below, saves and returns the vectorizer.
-    """
+def define_vectorizer(vect_path):
+    """ The function defines and saves a TFIDF vectoriser to a given path """
     vectorizer = TfidfVectorizer(ngram_range = (1,2), 
                                 lowercase =  True, 
                                 max_df = 0.95, 
                                 min_df = 0.05, 
                                 max_features = 500)
     dump(vectorizer, f"{vect_path}.joblib")
-    return vectorizer
 
 def fit_vectorizer(vect_path, X_train, X_test, y_train, y_test):
     """
@@ -67,10 +46,9 @@ def fit_vectorizer(vect_path, X_train, X_test, y_train, y_test):
     f.close() 
 
 def main():
-    args = get_arguments()
-    X_train, X_test, y_train, y_test = load_and_split(args.input_path)
-    def_save_vectorizer(args.vectorizer_path)
-    fit_vectorizer(args.vectorizer_path, X_train, X_test, y_train, y_test)
+    X_train, X_test, y_train, y_test = load_and_split("in/fake_or_real_news.csv")
+    define_vectorizer("tfidf_vectorizer")
+    fit_vectorizer("tfidf_vectorizer", X_train, X_test, y_train, y_test)
 
 if __name__ == "__main__":
     main()
