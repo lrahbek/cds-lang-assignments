@@ -23,8 +23,8 @@ def load_and_split(in_path, tracker):
     """
     tracker.start_task("Load data") 
     data = pd.read_csv(in_path, index_col=0)
-    X = data[text_col]
-    y = data[label_col]
+    X = data["text"]
+    y = data["label"]
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
     tracker.stop_task()
     return X_train, X_test, y_train, y_test

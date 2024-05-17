@@ -1,0 +1,17 @@
+The best performing parameters when tuning for accuracy:
+<bound method BaseEstimator.get_params of MLPClassifier(early_stopping=True, hidden_layer_sizes=(75,), max_iter=1000,
+              random_state=42, tol=1e-05, verbose=True)>
+
+Classification Report:
+
+              precision    recall  f1-score   support
+
+        FAKE       0.89      0.88      0.88       628
+        REAL       0.88      0.89      0.89       639
+
+    accuracy                           0.89      1267
+   macro avg       0.89      0.89      0.89      1267
+weighted avg       0.89      0.89      0.89      1267
+
+
+Info on the hyperparameters tuned etc. can be found in the README.md file
