@@ -82,13 +82,13 @@ python src/MLP_classifier.py -s "recall"
 
 Before comparing the performance of the two different classifiers, I would like to compare the classification reports from the two runs of the ```LogisticRegression``` classifier; one with gridsearch and one with the default parameters from ```scikit-learn```. All classification reports can be found in the ```out``` folder, where recall, precision and f1 is also given. The default parameters lead to an accuracy of 0.89 and the parameters found via gridsearch lead to an accuracy of 0.88. The difference is very little, but indicates that the amount of time and power used to perform the gridsearch in this situtation might be unnecessary. Educated estimates or just the default parameters, seem to be more than enough to get a very well performing model. 
 
-   
 
-
-|model                |random_state|max_iter|solver|penalty|C  |tol    |
-|:--------------------|------------|--------|------|-------|---|-------|
-|LR with gridsearch   | 42         | 1000   |saga  | l1    |1.0|0.00001|
-|LR without gridsearch| 42         | 1000   | lbfgs| l2    |1.0|0.0001 |
+|model                 |random_state|max_iter|solver|penalty|C  |tol    |
+|:---------------------|------------|--------|------|-------|---|-------|
+|LR with gridsearch    | 42         | 1000   | saga | l1    |1.0|0.00001|
+|LR without gridsearch | 42         | 1000   | lbfgs| l2    |1.0|0.0001 |
+|MLP wit gridsearch    | 42         | 1000   | lbfgs| l2    |1.0|0.0001 |
+|MLP without gridsearch| 42         | 1000   | lbfgs| l2    |1.0|0.0001 |
 
 
 
