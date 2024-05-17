@@ -85,10 +85,10 @@ Before comparing the performance of the two different classifiers, I would like 
    
 
 
-|model                |random_state|max_iter|solver|penalty|C |tol |
-|:--------------------|------------|--------|------|-------|--|----|
-|LR with gridsearch   | 42         | 1000   |
-|LR without gridsearch| 42         | 1000   |
+|model                |random_state|max_iter|solver|penalty|C  |tol    |
+|:--------------------|------------|--------|------|-------|---|-------|
+|LR with gridsearch   | 42         | 1000   |saga  | l1    |1.0|0.00001|
+|LR without gridsearch| 42         | 1000   | lbfgs| l2    |1.0|0.0001 |
 
 
 

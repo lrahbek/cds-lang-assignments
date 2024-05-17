@@ -8,11 +8,11 @@ import pickle
 from sklearn.metrics import classification_report
 from sklearn.neural_network import MLPClassifier
 import argparse
-#import vectorizer
+import vectorizer
 from sklearn.pipeline import Pipeline 
 from sklearn.model_selection import GridSearchCV
 import matplotlib.pyplot as plt
-#from codecarbon import EmissionsTracker
+from codecarbon import EmissionsTracker
 
 def carbon_tracker(em_outpath):
     """ The function initalizes the carbon tracker """
@@ -53,40 +53,41 @@ def grid_params(score):
     param_grid = [
         {"MLP__activation": ["logistic", "relu"],            
          "MLP__tol": [0.00001, 0.0001, 0.001],               
-         "MLP__hidden_layer_sizes": [(50,), (100,), (150,)]}]
-    MLP = GridSearchCV(pipe,                                
+         "MLP__hidden_layer_sizes": [(50,), (75,), (100,)]}]
+    grid = GridSearchCV(pipe,                                
                        param_grid,                          
                        scoring = score,
-                       cv=2, 
+                       cv=5, 
                        verbose = 1) 
-    return MLP
+    return grid
 
-def MLP_fit(X_train_features, y_train, score):
+def MLP_fit(X_train_features, y_train, score, tracker):
     """
     The function fits the vectorised training data, to the parameters defined in grid_params, ans saves the best
     performing model in the 'out' folder. 
     """
-    #tracker.start_task("Fit MLP model with GS")
-    MLP = grid_params(score)
-    MLP = MLP.fit(X_train_features, y_train)
+    tracker.start_task("Fit MLP model with GS")
+    grid = grid_params(score)
+    grid = grid.fit(X_train_features, y_train)
+    MLP = grid.best_estimator_["MLP"]
     dump(MLP, f"models/MLP_{score}.joblib")
-    #track.stop_task()
+    track.stop_task()
 
-def MLP_evaluate(X_test_features, y_test, score):
+def MLP_evaluate(X_test_features, y_test, score, tracker):
     """ The function evaluates the MLP classifier and saves the classification report to the out folder """
-    #tracker.start_task("Evaluate MLP model")
+    tracker.start_task("Evaluate MLP model")
     MLP = load(f"models/MLP_{score}.joblib")
     y_pred_MLP = MLP.predict(X_test_features)
     class_report = f"The best performing parameters when tuning for {score}:\n{MLP.best_params_}\n\nClassification Report:\n\n{classification_report(y_test, y_pred_MLP)}\n\nInfo on the hyperparameters tuned etc. can be found in the README.md file"
     outpath_report = open(f'out/MLP_metrics_{score}.txt', 'w')
     outpath_report.write(class_report)
     outpath_report.close()
-    #tracker.stop_task()
+    tracker.stop_task()
     return print("Classification report for the MLP Classifier is saved to the out folder")
 
-def plot_MLP_training(outpath, score):    
+def plot_MLP_training(outpath, score, tracker):    
     """ Plot training loss and validation accuracy and save to out folder """
-    #tracker.start_task("Plot MLP training")
+    tracker.start_task("Plot MLP training")
     MLP = load(f"models/MLP_{score}.joblib")
     plt.figure(figsize = (12,6))
     plt.title("Training Plot for MLP Classifier")
@@ -101,14 +102,16 @@ def plot_MLP_training(outpath, score):
     plt.xlabel("Iterations")
     plt.ylabel("accuracy")
     plt.savefig(outpath)
-    #tracker.stop_task()
+    tracker.stop_task()
 
 def main():
+    tracker = carbon_tracker("../assignment-5/out")
     args = get_arguments()
-    #y_train, y_test, X_train_features, X_test_features, feature_names = load_data()
-    #MLP_fit(X_train_features, y_train, args.score)
-    #MLP_evaluate(X_test_features, y_test, args.score)
-    plot_MLP_training(f"out/MLP_train_{args.score}.png", args.score)
+    y_train, y_test, X_train_features, X_test_features, feature_names = load_data(tracker)
+    MLP_fit(X_train_features, y_train, args.score, tracker)
+    MLP_evaluate(X_test_features, y_test, args.score, tracker)
+    plot_MLP_training(f"out/MLP_train_{args.score}.png", args.score, tracker)
+    tracker.stop() 
 
 if __name__ == "__main__":
     main()
