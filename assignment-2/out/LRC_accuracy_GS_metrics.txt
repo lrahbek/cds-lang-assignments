@@ -1,0 +1,17 @@
+The best performing parameters:
+C: 1.0,  penalty: None,  solver: lbfgs,  tol: 0.001,  max_iter: 1000,  random_state: 42
+Solver, penalty, C and tol were the parameters included in the gridsearch
+
+Classification Report:
+
+              precision    recall  f1-score   support
+
+        FAKE       0.91      0.87      0.89       628
+        REAL       0.88      0.91      0.90       639
+
+    accuracy                           0.89      1267
+   macro avg       0.89      0.89      0.89      1267
+weighted avg       0.89      0.89      0.89      1267
+
+
+More info on the hyperparameters tuned etc. can be found in the README.md file

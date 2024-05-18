@@ -59,8 +59,9 @@ def fit_vectorizer(vect_path, X_train, X_test, y_train, y_test, tracker):
 def main():
     tracker = carbon_tracker("../assignment-5/out")
     X_train, X_test, y_train, y_test = load_and_split("in/fake_or_real_news.csv", tracker)
-    define_vectorizer("tfidf_vectorizer", tracker)
-    fit_vectorizer("tfidf_vectorizer", X_train, X_test, y_train, y_test, tracker)
+    vect_path = "models/tfidf_vectorizer"
+    define_vectorizer(vect_path, tracker)
+    fit_vectorizer(vect_path, X_train, X_test, y_train, y_test, tracker)
     tracker.stop() 
 
 if __name__ == "__main__":

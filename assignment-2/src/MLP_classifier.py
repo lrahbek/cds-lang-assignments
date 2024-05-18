@@ -66,7 +66,7 @@ def grid_params(score):
                        verbose = 1) 
     return grid
 
-def MLP_fit(X_train_features, y_train, score, gridsearch, tracker):
+def MLP_fit(X_train_features, y_train, score, gridsearch, model_path, tracker):
     """
     The function fits the vectorised training data, to the parameters defined in grid_params, ans saves the best
     performing model in the 'out' folder. 
@@ -85,31 +85,35 @@ def MLP_fit(X_train_features, y_train, score, gridsearch, tracker):
         grid = grid.fit(X_train_features, y_train)
         MLP = grid.best_estimator_["MLP"]
         tracker.stop_task()
-    dump(MLP, f"models/MLP_{score}_{gridsearch}.joblib")
+    dump(MLP, model_path)
 
 
-
-def MLP_evaluate(X_test_features, y_test, score, gridsearch, tracker):
+def MLP_evaluate(X_test_features, y_test, gridsearch, model_path, eval_path, tracker):
     """ The function evaluates the MLP classifier and saves the classification report to the out folder """
     tracker.start_task("Evaluate MLP model")
-    MLP = load(f"models/MLP_{score}_{gridsearch}.joblib")
+    MLP = load(model_path)
     y_pred_MLP = MLP.predict(X_test_features)
+    params_dict = MLP.get_params()
+    params = ["activation", "tol", "hidden_layer_sizes", "solver", "max_iter", "early_stopping", "random_state"]
+    parameters = ""
+    for i in range(len(params)):
+        parameters = parameters + f"{params[i]}: {params_dict[params[i]]},  "
+    parameters = parameters[0:-3]
     if gridsearch == "%GS":
-        class_report  = f"Classification Report:\n\n{classification_report(y_test, y_pred_MLP)}\n\nThe parameters are all the default parameters define by scikit-learn, except: max_iter = 1000, random_state = 42, early_stopping = True"
+        class_report  = f"The parameters were set to the following:\n{parameters}\nAll values are default values, except for max_iter, early_stopping and random_state.\n\nClassification Report:\n\n{classification_report(y_test, y_pred_MLP)}"
     elif gridsearch == "GS":
-        class_report = f"The best performing parameters when tuning for {score}:\n{MLP.get_params}\n\nClassification Report:\n\n{classification_report(y_test, y_pred_MLP)}\n\nInfo on the hyperparameters tuned etc. can be found in the README.md file"
-    outpath_report = open(f'out/MLP_metrics_{score}_{gridsearch}.txt', 'w')
+        class_report = f"The best performing parameters:\n{parameters}\ntol, hidden_layer_sizes and activation were the parameters included in the gridsearch\n\nClassification Report:\n\n{classification_report(y_test, y_pred_MLP)}\n\nMore info on the hyperparameters tuned etc. can be found in the README.md file"
+    outpath_report = open(eval_path+"metrics.txt", 'w')
     outpath_report.write(class_report)
     outpath_report.close()
     tracker.stop_task()
     return print("Classification report for the MLP Classifier is saved to the out folder")
 
-def plot_MLP_training(outpath, score, gridsearch, tracker):    
+def plot_MLP_training(eval_path, model_path, tracker):    
     """ Plot training loss and validation accuracy and save to out folder """
     tracker.start_task("Plot MLP training")
-    MLP = load(f"models/MLP_{score}_{gridsearch}.joblib")
+    MLP = load(model_path)
     plt.figure(figsize = (12,6))
-    #plt.title("Training Plot for MLP Classifier")
     plt.subplot(1,2,1)
     plt.plot(MLP.loss_curve_)
     plt.title("Loss Curve")
@@ -120,16 +124,18 @@ def plot_MLP_training(outpath, score, gridsearch, tracker):
     plt.title("Validation Accuracy")
     plt.xlabel("Iterations")
     plt.ylabel("accuracy")
-    plt.savefig(outpath)
+    plt.savefig(eval_path+"plot.png")
     tracker.stop_task()
 
 def main():
     tracker = carbon_tracker("../assignment-5/out")
     args = get_arguments()
+    model_path = f"models/MLP_{args.score}_{args.gridsearch}.joblib"
+    eval_path = f"out/MLP_{args.score}_{args.gridsearch}_"
     y_train, y_test, X_train_features, X_test_features, feature_names = load_data(tracker)
-    MLP_fit(X_train_features, y_train, args.score, args.gridsearch, tracker)
-    MLP_evaluate(X_test_features, y_test, args.score, args.gridsearch, tracker)
-    plot_MLP_training(f"out/MLP_train_{args.score}_{args.gridsearch}.png", args.score, args.gridsearch, tracker)
+    MLP_fit(X_train_features, y_train, args.score, args.gridsearch, model_path, tracker)
+    MLP_evaluate(X_test_features, y_test, args.gridsearch, model_path, eval_path, tracker)
+    plot_MLP_training(eval_path, model_path, tracker)
     tracker.stop() 
 
 if __name__ == "__main__":

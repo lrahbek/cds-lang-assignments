@@ -1,4 +1,4 @@
-The best performing parameters when tuning for accuracy:
+The best performing parameters:
 activation: relu,  tol: 1e-05,  hidden_layer_sizes: (75,),  solver: adam,  max_iter: 1000,  early_stopping: True,  random_state: 42
 tol, hidden_layer_sizes and activation were the parameters included in the gridsearch
 

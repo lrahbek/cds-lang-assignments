@@ -66,30 +66,27 @@ To reproduce the analysis:
 - Run the bash script ```setup.sh``` from the command line, it creates a virtual environment and installs packages and dependencies in to it.
 - Open the virtual enviornment by writting ```source ./env/bin/activate``` in the terminal. 
 - Preprocess the data by running ```python src/vectorizer.py``` in the terminal. (Alternatively, if the classifier scripts are run, and the vectorised data is not in the ```out``` folder, they will call the script and run it themselves). 
-- To run the ```LR_classifier.py``` script, whether or not to implement gridsearch, and in the case of gridsearch, which evaluation metric should be tuned after should be passed in the terminal. An example on how to run the script with gridsearch and tuning for f1 score: 
+- For both ```LR_classifier.py``` and ```MLP_classifier.py```, it should be specified whether or not to perform gridsearch with the flag -g and it can be specified wich metric the gridsearch should be tuned for with the flag -s. The default is accuracy. E.g. running the logistic regression classifier with gridsearch and tunning for f1 should be passed like this: 
 
 ```
 python src/LR_classifier.py -g "GS" -s "f1"
 ```
 
-- To run the ```MLP_classifier.py``` script, the metric that there should be tuned for should be specified (if anything other than accuracy). Following is an example of running the script and tuning for recall: 
+Simply running the neural network classifier with no gridsearch should be passed like this: 
 
 ```
-python src/MLP_classifier.py -s "recall"
+python src/MLP_classifier.py
 ```
+
+- Finally, to exit the virtual enviorment write ```deactivate``` in the terminal. 
 
 ## Discussion 
 
 Before comparing the performance of the two different classifiers, I would like to compare the classification reports from the two runs of the ```LogisticRegression``` classifier; one with gridsearch and one with the default parameters from ```scikit-learn```. All classification reports can be found in the ```out``` folder, where recall, precision and f1 is also given. The default parameters lead to an accuracy of 0.89 and the parameters found via gridsearch lead to an accuracy of 0.88. The difference is very little, but indicates that the amount of time and power used to perform the gridsearch in this situtation might be unnecessary. Educated estimates or just the default parameters, seem to be more than enough to get a very well performing model. 
 
-
-|model                 |random_state|max_iter|solver|penalty|C  |tol    |
-|:---------------------|------------|--------|------|-------|---|-------|
-|LR with gridsearch    | 42         | 1000   | saga | l1    |1.0|0.00001|
-|LR without gridsearch | 42         | 1000   | lbfgs| l2    |1.0|0.0001 |
-|MLP wit gridsearch    | 42         | 1000   | lbfgs| l2    |1.0|0.0001 |
-|MLP without gridsearch| 42         | 1000   | lbfgs| l2    |1.0|0.0001 |
-
+Similarly to the ```LogisticRegression``` classifier, the ```MLPclassiffier``` both with and without gridsearch performed almost identically, both with accuracies at .89 and similar f1, recall and precision scores. When inspecting the loss- and validation accuracy curves they again look very much alike. One difference, is that the model where gridsearch was implemented ran for fewer iterations, around 20 compared to the default models 35. 
+hidden layer sizes
+tolerance 
 
 
 

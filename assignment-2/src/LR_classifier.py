@@ -58,11 +58,11 @@ def grid_params(score):
     LRC = GridSearchCV(pipe,                                
                        param_grid,                          
                        scoring = score,
-                       cv=10, 
+                       cv=5, 
                        verbose = 1) 
     return LRC
 
-def LR_fit(X_train_features, y_train, gridsearch, score, tracker):
+def LR_fit(X_train_features, y_train, gridsearch, score, model_path, tracker):
     """ 
     The function either fits the vectorised data to a default Logistic Regression model or performs a gridsearch
     on the parameters defined in grid_params() and fits to the best performing of these. If gridsearch is implemented
@@ -75,26 +75,33 @@ def LR_fit(X_train_features, y_train, gridsearch, score, tracker):
         tracker.stop_task()
     elif gridsearch == "GS":
         tracker.start_task("Fit LR model with GS")
-        LRC = grid_params(score)
-        LRC = LRC.fit(X_train_features, y_train)
+        grid = grid_params(score)
+        grid = grid.fit(X_train_features, y_train)
+        LRC = grid.best_estimator_["LRC"]
         tracker.stop_task()
-    dump(LRC, f"models/LRC_{gridsearch}.joblib")
+    dump(LRC, model_path)
 
 
-def LR_evaluate(X_test_features, y_test, gridsearch, score, tracker):
+def LR_evaluate(X_test_features, y_test, gridsearch, score, eval_path, model_path, tracker):
     """
     The function takes the vectorised test data and labels, and evaluates the given logistic regression classifier 
     on these. The classification report will be saved to the out folder, and named according to whether gridsearch
     was performed or not. 
     """
     tracker.start_task("Evaluate LR model")
-    LRC = load(f"models/LRC_{gridsearch}.joblib")
+    LRC = load(model_path)
     y_pred_LR = LRC.predict(X_test_features)
+    params_dict = LRC.get_params()
+    params = ["C", "penalty", "solver", "tol", "max_iter", "random_state"]
+    parameters = ""
+    for i in range(len(params)):
+        parameters = parameters + f"{params[i]}: {params_dict[params[i]]},  "
+    parameters = parameters[0:-3]
     if gridsearch == "%GS":
-        class_report  = f"Classification Report:\n\n{classification_report(y_test, y_pred_LR)}\n\nThe parameters are all the default parameters define by scikit-learn, except the max_iter was set to 1000 and random_state to 42"
+        class_report  = f"The parameters were set to the following:\n{parameters}\nAll values are default values, except for max_iter and random_state.\n\nClassification Report:\n\n{classification_report(y_test, y_pred_LR)}"
     elif gridsearch == "GS":
-        class_report = f"The best performing parameters when tuning for {score}:\n{LRC.best_params_}\n\nClassification Report:\n\n{classification_report(y_test, y_pred_LR)}\n\nInfo on the hyperparameters tuned etc. can be found in the README.md file"
-    outpath_report = open(f'out/LRC_metrics_{gridsearch}.txt', 'w')
+        class_report = f"The best performing parameters:\n{parameters}\nSolver, penalty, C and tol were the parameters included in the gridsearch\n\nClassification Report:\n\n{classification_report(y_test, y_pred_LR)}\n\nMore info on the hyperparameters tuned etc. can be found in the README.md file"
+    outpath_report = open(eval_path, 'w')
     outpath_report.write(class_report)
     outpath_report.close()
     tracker.stop_task()
@@ -103,9 +110,11 @@ def LR_evaluate(X_test_features, y_test, gridsearch, score, tracker):
 def main():
     tracker = carbon_tracker("../assignment-5/out")
     args = get_arguments()
+    model_path = f"models/LRC_{args.score}_{args.gridsearch}.joblib"
+    eval_path = f"out/LRC_{args.score}_{args.gridsearch}_metrics.txt"
     y_train, y_test, X_train_features, X_test_features, feature_names = load_data(tracker)
-    LR_fit(X_train_features, y_train, args.gridsearch, args.score, tracker)
-    LR_evaluate(X_test_features, y_test, args.gridsearch, args.score, tracker)
+    LR_fit(X_train_features, y_train, args.gridsearch, args.score, model_path, tracker)
+    LR_evaluate(X_test_features, y_test, args.gridsearch, args.score, eval_path, model_path, tracker)
     tracker.stop() 
 
 if __name__ == "__main__":

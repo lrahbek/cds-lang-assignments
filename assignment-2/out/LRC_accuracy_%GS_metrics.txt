@@ -1,0 +1,14 @@
+The parameters were set to the following:
+C: 1.0,  penalty: l2,  solver: lbfgs,  tol: 0.0001,  max_iter: 1000,  random_state: 42
+All values are default values, except for max_iter and random_state.
+
+Classification Report:
+
+              precision    recall  f1-score   support
+
+        FAKE       0.89      0.88      0.89       628
+        REAL       0.88      0.90      0.89       639
+
+    accuracy                           0.89      1267
+   macro avg       0.89      0.89      0.89      1267
+weighted avg       0.89      0.89      0.89      1267
