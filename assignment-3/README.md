@@ -23,16 +23,18 @@ The data used in this assignment is the *Spotify Million Song Dataset*, a corpus
 ## Usage and Reproducing of Analysis 
 
 To perform the expanded query by running the script ```keywordcounter.py``` do the following: 
-- Place the downloaded .csb file with the song data in the ```in``` folder.
+- Place the downloaded .csv file with the song data in the ```in``` folder.
 - Run the bash script ```setup.sh``` from the command line, it creates a virtual environment and installs packages and dependencies in to it.
-- Run the bash script ```run.sh``` from the commandline, this opens the virtual environment and runs ```keywordcounter.py```, two arguments should be passed with it; the name of an artist and a given keyword. If the artist name is more than one word, it should be passed in quotation marks. 
+- Run the bash script ```run.sh``` from the commandline, this opens the virtual environment and runs ```keywordcounter.py```. Two arguments should be passed with it; the name of an artist and a given keyword. If the artist name is more than one word, it should be passed in quotation marks. 
 
   ```
   bash run.sh -a {'artist name'} -k {keyword of choice}
   ```
-  
+
+- The results of the query will be appended to the ```output.csv``` file in the ```out``` folder. 
+
 ## Discussion 
 
-The results of the expanded keyword query are reflective of the method used; word embeddings and the data those are trained on, in this case a very large amount of wikipedia articles. Further, the individual word embeddings are kept as different conjugations and versions of the same word. An example of this is in the ```output.csv``` file, where both 'loves' and 'loving' are returned as some of the closest words to 'love'. When performing the exapnded query, there are limits to how much additional information is given when these words are included additionally to 'love'. There are of course work arounds to this, for example extracting the root of the returned words and only keeping them if they aren't identical to the keyword. This could potentially be implemented to increase the scope of the query. 
+The results of the expanded keyword query are reflective of the method used; word embeddings and the data those are trained on, in this case a very large amount of wikipedia articles. Further, the individual word embeddings are kept as different conjugations and versions of the same word. An example of this is in the ```output.csv``` file, where both 'loves' and 'loving' are returned as some of the closest words to 'love'. When performing the exapnded query, there are limits to how much additional information is given when these words are included in addition to 'love'. There are of course work arounds to this, for example extracting the root of the returned words and only keeping them if they aren't identical to the keyword. This could potentially be implemented to increase the scope of the query. 
 
 *```codecarbon``` was used to track the environmental impact when running this code, the results and an exploration of this can be found in the ```Assignment-5``` folder in the repository.*

@@ -46,7 +46,6 @@ def artist_find(artist_input, tracker):
     tracker.stop_task()
     return artist_songs
 
-
 def query_expansion(keyword, tracker):
     """
     The function first loads the 'glove-wiki-gigaword-50' gensim model and takes a keyword. The gensim model is used to find 
@@ -102,7 +101,6 @@ def keyword_count(query_ls, keyword, song_texts, artist_input, tracker):
     tracker.stop_task()
     return print(f"{songs_perc}% of {artist_input}'s songs contains words related to {keyword}")    
 
-
 def main():
     tracker = carbon_tracker("../assignment-5/out")
     args = get_arguments()
@@ -110,7 +108,6 @@ def main():
     query_ls = query_expansion(args.keyword, tracker)
     keyword_count(query_ls, args.keyword, artist_songs, args.artist, tracker)
     tracker.stop()
-
 
 if __name__ == "__main__":
     main()

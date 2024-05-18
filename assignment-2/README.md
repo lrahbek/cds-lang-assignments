@@ -20,40 +20,34 @@ The ```LR_classifier.py``` script does the following:
 
 The ```MLP_classifier.py``` script does the following: 
 - Loads the vectorised features saved in the ```out``` folder. 
-- Fits a MLP classifier to the training data, and saves the fitted model to the ```models``` folder, gridsearch is implemented, the parameters and hyperparameters used to tune the model are discussed in the Gridsearch section below. 
-- Evaluates the performance of the model on the test data and saves the evaluation metrics to the ```out``` folder, and saves a plot of training loss and validation accuracy for the best performing model. 
+- Fits a MLP classifier to the training data, and saves the fitted model to the ```models``` folder. Gridsearch can also be implemented here. The parameters and hyperparameters used to tune the model are discussed in the Gridsearch section below. 
+- Evaluates the performance of the model on the test data and saves the evaluation metrics to the ```out``` folder. Additionally, it saves a plot of training loss and validation accuracy for the best performing model. 
 
 ### Gridsearch
 
-All hyperparameters included in the gridsearch can be found at the [sckit-learn documentation](https://scikit-learn.org/stable/modules/generated/sklearn.neural_network.MLPClassifier.html).
+All hyperparameters included in the gridsearch can be found at the sckit-learn documentation, for the [LogsiticRegression](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html) classifier, and for the [MLPClassifier](https://scikit-learn.org/stable/modules/generated/sklearn.neural_network.MLPClassifier.html). The parameters used in tunning for both classifiers are explained below: 
 
-For the Logistic Regression classifier ```solver```, ```penalty```, ```C``` and ```tol``` were tuned. Different penalties are available for different solvers, all possible combinations were investigated. 
+**Logistic Regression Classifier**
 
-- *solvers* = "lbfgs", "saga", "liblinear"
+For the Logistic Regression classifier ```solver```, ```penalty```, ```C``` and ```tol``` were tuned. Different penalties are available for different solvers, all combinations possible were included in the gridsearch. Additionally the parameters max_iter and random_state were set to 1000 and 42 (both for the base model and the model were gridsearch was implemented). 
 
-The solver determines the algorithm used when optimizing, three solvers were included for different reasons; 'lbfgs' is robust and the default solver for ```LogisticRegression```, 'liblinear' is recommended on smaller datasets, which the *Fake or Real News* dataset is, and 'saga' is overall well performing. 
+|Parameter|Values|Explanation|
+|---------|------|-----------|
+|```solver```|"lbfgs", "saga", "liblinear"| Determines the optimization algorithm. The different solvers were included for different reasons; 'lbfgs' is robust and the default solver, 'liblinear' is recommended on smaller datasets, and 'saga' is overall well performing. |
+|```penalty```|"l1", "l2", "None"|Determines the regularization technique implemented, helping to balance between model fit and complexity. Different penalties are available for different solvers, leading to choosing these three. |
+|```C``` | 1.0, 0.1, 0.01|Determines the strength of regularization, the larger the value the less regulated the model is. The default is 1.0 |
+| ```tol```|0.00001, 0.0001, 0.001|Determines the threshold for when the model should stop training, the default is 0.0001. |
 
-- *penalties* = "l1", "l2", "None"
+**MLP Classifier**
 
-The penalties represent different regularization techinques, which helps balance between model fit and complexity. Not all solvers support all penalties, different penalties were included, as well as no penalty.  
+For the MLP classifier ```activation```, ```hidden_layer_sizes``` and ```tol``` were tuned. For both the base model and the model where gridsearch was implemented, the ```solver``` was kept at the default 'adam', and ```early_stopping``` was set to True. This sets 10% of the training data aside and validates continously, and stops when the validation accuracy is not improving by ```tol```for 10 epochs. Further, max_iter and random_state was set to 1000 and 42. 
 
-- *C* = 1.0, 0.1, 0.01
+|Parameter|Values|Explanation|
+|---------|------|-----------|
+|```activation```|"logistic", "relu"|Determines the activation function in the nodes. The default is relu. |
+|```hidden_layer_sizes```|50, 75, 100|Determines sizes of the hidden layers, the default is 100. |
+| ```tol```|0.00001, 0.0001, 0.001|Determines the threshold for when the model should stop training, the default is 0.0001. |
 
-The C hyperparameter defines the strength of the regulrazation on the model, smaller values regulates more and creates simpler models and bigger values allow for more complex models. The default is 1.0. 0.1 and 0.01 has also been included.
-
-- *tol* = 0.00001, 0.0001, 0.001
-
-Tolerance defines the threshold for when the model should stop training, the default is 0.0001. A smaller and a larger values was also included to introduce more range. 
-
-For the MLP classifier ```activation```, ```hidden_layer_sizes``` and ```tol``` were tuned. The ```solver``` was kept at the default 'adam', and ```early_stopping``` included, which set 10% of the training data aside and validates continously, and stops when the validation accuracy is not improving by ```tol```for 10 epochs. The tolerance hyperparameter was set to the same three values used in the Logistic regression gridsearch.
-
-- *activation* = "logistic", "relu"
-
-The activation function is set to "relu", the "logistic" was included to evaluate wether the typical sigmoid activation function performed better. 
-
-- *hidden_layer_sizes* = 50, 100, 150
-
-The default is 100, 50 and 150 was included too, to evaluate wether more or less is necesary for the model to perform the best. 
 
 ## Data
 
@@ -85,9 +79,7 @@ python src/MLP_classifier.py
 Before comparing the performance of the two different classifiers, I would like to compare the classification reports from the two runs of the ```LogisticRegression``` classifier; one with gridsearch and one with the default parameters from ```scikit-learn```. All classification reports can be found in the ```out``` folder, where recall, precision and f1 is also given. The default parameters lead to an accuracy of 0.89 and the parameters found via gridsearch lead to an accuracy of 0.88. The difference is very little, but indicates that the amount of time and power used to perform the gridsearch in this situtation might be unnecessary. Educated estimates or just the default parameters, seem to be more than enough to get a very well performing model. 
 
 Similarly to the ```LogisticRegression``` classifier, the ```MLPclassiffier``` both with and without gridsearch performed almost identically, both with accuracies at .89 and similar f1, recall and precision scores. When inspecting the loss- and validation accuracy curves they again look very much alike. One difference, is that the model where gridsearch was implemented ran for fewer iterations, around 20 compared to the default models 35. 
-hidden layer sizes
-tolerance 
-
-
+*hidden layer sizes
+tolerance *
 
 *```codecarbon``` was used to track the environmental impact when running this code, the results and an exploration of this can be found in the ```Assignment-5``` folder in the repository.*
