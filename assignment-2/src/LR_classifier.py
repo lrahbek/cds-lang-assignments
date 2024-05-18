@@ -58,7 +58,7 @@ def grid_params(score):
     LRC = GridSearchCV(pipe,                                
                        param_grid,                          
                        scoring = score,
-                       cv=5, 
+                       cv=10, 
                        verbose = 1) 
     return LRC
 
@@ -80,7 +80,6 @@ def LR_fit(X_train_features, y_train, gridsearch, score, model_path, tracker):
         LRC = grid.best_estimator_["LRC"]
         tracker.stop_task()
     dump(LRC, model_path)
-
 
 def LR_evaluate(X_test_features, y_test, gridsearch, score, eval_path, model_path, tracker):
     """
