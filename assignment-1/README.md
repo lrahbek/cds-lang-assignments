@@ -63,8 +63,8 @@ The pairplot grouped by subfolder indicates a couple of things. First, their see
 **To the left, the box-plot grouped by subfolders, and to the right the pair plot grouped by text-type**
 
 <p float="left">
-  <img src="https://github.com/lrahbek/cds-lang-assignments/blob/main/assignment-1/out/plots/box_POS.png" width="50%" />
-  <img src="https://github.com/lrahbek/cds-lang-assignments/blob/main/assignment-1/out/plots/pair_POStype.png" width="50%" /> 
+  <img src="https://github.com/lrahbek/cds-lang-assignments/blob/main/assignment-1/out/plots/box_POS.png" width="45%" />
+  <img src="https://github.com/lrahbek/cds-lang-assignments/blob/main/assignment-1/out/plots/pair_POStype.png" width="45%" /> 
 </p>
 
 The most obvious distnictions can be found in the distribution showing relative frequency of nouns. Here, Discussion and Argumentation essays seem to be part of the same distribution (overlapping) and Evalutation and Literature essays seem to be part part of the same distribution. When looking at the distribution of relative frequency of adverbs, Argumentaion and Discussion essays are again overlapping, but Evaluation and Literature essays are distinct from each other. 
