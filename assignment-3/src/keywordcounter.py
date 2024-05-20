@@ -16,13 +16,11 @@ def carbon_tracker(em_outpath):
 def get_arguments():
     """ Get input arguments for query expansion; artist and keyword """
     parser = argparse.ArgumentParser()
-    parser.add_argument(
-                        "--artist",
+    parser.add_argument("--artist",
                         "-a", 
                         required = True,
                         help="The artist should be given as a string")
-    parser.add_argument(
-                        "--keyword",
+    parser.add_argument("--keyword",
                         "-k", 
                         required = True,
                         help="The keyword shoule be given in a string")                    
@@ -35,8 +33,7 @@ def artist_find(artist_input, tracker):
     with an artist name in the corpus, a list with the given artist's songs is returned.
     """
     tracker.start_task("Find artist")                               
-    filepath = os.path.join("in", "Spotify Million Song Dataset_exported.csv")
-    songs = pd.read_csv(filepath)
+    songs = pd.read_csv(os.path.join("in", "Spotify Million Song Dataset_exported.csv"))
     artist = artist_input.lower()
     songs["artist"] = (songs["artist"]).str.lower()
     if (songs['artist'].eq(artist).any()):
