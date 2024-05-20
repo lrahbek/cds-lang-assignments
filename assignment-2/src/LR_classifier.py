@@ -7,7 +7,6 @@ from joblib import dump, load
 from sklearn.metrics import classification_report
 from sklearn.linear_model import LogisticRegression
 import pickle
-from sklearn.pipeline import Pipeline 
 from sklearn.model_selection import GridSearchCV
 import argparse
 import vectorizer
@@ -49,18 +48,17 @@ def grid_params(score):
     be fitted. It takes the evaluation metric as an argument, the possible options can be found in the scikit-learn
     documentation. For info on the different hyperparameters, see the README.md file
     """
-    pipe = Pipeline([('LRC' , LogisticRegression(max_iter=1000, random_state = 42))])
     C = [1.0, 0.1, 0.01]  
     tol = [0.00001, 0.0001, 0.001]
     param_grid = [
-        {"LRC__C": C, "LRC__tol": tol, "LRC__solver": ["liblinear", "saga"] ,"LRC__penalty": ["l1", "l2"]},
-        {"LRC__C": C, "LRC__tol": tol, "LRC__solver": ["lbfgs"] ,"LRC__penalty": [None, "l2"]}]
-    LRC = GridSearchCV(pipe,                                
+        {"C": C, "tol": tol, "solver": ["liblinear", "saga"] ,"penalty": ["l1", "l2"]},
+        {"C": C, "tol": tol, "solver": ["lbfgs"] ,"penalty": [None, "l2"]}]
+    grid = GridSearchCV(LogisticRegression(max_iter=1000, random_state = 42),                                 
                        param_grid,                          
                        scoring = score,
-                       cv=10, 
+                       cv=5, 
                        verbose = 1) 
-    return LRC
+    return grid
 
 def LR_fit(X_train_features, y_train, gridsearch, score, model_path, tracker):
     """ 
@@ -77,9 +75,10 @@ def LR_fit(X_train_features, y_train, gridsearch, score, model_path, tracker):
         tracker.start_task("Fit LR model with GS")
         grid = grid_params(score)
         grid = grid.fit(X_train_features, y_train)
-        LRC = grid.best_estimator_["LRC"]
+        LRC = grid.best_estimator_
         tracker.stop_task()
     dump(LRC, model_path)
+     
 
 def LR_evaluate(X_test_features, y_test, gridsearch, score, eval_path, model_path, tracker):
     """
