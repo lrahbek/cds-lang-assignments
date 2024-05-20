@@ -17,15 +17,8 @@ def carbon_tracker(em_outpath):
 
 def get_arguments():
     """ The filepath for the data used in the analysis """
-    parser = argparse.ArgumentParser()
-    parser.add_argument(
-                        "--filepath",
-                        "-f", 
-                        required = False,
-                        default = "in/GoT-scripts/Game_of_Thrones_Script.csv",
-                        help="The path where the data can be found")         
-    parser.add_argument(
-                        "--neutral",
+    parser = argparse.ArgumentParser()    
+    parser.add_argument("--neutral",
                         "-n", 
                         required = True,
                         choices = ["w_neut", "rm_neut"],
@@ -35,10 +28,7 @@ def get_arguments():
 
 
 def load_classifier(tracker):
-    """
-    The function loads in the emotion classifier, and returns the classifier. The classifier only returns the label
-    and score for the most prominent emotion in the given string.
-    """
+    """ The function loads and returns the emotion classifier """
     tracker.start_task("Load model")                               
     classifier = pipeline("text-classification", 
                           model="j-hartmann/emotion-english-distilroberta-base", 
@@ -159,8 +149,9 @@ def plot_emotions(dataframe, neut, tracker):
 def main():
     tracker = carbon_tracker("../assignment-5/out")
     args = get_arguments()
+    filepath = "in/GoT-scripts/Game_of_Thrones_Script.csv"
     classifier = load_classifier(tracker)    
-    data_in, data_emotions, data_emotions_path = load_data(args.filepath, tracker)
+    data_in, data_emotions, data_emotions_path = load_data(filepath, tracker)
     emotion_classifier(data_in, data_emotions, classifier, data_emotions_path, tracker)
     data_counts = reshape_data(data_emotions_path, tracker)
     plot_emotions(data_counts, args.neutral, tracker)
