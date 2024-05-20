@@ -70,35 +70,33 @@ def LR_fit(X_train_features, y_train, gridsearch, score, model_path, tracker):
     if gridsearch == "%GS":
         tracker.start_task("Fit LR model")
         LRC = LogisticRegression(max_iter=1000, random_state=42).fit(X_train_features, y_train)
+        params = {key: LRC.get_params()[key] for key in LRC.get_params().keys() & {'C', 'tol', 'solver', 'penalty'}}
+        eval_path = "out/LR_%GS_rep.txt" 
         tracker.stop_task()
     elif gridsearch == "GS":
         tracker.start_task("Fit LR model with GS")
         grid = grid_params(score)
         grid = grid.fit(X_train_features, y_train)
         LRC = grid.best_estimator_
+        params = grid.best_params_
+        eval_path = f"out/LR_GS_{score}_rep.txt"
         tracker.stop_task()
-    dump(LRC, model_path)
-     
+    dump([LRC, params, eval_path], model_path, compress = 1)
 
-def LR_evaluate(X_test_features, y_test, gridsearch, score, eval_path, model_path, tracker):
+
+def LR_evaluate(X_test_features, y_test, gridsearch, model_path, tracker):
     """
     The function takes the vectorised test data and labels, and evaluates the given logistic regression classifier 
     on these. The classification report will be saved to the out folder, and named according to whether gridsearch
     was performed or not. 
     """
     tracker.start_task("Evaluate LR model")
-    LRC = load(model_path)
-    y_pred_LR = LRC.predict(X_test_features)
-    params_dict = LRC.get_params()
-    params = ["C", "penalty", "solver", "tol", "max_iter", "random_state"]
-    parameters = ""
-    for i in range(len(params)):
-        parameters = parameters + f"{params[i]}: {params_dict[params[i]]},  "
-    parameters = parameters[0:-3]
+    LRC, params, eval_path = load(model_path)
+    y_pred_LR = LRC.predict(X_test_features)    
     if gridsearch == "%GS":
-        class_report  = f"The parameters were set to the following:\n{parameters}\nAll values are default values, except for max_iter and random_state.\n\nClassification Report:\n\n{classification_report(y_test, y_pred_LR)}"
+        class_report  = f"The parameters were set to the following values:\n{params}\n\nClassification Report:\n\n{classification_report(y_test, y_pred_LR)}"
     elif gridsearch == "GS":
-        class_report = f"The best performing parameters:\n{parameters}\nSolver, penalty, C and tol were the parameters included in the gridsearch\n\nClassification Report:\n\n{classification_report(y_test, y_pred_LR)}\n\nMore info on the hyperparameters tuned etc. can be found in the README.md file"
+        class_report = f"The best performing parameters:\n{params}\n\nClassification Report:\n\n{classification_report(y_test, y_pred_LR)}\n\nMore info on the hyperparameters tuned etc. can be found in the README.md file"
     outpath_report = open(eval_path, 'w')
     outpath_report.write(class_report)
     outpath_report.close()
@@ -109,10 +107,9 @@ def main():
     tracker = carbon_tracker("../assignment-5/out")
     args = get_arguments()
     model_path = f"models/LRC_{args.score}_{args.gridsearch}.joblib"
-    eval_path = f"out/LRC_{args.score}_{args.gridsearch}_metrics.txt"
     y_train, y_test, X_train_features, X_test_features, feature_names = load_data(tracker)
     LR_fit(X_train_features, y_train, args.gridsearch, args.score, model_path, tracker)
-    LR_evaluate(X_test_features, y_test, args.gridsearch, args.score, eval_path, model_path, tracker)
+    LR_evaluate(X_test_features, y_test, args.gridsearch, model_path, tracker)
     tracker.stop() 
 
 if __name__ == "__main__":
