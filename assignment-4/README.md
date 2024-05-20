@@ -15,7 +15,7 @@ The ```GoT_emotions.py``` script does the following:
 - Loads in the ```j-hartmann/emotion-english-distilroberta-base``` classifier 
 - Loads in the ```Game_of_Thrones_Scripts.csv``` dataset
 - Runs the classifier on each sentence in the dataset and returns the emotion label with the highest score, as well as this labels score. 
-- Saves a plot of the relative frequency of each of the seven emotions across the eight seasons 
+- Loads in the functions from ```plot_emotions.py``` and saves a plot of the relative frequency of each of the seven emotions across the eight seasons 
     - One plot will be all emotion labels seperated into seasons 
     - The other plot will be all seasons seperated into emotion categories 
 
