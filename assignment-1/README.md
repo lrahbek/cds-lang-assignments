@@ -6,7 +6,7 @@ Laura Givskov Rahbek
 
 ## Description 
 
-This folder contains assignment 1 for Language Analytics. The objective of the assignment is to work with input data arranged hierarchically in folders, to use ```spaCy``` to extract information from text data, and to save results and outputs in a clear and understandable way. More specifically the analysis aims to extract relevant textual features from the texts used (see Data section), and investigate whether these can capture the differences in the text. The folder contains two scripts, each described below; 
+This folder contains assignment 1 for Language Analytics. The objective of the assignment is to work with input data arranged hierarchically in folders, to use ```spaCy``` to extract information from text data, and to save results and outputs in a clear and understandable way. More specifically the analysis aims to extract relevant textual features from the texts used (see Data section), and investigate whether these can capture differences in the texts. The folder contains two scripts, each described below; 
 
 The ```feature_extraction.py``` script does the folllowing: 
 
@@ -15,9 +15,10 @@ The ```feature_extraction.py``` script does the folllowing:
   - The meta data is removed 
   - The relavtive frequency per 10,000 words of nouns, verbs, adjectives and adverbs are found 
   - The number og unique persons, locations and organisations are found
-  - The word frquencies and named enteties are saved in a row in a .csv file, named according to the given subfolder, placed in the ```out``` folder. 
+  - The word frequencies and named enteties are saved in a row in a .csv file, named according to the given subfolder, placed in the ```out``` folder. 
 
 The ```plot_features.py``` script does the following: 
+
 - Loads in the .csv files with the extracted features from the ```out``` folder and adds three columns; 
   - subfolder: the name of the subfolder, indicating which specific essay prompt the text was written from. 
   - term: a, b or c, indicating whether the essay was written in term 1, 2 or 3. 
@@ -35,12 +36,12 @@ The subfolders reflect the term the essay was written in, subfolder starting wit
 To reproduce the analysis: 
 - Download and unzip the ```USEcoprus``` folder, and place it in the ```in``` folder in the repository. 
 - Run the bash script ```setup.sh``` from the command line, it creates a virtual environment and installs packages and dependencies in to it. 
-- Run the bash script ```run.sh``` from the command line, this opens the virtual environment  and runs both scripts in ```src``` folder. 
+- Run the bash script ```run.sh``` from the command line, this opens the virtual environment  and runs both scripts in ```src``` folder, and then exits the virtual environment. 
 
-To use another spaCy model than ```en_core_web_md```, pass another model when running ```run.sh```, either ```en_core_web_sm``` or ```en_core_web_lg```. 
+To use another ```spaCy``` model than ```en_core_web_md```, one of the following models can be passed using the flag -m (*model*); ```en_core_web_sm``` or ```en_core_web_lg```. For example: 
 
   ```
-  bash run.sh -m {'model'} 
+  bash run.sh -m en_core_web_sm
   ```
 
 ## Discussion 
