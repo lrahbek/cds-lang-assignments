@@ -7,7 +7,6 @@ import argparse
 import en_core_web_sm, en_core_web_md, en_core_web_lg  
 from codecarbon import EmissionsTracker
 
-
 def carbon_tracker(em_outpath):
     """ The function initalizes the carbon tracker """
     tracker = EmissionsTracker(project_name="Assignment-1",
@@ -17,8 +16,7 @@ def carbon_tracker(em_outpath):
 def get_arguments():
     """ Allow for choosing another than the default spaCy model, used in feature extraction """
     parser = argparse.ArgumentParser()
-    parser.add_argument(
-                        "--model",
+    parser.add_argument("--model",
                         "-m", 
                         required = False,
                         default = "en_core_web_md",
@@ -35,7 +33,7 @@ def load_model(model, tracker):
     return nlp
 
 def rel_freq(count, len_doc): 
-    """
+    """ 
     The function takes the number of the given POS in a document, and the total number of tokens in that document.
     It returns the rounded relative frequency (per 10,000 words) of the given POS of the document length.
     """
