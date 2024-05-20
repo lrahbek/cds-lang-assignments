@@ -40,6 +40,8 @@ To reproduce the analysis:
 
 The immidiate visuzalization of the emotional profile of Game of Thrones, shows a very large amount of neutral lines across all seasons. Above 40% of lines i all eight seasons had the highest score in the label neutral. A further analysis, would be able to shed light on whether many of these lines might have had another emotion label as prominent also, but as the neutral emotion is very similar across seasons, and obscures visual inspection of the other emotions, plots without neutral label was also made. 
 
+![alt-text-1](https://github.com/lrahbek/cds-lang-assignments/blob/main/assignment-4/out/Season_subplot_w_neut.png) ![alt-text-2]([image2.png "title-2"](https://github.com/lrahbek/cds-lang-assignments/blob/main/assignment-4/out/Season_subplot_rm_neut.png))
+
 When inspecting the plots, where the neutral emotion lavel have been removed, the seasons, in general, are very alike. First looking at the emotion prominence, distributed across emotion-label subplots; ```emotion_label_subplot_rm_neut.png```, the primary emotions across all seasons are anger and surprise. Anger i season 8 is the highest followed by season 1. The emotion with the most visible tendency is disugst, which falls steadily with season number. Sadness in season 1 and season 6 are slighlty higher than for the other seasons. Interestingly, the relative frequency of joy and fear are very alike, both around 5% across all seasons. Joy is at its highest in season 4 and fear is at its highest in season 7. When looking at the plot, in subplots representing seasons, ```Season_subplot_rm_neut.png```, the same tendencies are visible. 
 
 A further inspection, could include an episode wise timeseries for each season or the scores for each emotion. 
