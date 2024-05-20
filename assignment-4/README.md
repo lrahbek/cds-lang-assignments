@@ -30,13 +30,11 @@ The data used in this assignment can be found [here](https://www.kaggle.com/data
 To reproduce the analysis: 
 - Download the dataset from the source described above, and place it in the ```in``` folder, as ```GoT-scripts/Game_of_Thrones_Script.csv```
 - Run the bash script ```setup.sh``` from the command line, it creates a virtual environment and installs packages and dependencies in to it. 
-- Run the bash script ```run.sh``` from the command line, this opens the virtual environment and runs the script in the ```src``` folder. 
--
-- An alternative filepath can be specified using -f {filepath}. The script requires the input -n with either "w_neut" or "rm_neut", dictating whether to keep the neutral category or remove it, e.g. to run the analysis and including the neutral labels in the visualization: 
+- Run the bash script ```run.sh``` from the command line, this opens the virtual environment and runs the script in the ```src``` folder and then exits the environment. When running the script use the flag -n (*neutral*) to specify whether or not to include 'neutral' in the saved plots (neutral is a very dominant emotion in the data, and can make it difficult to catch subtle changes in the other categories. E.g. to run the analysis and exclude 'neutral' from the plots, write the following ('neutral' can be kept in by using 'w_neut'):
 
-```
-bash run.sh -n "w_neut"
-```
+    ```
+    bash run.sh -n "rm_neut"
+    ```
 
 ## Discussion
 
