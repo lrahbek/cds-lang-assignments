@@ -2,7 +2,7 @@
 python -m venv env
 #open virtual environment
 source ./env/bin/activate
-#finde dependencies and install requirements 
+#find dependencies and install requirements 
 pip install --upgrade pip
 pip install pipreqs
 pipreqs src --savepath requirements.txt
