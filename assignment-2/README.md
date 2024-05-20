@@ -6,47 +6,36 @@ Laura Givskov Rahbek
 
 ## Description 
 
-This folder contains assignment 2 for Language Analytics. The objective of the assignment is to train benchmark machine learning classifiers on structured text data, using ```scikit-learn```, make and save understandable outputs and models, and save the results in clear ways. More specifically, a ```TfidfVectorizer``` will be used to vectorize and extract features from the *Fake or Real News* dataset, these features will be used in training two binary classification models to classify news articles as either 'REAL' or 'FAKE'. The ```LogisticRegression``` classifier and ```MLPClassifier``` will be used for this purpose, for both, gridsearch parameters will be set up to be able to identify the parameters that perform the best. Further, the evaluation metric the gridsearch should tune for can be passed as an argument, the default is accuracy. Three scripts were made for this assignment, each described below: 
+This folder contains assignment 2 for Language Analytics. The objective of the assignment is to train benchmark machine learning classifiers on structured text data, using ```scikit-learn```, make and save understandable outputs and models, and save the results in clear ways. More specifically, a ```TfidfVectorizer``` will be used to vectorize and extract features from the *Fake or Real News* dataset, these features will be used in training two binary classification models to classify news articles as either 'REAL' or 'FAKE'. The ```LogisticRegression``` classifier and ```MLPClassifier``` will be used for this purpose. For both classifiers ```GridSearchCV``` will be used to implement gridsearch and set up parameters and their values, to be able to identify the parameters that perform the best. Further, the evaluation metric the gridsearch should tune for can be passed as an argument, the default is accuracy. Three scripts were made for this assignment, each described below: 
 
 The ```vectorizer.py``` script does the following: 
+
 - Loads and splits the data into a test and train set. 
 - Defines and saves a TFIDF vectorizer to the ```models``` folder. 
 - Fits and vectorises the training data, and vectroizes the test data, then saves the extracted features to the ```out``` folder.
 
 The ```LR_classifier.py``` script does the following: 
+
 - Loads the vectorised features saved in the ```out``` folder. 
-- Fits a logistic regression classifier to the training data, and saves the fitted model to the ```models``` folder. When running the script, it can be specified that gridsearch should be implemented, the parameters and hyperparameters used to tune the model are discussed in the Gridsearch section below.
-- Evaluates the performance of the model on the test data and saves the evaluation metrics to the ```out``` folder. 
+- Fits a logistic regression classifier to the training data, and saves the fitted model to the ```models``` folder. It is possible to implement gridsearch when fitting the model, in both cases the ```max_iter``` = 1000 and ```random_state``` = 42, the remaining parameters are described below: 
+  - If gridsearch is not implemented all paremeters are kept at their default values, available at the [documentation](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html).
+  - If gridsearch is implemented, ```solver```, ```penalty```, ```C``` and ```tol``` are tuned, the remaining parameters are kept at their default values.
+      -  ```solver``` defines the optimization algorithm.'lbfgs', 'saga' and 'liblinear were included; 'lbfgs' is robust and the default solver, 'liblinear' is recommended on smaller datasets, and 'saga' is overall well performing. 
+      - ```penalty``` determines the regularization technique implemented, helping to balance between model fit and complexity. Different penalties are available for different solvers, leading to choosing 'l1', 'l2' and None.  
+      - ```C``` defines the strength of regularization, the larger the value the less regulated the model is. The default is 1.0, additionally 0.1 and 0.01 are included.
+    - ```tol``` defines the threshold for when the model should stop training, the default is 0.0001, 0.00001 and 0.001 are included as well. 
+- Evaluates the performance of the model on the test data and saves the evaluation metrics to the ```out``` folder, besides the classification report, the parameters used in the estimator can also be viewed in this file. 
 
 The ```MLP_classifier.py``` script does the following: 
+
 - Loads the vectorised features saved in the ```out``` folder. 
-- Fits a MLP classifier to the training data, and saves the fitted model to the ```models``` folder. Gridsearch can also be implemented here. The parameters and hyperparameters used to tune the model are discussed in the Gridsearch section below. 
-- Evaluates the performance of the model on the test data and saves the evaluation metrics to the ```out``` folder. Additionally, it saves a plot of training loss and validation accuracy for the best performing model. 
-
-### Gridsearch
-
-All hyperparameters included in the gridsearch can be found at the sckit-learn documentation, for the [LogsiticRegression](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html) classifier, and for the [MLPClassifier](https://scikit-learn.org/stable/modules/generated/sklearn.neural_network.MLPClassifier.html). The parameters used in tunning for both classifiers are explained below: 
-
-**Logistic Regression Classifier**
-
-For the Logistic Regression classifier ```solver```, ```penalty```, ```C``` and ```tol``` were tuned. Different penalties are available for different solvers, all combinations possible were included in the gridsearch. Additionally the parameters max_iter and random_state were set to 1000 and 42 (both for the base model and the model were gridsearch was implemented). 
-
-|Parameter|Values|Explanation|
-|---------|------|-----------|
-|```solver```|"lbfgs", "saga", "liblinear"| Determines the optimization algorithm. The different solvers were included for different reasons; 'lbfgs' is robust and the default solver, 'liblinear' is recommended on smaller datasets, and 'saga' is overall well performing. |
-|```penalty```|"l1", "l2", "None"|Determines the regularization technique implemented, helping to balance between model fit and complexity. Different penalties are available for different solvers, leading to choosing these three. |
-|```C``` | 1.0, 0.1, 0.01|Determines the strength of regularization, the larger the value the less regulated the model is. The default is 1.0 |
-| ```tol```|0.00001, 0.0001, 0.001|Determines the threshold for when the model should stop training, the default is 0.0001. |
-
-**MLP Classifier**
-
-For the MLP classifier ```activation```, ```hidden_layer_sizes``` and ```tol``` were tuned. For both the base model and the model where gridsearch was implemented, the ```solver``` was kept at the default 'adam', and ```early_stopping``` was set to True. This sets 10% of the training data aside and validates continously, and stops when the validation accuracy is not improving by ```tol```for 10 epochs. Further, max_iter and random_state was set to 1000 and 42. 
-
-|Parameter|Values|Explanation|
-|---------|------|-----------|
-|```activation```|"logistic", "relu"|Determines the activation function in the nodes. The default is relu. |
-|```hidden_layer_sizes```|50, 75, 100|Determines sizes of the hidden layers, the default is 100. |
-| ```tol```|0.00001, 0.0001, 0.001|Determines the threshold for when the model should stop training, the default is 0.0001. |
+- Fits an MLP classifier to the training data, and saves the fitted model to the ```models``` folder. It is possible to implement gridsearch when fitting the model, in both cases the ```solver``` = 'adam', ```max_iter``` = 1000, ```random_state``` = 42 and ```early_stopping``` = True (the model uses 10% of the training data as validation, and the model stops training when the accuracy on the validation set does not increase by ```tol``` for 10 epochs), the remaining parameters are described below:
+  - If gridsearch is not implemented the additional parameters are kept at their default values, available at the [documentation](https://scikit-learn.org/stable/modules/generated/sklearn.neural_network.MLPClassifier.html).
+  - If gridsearch is implemented ```activation```, ```hidden_layer_sizes``` and ```tol``` are tuned, the remaining parameters are kept at their default values.
+    -  ```activation``` defines how the nodes are activated, 'relu' and 'logistic' are included.
+    -  ```hidden_layer_sizes``` determines the sizes of the hidden layers, the default is 100. To see if less can do it, 50, 75 and 100 was included as values in the gridsearch.
+    -   ```tol``` defines the threshold for when the model should stop training, the default is 0.0001, 0.00001 and 0.001 are included as well. 
+- Evaluates the performance of the model on the test data and saves the evaluation metrics to the ```out``` folder, besides the classification report, the parameters from the given estimator is also in this file. Additionally, it saves a plot of training loss and validation accuracy for the best performing model. 
 
 
 ## Data
@@ -59,20 +48,21 @@ To reproduce the analysis:
 - Download the ```fake_or_real_news.csv``` file from the source given above, and place it in the ```in``` folder.
 - Run the bash script ```setup.sh``` from the command line, it creates a virtual environment and installs packages and dependencies in to it.
 - Open the virtual enviornment by writting ```source ./env/bin/activate``` in the terminal. 
-- Preprocess the data by running ```python src/vectorizer.py``` in the terminal. (Alternatively, if the classifier scripts are run, and the vectorised data is not in the ```out``` folder, they will call the script and run it themselves). 
-- For both ```LR_classifier.py``` and ```MLP_classifier.py```, it should be specified whether or not to perform gridsearch with the flag -g and it can be specified wich metric the gridsearch should be tuned for with the flag -s. The default is accuracy. E.g. running the logistic regression classifier with gridsearch and tunning for f1 should be passed like this: 
+- Preprocess the data by running ```python src/vectorizer.py``` in the terminal, (alternatively, if the classifier scripts are run, and the vectorised data is not in the ```out``` folder, they will call the script and run it themselves). 
+- For both ```LR_classifier.py``` and ```MLP_classifier.py```, it should be specified whether or not to perform gridsearch with the flag -g (*gridsearch*) and it can be specified which metric the gridsearch should be tuned for with the flag -s (*score*), the default is accuracy.
+  - E.g. running the logistic regression classifier with gridsearch and tunning for f1 should be written like this: 
 
-```
-python src/LR_classifier.py -g "GS" -s "f1"
-```
+    ```
+    python src/LR_classifier.py -g "GS" -s "f1"
+    ```
 
-Simply running the neural network classifier with no gridsearch should be passed like this: 
+  - Or running the neural network classifier with no gridsearch should be written like this: 
 
-```
-python src/MLP_classifier.py
-```
+    ```
+    python src/MLP_classifier.py
+    ```
 
-- Finally, to exit the virtual enviorment write ```deactivate``` in the terminal. 
+- Finally, to exit the virtual environment write ```deactivate``` in the terminal. 
 
 ## Discussion 
 
