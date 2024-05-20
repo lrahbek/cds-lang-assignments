@@ -14,12 +14,12 @@ def load_data(outfolder):
     """ Loads the .csv files saved to the out folder and returns them as one data frame """ 
     data = pd.DataFrame()
     type_dict ={'a1': "Evaluation",   'a2': "Argumentation", 
-            'a3': "Discussion",   'a4': "Literature", 
-            'a5': "Culture",      'b1': "Discussion",
-            'b2': "Argumentation",'b3': "Linguistics",
-            'b4': "Literature",   'b5': "Literature",
-            'b6': "Discussion", 'b7': "Discussion",
-            'b8': "Evaluation", 'c1': "Literature"}
+                'a3': "Discussion",   'a4': "Literature", 
+                'a5': "Culture",      'b1': "Discussion",
+                'b2': "Argumentation",'b3': "Linguistics",
+                'b4': "Literature",   'b5': "Literature",
+                'b6': "Discussion",   'b7': "Discussion",
+                'b8': "Evaluation",   'c1': "Literature"}
     for file in sorted(os.listdir(outfolder)):
         if file.endswith(".csv"):
             dat = pd.read_csv(os.path.join(outfolder, file), index_col=0)
@@ -68,10 +68,11 @@ def main():
     tracker = carbon_tracker("../assignment-5/out")
     tracker.start_task("Visualising features")                               
     data = load_data("out")
-    plot_NER(data, "out/plots")
-    pairplot_POS(data, "out/plots")
-    pairplot_POStype(data, "out/plots")
-    boxplot_POS(data, "out/plots")
+    plot_path = "out/plots"
+    plot_NER(data, plot_path)
+    pairplot_POS(data, plot_path)
+    pairplot_POStype(data, plot_path)
+    boxplot_POS(data, plot_path)
     tracker.stop_task()
     tracker.stop()
 
