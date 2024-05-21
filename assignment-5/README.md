@@ -31,23 +31,24 @@ Before discussing the results of the environmental impact analysis, it is worth 
 |Assignment 3|0.000123          |
 |Assignment 4|0.047947          |
 
-The above table showcases the total emissions (in CO₂eq) for each of the four assignments. Assignment 4 has the largest impact, followed by Assignment 2, Assignment 1 and lastly Assignment 3. Starting with the least impactful one: Assignment 3. In Assignment 3 task with the largest impact is the loading and usage of the word-embedding model ```glove-wiki-gigaword-50```. It is used to identify ten of the closest (most similar) words to a given keyword - but that is it. It is pretrained, and it used for a very specific task, resulting in a comparatively low total emission for the assignment. Assignment 1 is the second least impactful, with the task of feature extraction, which consisted of the use of a ```spaCy``` model extracting and identifying six different types of tokens (parts of speech and named entity recognition). However, Assignments 1 and 3's impact is difficult to compare to the impact of both Assignment 2 and 4, as seen in the two plots below. The most impactful assignment is Assignment 4; where the primary task causing this level of emissions is the use of a pretrained large language model, handeling a large amount of text. The second most impactful assignment is Assignment 2; where a large amount of the emissions comes from the gridsearch performed on the Convelutional Neural Netwrk Classifier from ```scikit-learn```. As metioned in Assignment 2, the performance of the model resulting from the gridsearch was not improved in a way that justifies this amount of emissions. 
+The above table showcases the total emissions (in CO₂eq) for each of the four assignments. Assignment 4 has the largest impact, followed by Assignment 2, Assignment 1 and lastly Assignment 3. Starting with the least impactful one: Assignment 3. In Assignment 3 task with the largest impact is the loading and usage of the word-embedding model ```glove-wiki-gigaword-50```. It is used to identify ten of the closest (most similar) words to a given keyword - but that is it. It is pretrained, and it used for a very specific task, resulting in a comparatively low total emission for the assignment. Assignment 1 is the second least impactful, with the task of feature extraction, which consisted of the use of a ```spaCy``` model extracting and identifying six different types of tokens (parts of speech and named entity recognition). However, Assignments 1 and 3's impact is difficult to compare to the impact of both Assignment 2 and 4, as seen in the two plots below. The most impactful assignment is Assignment 4; where the primary task causing this level of emissions is the use of a pretrained large language model, handeling a large amount of text. The second most impactful assignment is Assignment 2; where a large amount of the emissions comes from the gridsearch performed on the Convolutional Neural Netwrk Classifier from ```scikit-learn```. As metioned in Assignment 2, the performance of the model resulting from the gridsearch was not improved in a way that justifies this amount of emissions. 
 
 **To the Left: Total Emissions per Assignment, To the Right: Task with Highest Emission per Assignment**
 ![total_em_bar](https://github.com/lrahbek/cds-lang-assignments/blob/main/assignment-5/out/total_em_bar.png)![max_a_bar](https://github.com/lrahbek/cds-lang-assignments/blob/main/assignment-5/out/max_task_bar.png)
 *The plot to the left shows the total emissions from each of the assignments and the plot to the right show emissions from the task emitting the most in each assignment. As discussed it is the use and training of large models that primarily drives the emissions*
 
-Task discussion: 
 
+As touched upon above, for each of the assignments it is one task that is responssible for most of the emissions for that assignment. The horizontal lines, visible on some of the bars representing emissions for each assignment in the plot above, shows emissions for the most impactful task for that assignment. It is the use and training of large machine learning models that overwhelmingly costs the most. However, as seen on the plot below, the difference in emission rate (CO₂eq/second) is minimal between all the tasks - based on this
 
+**plot with rate or duration included??**
 
-
-
-- Which specific tasks generated the most emissions in terms of CO₂eq? Again, explain why this might be.
-
-As discussed above, a great cost comes with finetuning large models, like the MLP neural network in Assignment 2. 
+As discussed above,  comes with finetuning large models, like the MLP neural network in Assignment 2. 
 
 - How robust do you think these results are and how/where might they be improved? 
 
 *change code to have less enviormental impact*
+
+Task discussion: 
+
+- Which specific tasks generated the most emissions in terms of CO₂eq? Again, explain why this might be.
 
