@@ -12,7 +12,7 @@ The ```keywordcounter.py``` script does the following:
 
 - Takes two arguments; an artist name and a keyword. 
 - Loads the *Spotify Million Song Dataset* and checks if any songs exists by the artist given, if the artist is not in the dataset, 'Artist not found' is returned in the terminal. 
-- Loads the ```glove-wiki-gigaword-50``` wordembedding model and returns a list of the ten most similar words, to the given keyword, and the keyword itself. 
+- Loads the ```glove-wiki-gigaword-50``` word-embedding model and returns a list of the ten most similar words, to the given keyword, and the keyword itself. 
 - Cleans the texts by the given artists, by tokenising, making each token lower case and stripping punctuation. 
 - Counts the number of texts any of the keywords are present in, by the given artist, and appends the results to the ```output.csv``` file. Each row in the file contains the keyword, the ten similar words, the name of the artist, the total number of songs by the artist, the total number of songs by the artist containing any of the words and finally the percentage of songs by the artist containing any of the words. 
 - In the terminal the percentage of the artist's songs containing the words is returned. 
