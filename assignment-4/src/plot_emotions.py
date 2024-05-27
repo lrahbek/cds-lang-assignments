@@ -33,18 +33,21 @@ def bar_plot(data, xcol, subsep, suborder, xorder, neut, subcols):
                     col_wrap = subcols,
                     col_order = suborder,
                     fill = True, 
-                    order = xorder, 
-                    palette = colour_dict)
+                    order = xorder,
+                    palette = sns.mpl_palette("viridis", 7) 
+                    #palette = colour_dict
+                    )
     g.set_xticklabels(labels=xorder, rotation=30) 
-    plt.savefig(f"out/{subsep}_subplot_{neut}.png")
+    plt.savefig(os.path.join("out", f"{subsep}_subplot_{neut}.png"))
 
 
-def plot_emotions(dataframe, neut, tracker):
+#def plot_emotions(dataframe, neut, tracker):
+def plot_emotions(dataframe, neut):
     """
     The function takes a dataframe and a string indicating whether or not to keep the neutral emotion label. It 
     utilises the bar_plot() function, and saves both a plot with subplots based on seasons and emotion labels. 
     """
-    tracker.start_task("Plot emotions")                               
+    #tracker.start_task("Plot emotions")                               
     seasons =  ["Season 1", "Season 2", "Season 3", "Season 4", "Season 5", "Season 6", "Season 7", "Season 8"]
     emotions = ["anger", "disgust", "fear", "joy", "neutral", "sadness", "surprise"]
     if neut == "w_neut":
@@ -55,4 +58,4 @@ def plot_emotions(dataframe, neut, tracker):
         dataframe_rm_neut = dataframe[dataframe["emotion_label"] != "neutral"]
         bar_plot(dataframe_rm_neut, "emotion_label", "Season", seasons, emotions, neut, 4)
         bar_plot(dataframe_rm_neut, "Season", "emotion_label", emotions, seasons, neut, 3)
-    tracker.stop_task()
+    #tracker.stop_task()

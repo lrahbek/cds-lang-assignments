@@ -44,7 +44,7 @@ def load_data(filepath, tracker):
     additional emotion label and score columns, and the out path for the data with emotion labels and scores. 
     """
     tracker.start_task("Load data")                               
-    data_emotions_path = "out/" + (filepath).split("/")[-1].split(".")[0] + "_with_emotion_scores.csv"
+    data_emotions_path = os.path.join("out", ((filepath).split("/")[-1].split(".")[0] + "_with_emotion_scores.csv"))
     data_in = pd.read_csv(filepath)
     data_emotions = pd.read_csv(filepath)
     data_emotions[["emotion_label", "emotion_score"]] = ""
@@ -72,14 +72,15 @@ def emotion_classifier(data_in, data_emotions, classifier, data_emotions_path, t
     return print("Emotion scores and labels for each sentence in the dataset have been saved to the outfolder")
 
 
-def reshape_data(data_emotions_path, tracker):
+#def reshape_data(data_emotions_path, tracker):
+def reshape_data(data_emotions_path):
     """
     The function takes path where the emotions data was saved, and reshapes it. The returned dataframe has three 
     columns, Season and emotion_label and count. For each season the number of each of the seven emotion labels are 
     counted, divided by the total number of lines in the given season and multiplied by 100, resulting in relative 
     requency of each emotion label per 100 lines for each season. 
     """
-    tracker.start_task("Reshape data")                               
+    #tracker.start_task("Reshape data")                               
     data_emotions = pd.read_csv(data_emotions_path, index_col=0, usecols=[0,2,7])
     Seasons = list(data_emotions.Season.unique())
     season_len = []
@@ -90,14 +91,14 @@ def reshape_data(data_emotions_path, tracker):
     data_counts["Relative Frequency"] = ""
     for season, length in zip(Seasons, season_len):
         data_counts.loc[data_counts["Season"] == season, "Relative Frequency"] = data_counts.loc[data_counts["Season"] == season, "count"]/length * 100
-    tracker.stop_task()
+    #tracker.stop_task()
     return data_counts
 
 
 def main():
-    tracker = carbon_tracker("../assignment-5/out")
+    tracker = carbon_tracker(os.path.join("..","assignment-5", "out"))
     args = get_arguments()
-    filepath = "in/GoT-scripts/Game_of_Thrones_Script.csv"
+    filepath = os.path.join("in", "GoT-scripts/Game_of_Thrones_Script.csv")
     classifier = load_classifier(tracker)    
     data_in, data_emotions, data_emotions_path = load_data(filepath, tracker)
     emotion_classifier(data_in, data_emotions, classifier, data_emotions_path, tracker)
