@@ -1,8 +1,20 @@
-# Assignment 4 - Emotion analysis with pretrained language models
+```{=latex}
+\begin{center}
+```
+\ 
 
+# Assignment 4
+
+# Emotion analysis with pretrained language models
+
+\
 *Date: 18/04/2024*
 
 Laura Givskov Rahbek 
+```{=latex}
+\end{center}
+```
+\
 
 ## Description 
 
@@ -20,11 +32,11 @@ The ```classify_emotions.py``` script does the following:
 
 The ```plot_emotions.py``` script does the following: 
 
-- Takes argument *neutral* (-n), either rm_neut (remove neutral) or w_neutral (with neutral), to dictate whether the plots should include the 'neutral' label. The neutral label was found to be much more prominent than the other labels, making it difficult to evaluate the other labels in the plot, why this option was included. 
+- Takes argument *neutral* (-n), either rm_neut (remove neutral) or w_neut (with neutral), to dictate whether the plots should include the 'neutral' label. The neutral label was found to be much more prominent than the other labels, making it difficult to viually inspect the other labels in the plot, why this option was included. 
 
 - Loads in the data saved by ```classify_emotions.py```.  
 
-- Calculates the relative frequency of each emotion label per season and across the whole eight seasons. This results in two dataframe; one where the relative frequency of each emotion label, grouped by season will equal 100 and one where the relative frequency of each emotion label summed across seasons will equal 100.   
+- Calculates the relative frequency of each emotion label per season and across the whole eight seasons. This results in two dataframes; one where the relative frequency of each emotion label, grouped by season will equal 100 and one where the relative frequency of each emotion label summed across seasons will equal 100.   
 
 - The two different relative frequency calculations will each be plotted and saved to the ```out``` folder. 
 
@@ -46,7 +58,7 @@ To reproduce the analysis:
 - Extract the emotion labels from each sentence in the dataset, by running ```python src/classify_emotions.py```.  
 
 - Visualize the results without the neutral label by running:
-
+    
 ```
 python src/plot_emotions.py -n rm_neut
 ```
@@ -62,19 +74,37 @@ python src/plot_emotions.py -n rm_neut
 
 ## Discussion
 
-The immidiate visuzalization of the emotional profile of Game of Thrones, shows a very large amount of neutral lines across all seasons. Above 40% of lines i all eight seasons had the highest score in the label neutral. A further analysis, would be able to shed light on whether many of these lines might have had another emotion label as prominent also, but as the neutral emotion is very similar across seasons, and obscures visual inspection of the other emotions, plots without neutral label was also made. 
-***Plot where Neutral is Included***
-![w_neutral](out/Season_subplot_w_neut.png)
+The immidiate visuzalization of the emotional profile of Game of Thrones, shows a very large amount of neutral lines across all seasons. Above 40% of lines i all eight seasons had the highest score in the label neutral. A further analysis, would be able to shed light on whether many of these lines might have had another emotion label as prominent also, but as the neutral emotion is very similar across seasons, and obscures visual inspection of the other emotions, plots without neutral label was also made. The plot including the neutral label can be found [here](https://github.com/lrahbek/cds-lang-assignments/blob/main/assignment-4/out/Season_subplot_w_neut.png) and the plot were the neutral label has been excluded can be seen below; 
+\
 
+```{=latex}
+\begin{center}
+```
+***Relative Frequency of each Emotion in each Season***
 
-When inspecting the plots, where the neutral emotion label have been removed, the seasons, in general, are very alike. First looking at the emotion prominence, distributed across emotion-label subplots; [```emotion_label_subplot_rm_neut.png```](https://github.com/lrahbek/cds-lang-assignments/blob/main/assignment-4/out/emotion_label_subplot_rm_neut.png), the primary emotions across all seasons are anger and surprise. Anger in season 8 is the highest followed by season 1. The emotion with the most visible tendency is disugst, which falls steadily with season number. Sadness in season 1 and season 6 are slighlty higher than for the other seasons. Interestingly, the relative frequency of joy and fear are very alike, both around 5% across all seasons. Joy is at its highest in season 4 and fear is at its highest in season 7. When looking at the plot, in subplots representing seasons, [```Season_subplot_rm_neut.png```](https://github.com/lrahbek/cds-lang-assignments/blob/main/assignment-4/out/Season_subplot_rm_neut.png), the same tendencies are visible. 
+![](out/Season_subplot_rm_neut.png) 
+```{=latex}
+\end{center}
+```
 
-***Plot where Neutral is Removed***
+When inspecting the plots, where the neutral emotion label have been removed, the seasons, in general, are very alike. The primary emotions across all seasons are anger and surprise. Anger in season 8 is the highest followed by season 1. The emotion with the most visible tendency is disugst, which falls steadily with season number. Sadness in season 1 and season 6 are slighlty higher than for the other seasons. Interestingly, the relative frequency of joy and fear are very alike, both around 5% across all seasons. Joy is at its highest in season 4 and fear is at its highest in season 7.
+\
 
-![rm_neutral](out/emotion_label_subplot_rm_neut.png)
+```{=latex}
+\begin{center}
+```
+***Relative Frequency of each Emotion across all Seasons ***
+
+![](out/emotion_label_subplot_w_neut.png)
+```{=latex}
+\end{center}
+```
+
+The second plot show the relative frequency of each emotion label in the entire series, as seen above. 
+
 
 
 A further inspection, could include an episode wise timeseries for each season or the scores for each emotion. 
  
-
+\
 *```codecarbon``` was used to track the environmental impact when running this code, the results and an exploration of this can be found in the ```Assignment-5``` folder in the repository.*
