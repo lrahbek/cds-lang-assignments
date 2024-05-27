@@ -36,9 +36,10 @@ def get_arguments():
 def load_data(tracker):
     """ Load the vectorised data, if the data has not been vectorised the vectorizer.py script will be run """
     tracker.start_task("Load vectorised data (LR)")
-    if os.path.isfile('out/features.pkl') == False:
+    features_path = os.path.join("out","features.pkl")
+    if os.path.isfile(features_path) == False:
         main()
-    y_train, y_test, X_train_features, X_test_features, feature_names = pd.read_pickle('out/features.pkl')
+    y_train, y_test, X_train_features, X_test_features, feature_names = pd.read_pickle(features_path)
     tracker.stop_task()
     return y_train, y_test, X_train_features, X_test_features, feature_names
 
@@ -71,7 +72,7 @@ def LR_fit(X_train_features, y_train, gridsearch, score, model_path, tracker):
         tracker.start_task("Fit LR model")
         LRC = LogisticRegression(max_iter=1000, random_state=42).fit(X_train_features, y_train)
         params = {key: LRC.get_params()[key] for key in LRC.get_params().keys() & {'C', 'tol', 'solver', 'penalty'}}
-        eval_path = "out/LR_%GS_rep.txt" 
+        eval_path = os.path.join("out", "LR_%GS_rep.txt")
         tracker.stop_task()
     elif gridsearch == "GS":
         tracker.start_task("Fit LR model with GS")
@@ -79,7 +80,7 @@ def LR_fit(X_train_features, y_train, gridsearch, score, model_path, tracker):
         grid = grid.fit(X_train_features, y_train)
         LRC = grid.best_estimator_
         params = grid.best_params_
-        eval_path = f"out/LR_GS_{score}_rep.txt"
+        eval_path = os.path.join("out", f"LR_GS_{score}_rep.txt")
         tracker.stop_task()
     dump([LRC, params, eval_path], model_path, compress = 1)
 
@@ -106,7 +107,7 @@ def LR_evaluate(X_test_features, y_test, gridsearch, model_path, tracker):
 def main():
     tracker = carbon_tracker(os.path.join("..","assignment-5", "out"))
     args = get_arguments()
-    model_path = f"models/LRC_{args.score}_{args.gridsearch}.joblib"
+    model_path = os.path.join("models", f"LRC_{args.score}_{args.gridsearch}.joblib")
     y_train, y_test, X_train_features, X_test_features, feature_names = load_data(tracker)
     LR_fit(X_train_features, y_train, args.gridsearch, args.score, model_path, tracker)
     LR_evaluate(X_test_features, y_test, args.gridsearch, model_path, tracker)

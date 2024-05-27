@@ -38,9 +38,10 @@ def get_arguments():
 def load_data(tracker):
     """ Load the vectorised data, if the data has not been vectorised the vectorizer.py script will be run """
     tracker.start_task("Load vectorised data (MLP)")
-    if os.path.isfile('out/features.pkl') == False:
+    features_path = os.path.join("out","features.pkl")
+    if os.path.isfile(features_path) == False:
         main()
-    y_train, y_test, X_train_features, X_test_features, feature_names = pd.read_pickle('out/features.pkl')
+    y_train, y_test, X_train_features, X_test_features, feature_names = pd.read_pickle(features_path)
     tracker.stop_task()
     return y_train, y_test, X_train_features, X_test_features, feature_names
 
@@ -80,7 +81,7 @@ def MLP_fit(X_train_features, y_train, score, gridsearch, model_path, tracker):
         params = {key: MLP.get_params()[key] for key in MLP.get_params().keys() & {'activation', 
                                                                                    'tol', 
                                                                                    'hidden_layer_sizes'}}
-        eval_path = "out/MLP_%GS"
+        eval_path = os.path.join("out", "MLP_%GS")
         tracker.stop_task()
     elif gridsearch == "GS":
         tracker.start_task("Fit MLP model with GS")
@@ -88,7 +89,7 @@ def MLP_fit(X_train_features, y_train, score, gridsearch, model_path, tracker):
         grid = grid.fit(X_train_features, y_train)
         MLP = grid.best_estimator_
         params = grid.best_params_
-        eval_path = f"out/MLP_GS_{score}"
+        eval_path = os.path.join("out", f"MLP_GS_{score}")
         tracker.stop_task()
     dump([MLP, params, eval_path], model_path, compress = 1)
 
@@ -129,7 +130,7 @@ def plot_MLP_training(model_path, tracker):
 def main():
     tracker = carbon_tracker(os.path.join("..","assignment-5", "out"))
     args = get_arguments()
-    model_path = f"models/MLP_{args.score}_{args.gridsearch}.joblib"
+    model_path = os.path.join("models", f"MLP_{args.score}_{args.gridsearch}.joblib")
     y_train, y_test, X_train_features, X_test_features, feature_names = load_data(tracker)
     MLP_fit(X_train_features, y_train, args.score, args.gridsearch, model_path, tracker)
     MLP_evaluate(X_test_features, y_test, args.gridsearch, model_path, tracker)

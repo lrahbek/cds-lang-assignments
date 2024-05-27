@@ -52,14 +52,15 @@ def fit_vectorizer(vect_path, X_train, X_test, y_train, y_test, tracker):
     X_test_features = vectorizer.transform(X_test)
     feature_names = vectorizer.get_feature_names_out()     
     vectorized_data = [y_train, y_test, X_train_features, X_test_features, feature_names]
-    f = open('out/features.pkl', 'wb' )
+    f = open(os.path.join("out", "features.pkl"), 'wb' )
     pickle.dump(vectorized_data, f)
     f.close() 
 
 def main():
     tracker = carbon_tracker(os.path.join("..","assignment-5", "out"))
-    X_train, X_test, y_train, y_test = load_and_split("in/fake_or_real_news.csv", tracker)
-    vect_path = "models/tfidf_vectorizer"
+    data_path = os.path.join("in", "fake_or_real_news.csv")
+    vect_path = os.path.join("models","tfidf_vectorizer")
+    X_train, X_test, y_train, y_test = load_and_split(data_path, tracker)
     define_vectorizer(vect_path, tracker)
     fit_vectorizer(vect_path, X_train, X_test, y_train, y_test, tracker)
     tracker.stop() 
