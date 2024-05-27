@@ -127,7 +127,7 @@ def plot_MLP_training(model_path, tracker):
     tracker.stop_task()
 
 def main():
-    tracker = carbon_tracker("../assignment-5/out")
+    tracker = carbon_tracker(os.path.join("..","assignment-5", "out"))
     args = get_arguments()
     model_path = f"models/MLP_{args.score}_{args.gridsearch}.joblib"
     y_train, y_test, X_train_features, X_test_features, feature_names = load_data(tracker)

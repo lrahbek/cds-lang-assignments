@@ -106,7 +106,7 @@ def feature_extract(nlp_obj, tracker):
     tracker.stop_task()
 
 def main():
-    tracker = carbon_tracker("../assignment-5/out")
+    tracker = carbon_tracker(os.path.join("..","assignment-5", "out"))
     args = get_arguments()
     nlp = load_model(args.model, tracker)
     feature_extract(nlp, tracker)

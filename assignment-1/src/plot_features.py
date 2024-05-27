@@ -32,9 +32,9 @@ def load_data(outfolder):
 def plot_NER(data, outpath):
     """ Saves a plot of the named entety recognition results in the data, as mean count per subfolder """
     fig, axs = plt.subplots(1, 3, figsize = (12,5))
-    sns.barplot(data=data, x="subfolder", y="Unique LOC", hue="subfolder",  ax=axs[0])
-    sns.barplot(data=data, x="subfolder", y="Unique PER", hue="subfolder",  ax=axs[1])
-    sns.barplot(data=data, x="subfolder", y="Unique ORG", hue="subfolder", ax=axs[2])
+    sns.barplot(data=data, x="subfolder", y="Unique LOC", hue="subfolder",  ax=axs[0], palette = sns.mpl_palette("viridis", 14))
+    sns.barplot(data=data, x="subfolder", y="Unique PER", hue="subfolder",  ax=axs[1], palette = sns.mpl_palette("viridis", 14))
+    sns.barplot(data=data, x="subfolder", y="Unique ORG", hue="subfolder", ax=axs[2], palette = sns.mpl_palette("viridis", 14))
     plt.savefig(os.path.join(outpath, "NER.png"))
 
 def pairplot_POS(data, outpath):
@@ -43,7 +43,8 @@ def pairplot_POS(data, outpath):
                  hue="subfolder", 
                  vars=["RelFreq VERB", "RelFreq NOUN", "RelFreq ADV", "RelFreq ADJ"], 
                  kind = "scatter", 
-                 corner = True)
+                 corner = True, 
+                 palette = sns.mpl_palette("viridis", 14))
     plt.savefig(os.path.join(outpath, "pair_POS.png"))
 
 def pairplot_POStype(data, outpath):
@@ -52,23 +53,24 @@ def pairplot_POStype(data, outpath):
                  hue="Type", 
                  vars=["RelFreq VERB", "RelFreq NOUN", "RelFreq ADV", "RelFreq ADJ"], 
                  kind = "scatter", 
-                 corner = True)
+                 corner = True, 
+                 palette = sns.mpl_palette("viridis", 6))
     plt.savefig(os.path.join(outpath, "pair_POStype.png"))
 
 def boxplot_POS(data, outpath):
     """ Saves a boxplot of the named parts of speech found in the essays in relative frequencies """
     fig, axs = plt.subplots(2, 2, figsize = (10,7))
-    sns.boxplot(data=data, x="subfolder", y="RelFreq NOUN",  hue= "subfolder", ax=axs[0,0])
-    sns.boxplot(data=data, x="subfolder", y="RelFreq VERB", hue= "subfolder", ax=axs[0,1])
-    sns.boxplot(data=data, x="subfolder", y="RelFreq ADV", hue= "subfolder", ax=axs[1,0])
-    sns.boxplot(data=data, x="subfolder", y="RelFreq ADJ", hue= "subfolder", ax=axs[1,1])
+    sns.boxplot(data=data, x="subfolder", y="RelFreq NOUN",  hue= "subfolder", ax=axs[0,0], palette = sns.mpl_palette("viridis", 14))
+    sns.boxplot(data=data, x="subfolder", y="RelFreq VERB", hue= "subfolder", ax=axs[0,1], palette = sns.mpl_palette("viridis", 14))
+    sns.boxplot(data=data, x="subfolder", y="RelFreq ADV", hue= "subfolder", ax=axs[1,0], palette = sns.mpl_palette("viridis", 14))
+    sns.boxplot(data=data, x="subfolder", y="RelFreq ADJ", hue= "subfolder", ax=axs[1,1], palette = sns.mpl_palette("viridis", 14))
     plt.savefig(os.path.join(outpath, "box_POS.png"))
 
 def main():
-    tracker = carbon_tracker("../assignment-5/out")
+    tracker = carbon_tracker(os.path.join("..", "assignment-5", "out"))
     tracker.start_task("Visualising features")                               
     data = load_data("out")
-    plot_path = "out/plots"
+    plot_path = os.path.join("out", "plots")
     plot_NER(data, plot_path)
     pairplot_POS(data, plot_path)
     pairplot_POStype(data, plot_path)

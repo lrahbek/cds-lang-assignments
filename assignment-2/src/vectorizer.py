@@ -57,7 +57,7 @@ def fit_vectorizer(vect_path, X_train, X_test, y_train, y_test, tracker):
     f.close() 
 
 def main():
-    tracker = carbon_tracker("../assignment-5/out")
+    tracker = carbon_tracker(os.path.join("..","assignment-5", "out"))
     X_train, X_test, y_train, y_test = load_and_split("in/fake_or_real_news.csv", tracker)
     vect_path = "models/tfidf_vectorizer"
     define_vectorizer(vect_path, tracker)

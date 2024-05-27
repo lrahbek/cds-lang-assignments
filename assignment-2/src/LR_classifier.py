@@ -104,7 +104,7 @@ def LR_evaluate(X_test_features, y_test, gridsearch, model_path, tracker):
     return print("Classification report for the Logistic Regression Classifier is saved to the out folder")
 
 def main():
-    tracker = carbon_tracker("../assignment-5/out")
+    tracker = carbon_tracker(os.path.join("..","assignment-5", "out"))
     args = get_arguments()
     model_path = f"models/LRC_{args.score}_{args.gridsearch}.joblib"
     y_train, y_test, X_train_features, X_test_features, feature_names = load_data(tracker)

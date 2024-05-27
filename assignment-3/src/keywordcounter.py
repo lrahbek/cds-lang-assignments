@@ -45,8 +45,8 @@ def artist_find(artist_input, tracker):
 
 def query_expansion(keyword, tracker):
     """
-    The function first loads the 'glove-wiki-gigaword-50' gensim model and takes a keyword. The gensim model is used to find 
-    the 10 most similar words, which the function returns as a list. 
+    The function first loads the 'glove-wiki-gigaword-50' gensim model and takes a keyword. The gensim model is 
+    used to find the 10 most similar words, which the function returns as a list. 
     """
     tracker.start_task("Load model and find words") 
     model = api.load("glove-wiki-gigaword-50")
@@ -71,7 +71,7 @@ def clean_tokens(text):
 
 def save_output(row):
     """ Save output to .csv file """
-    with open('out/output.csv', 'a') as output:
+    with open(os.path.join('out', 'output.csv'), 'a') as output:
         write_output = writer(output)
         write_output.writerow(row)
         output.close()
@@ -99,7 +99,7 @@ def keyword_count(query_ls, keyword, song_texts, artist_input, tracker):
     return print(f"{songs_perc}% of {artist_input}'s songs contains words related to {keyword}")    
 
 def main():
-    tracker = carbon_tracker("../assignment-5/out")
+    tracker = carbon_tracker(os.path.join("..","assignment-5", "out"))
     args = get_arguments()
     artist_songs = artist_find(args.artist, tracker)
     query_ls = query_expansion(args.keyword, tracker)
