@@ -64,6 +64,14 @@ After loading in the data the ```MLP_classifier.py``` script defines and fits a 
 
   -   ```tol``` defines the threshold for when the model should stop training, the default is 0.0001, 0.00001 and 0.001 are included as well.  
 
+In addition to the these three scripts, the script ```shap_plots.py``` is also accesible in the ```src``` folder. It implements the [```SHAP``` library](https://shap.readthedocs.io/en/latest/), which I have used to visualize the importance of different features in the classification scheme for the ```LogisticRegression``` classifier. As the library is relatively new, it can not at the moment work with the ```MLPClassifier```. When running the script two arguments should be passed: 
+
+- -i (*index*) The index of the article that should be plotted 
+
+- -l (*LRCmodel*) The model that should be used (the name of the file without the 'joblib' extension)
+
+When running the script a ```force_plot``` will be generated using the vectorised features and the chosen model for the text given as input. When the plot is saved the label (REAL or FAKE) will be printed in the terminal.
+
 ## Data
 
 The data used in this assignment is the *Fake or Real News* dataset, which can be downloaded [here](https://www.kaggle.com/datasets/jillanisofttech/fake-or-real-news). The .csv file include 6335 articles, each represented in a row containing the title, the text, and a label indicating whether the article is fake or real.  
