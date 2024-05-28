@@ -140,7 +140,10 @@ It should be pointed out that the gridsearch is limited to the exact values give
 
 Finally, shap discussion 
 
-![](out/shap_plots/plotI0_LRC_accuracy_%GS.html)
+![](out/shap_plots/plotI500_LRC_accuracy_%GS.png)
+![](out/shap_plots/plotI500_LRC_accuracy_GS.png)
+
+
 
 \
 *```codecarbon``` was used to track the environmental impact when running this code, the results and an exploration of this can be found in the ```Assignment-5``` folder in the repository.*

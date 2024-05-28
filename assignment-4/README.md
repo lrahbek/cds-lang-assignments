@@ -5,7 +5,7 @@
 
 # Assignment 4
 
-# Emotion analysis with pretrained language models
+# Emotion Analysis with Pretrained Language Models
 
 \
 *Date: 18/04/2024*
@@ -85,7 +85,7 @@ To reproduce the analysis;
 
 ## Discussion
 
-The immidiate visuzalization of the emotional profile of Game of Thrones, shows a very large amount of neutral lines across all seasons. Above 40% of lines i all eight seasons had the highest score in the label neutral. A further analysis, would be able to shed light on whether many of these lines might have had another emotion label as prominent also, but as the neutral emotion is very similar across seasons, and obscures visual inspection of the other emotions, plots without neutral label was also made. The plot including the neutral label can be found [here](https://github.com/lrahbek/cds-lang-assignments/blob/main/assignment-4/out/Season_subplot_w_neut.png) and the plot were the neutral label has been excluded can be seen below; 
+The immidiate visuzalization of the emotional profile of Game of Thrones, shows a very large amount of neutral lines across all seasons. Above 40% of lines in all eight seasons had the highest score in the label neutral. A further analysis would be able to shed light on whether many of these lines might have had another emotion label as prominent also, but as the neutral emotion is very similar across seasons, and obscures visual inspection of the other emotions, plots without neutral label was also made. The plot including the neutral label can be found [here](https://github.com/lrahbek/cds-lang-assignments/blob/main/assignment-4/out/Season_subplot_w_neut.png) and the plot were the neutral label has been excluded can be seen below; 
 \
 
 ```{=latex}
@@ -111,7 +111,7 @@ When inspecting the plots, where the neutral emotion label have been removed, th
 \end{center}
 ```
 
-The second plot, shown above, shows the relative frequency of each emotion label in the entire series. Contrary to the previous plot, the length of the different seasons have not been taken into account, which is very visible when looking at season 8 across all seven emotion labels; it is by far the shortest season. Even though the visualization is affected by the differing season lengths, it reveals a lot. The most prominent emotion label is sadness; the distribution of relative frequency across the eight seasons look a lot alike in most of the subplots, but sadness stands out. Especially for season 6, where it seems a disproportional amount of the 'sad' lines are, compared to the proportions in the remaining subplots. 
+The second plot, shown above, shows the relative frequency of each emotion label in the entire series. Contrary to the previous plot, the length of the different seasons have not been taken into account, which is very visible when looking at season 8 across all seven emotion labels; it is by far the shortest season. Even though the visualization is affected by the differing season lengths, it reveals a lot. The most prominent emotion label is sadness; the distribution of relative frequency across the eight seasons look a lot alike in most of the subplots, but sadness stands out. Especially for season 6, where it seems a disproportional amount of the 'sad' lines are, compared to the proportions in the remaining subplots. A possible contribution to the disproportionate amount of 'sad' lines in season 6 are the two episodes; 'The Door' and 'The Battle of the Bastards', which I have been told are some of the saddest in the entire series (Hodor's death, Rickon's death, the fear of loosing the battle to Ramsey). 
 
 As the extend of this assignment and the visualizations included show little variety in the eight seasons of Game of Thrones, it would be interesting to take an even closer look. The visual evaluation and inspection of the emotional profile of the seasons in Game of Thrones could be further advanced by including episode-wise changes or the emotion scores for each lines' emotion label. In addition to this, the overal distribution of emotion scores in the seven emotio categories could be interesting to look at through the series.  
 
