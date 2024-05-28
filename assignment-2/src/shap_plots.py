@@ -6,6 +6,13 @@ from joblib import dump, load
 import pandas as pd
 import argparse
 import matplotlib.pyplot as plt
+from codecarbon import EmissionsTracker
+
+def carbon_tracker(em_outpath):
+    """ The function initalizes the carbon tracker """
+    tracker = EmissionsTracker(project_name="Assignment-2",
+                               output_dir=em_outpath)
+    return tracker
 
 def article_index():
     parser = argparse.ArgumentParser()
@@ -37,11 +44,15 @@ def LRC_shapplot(ind, LRC, data_path, outpath):
     return print(f"The y label for the article is: {y_test_array[ind]}.\nThe .html plot has been saved to {outpath}")
 
 def main():
+    tracker = carbon_tracker(os.path.join("..","assignment-5", "out"))
     args = article_index()
+    tracker.start_task("SHAP plot")
     outpath = os.path.join("out", "shap_plots", f"plotI{args.index}_{args.LRCmodel}.html")
     data_path = os.path.join("out", "features.pkl")
     LRC = load(os.path.join("models", args.LRCmodel+".joblib"))
     LRC_shapplot(args.index, LRC, data_path, outpath)
+    tracker.stop_task()
+    tracker.stop() 
 
 if __name__ == "__main__":
     main()

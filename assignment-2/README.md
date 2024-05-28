@@ -100,9 +100,16 @@ Or to run ```MLP_classifier.py``` with no gridsearch write:
 python src/MLP_classifier.py
 ```
 
+- To run ```shap_plots.py```, remain in the virtual envrionment and make sure that a ```LogisticRegression``` classifier has been saved. Then it can be run with the two flags -i and -l. E.g. to save a force plot of the features from the third article in the test data, using the model fitted with gridsearch to accuracy, run: 
+
+```
+python src/shap_plots.py -i 3 -l LRC_accuracy_GS
+```
+
 - To exit the virtual environment write ```deactivate``` in the terminal. 
 
 (Note: when both ```LR_classifier.py``` and ```MLP_classifier.py``` are run, they check if a file containing the vectorised data exists in the ```out``` folder, if not they will run the ```main()``` function from ```vectorizer.py``` directly and save the data. Alernatively, the ```vectorizer.py``` script can be run by itself, with ```python src/vectorizer.py``` in the terminal.)   
+
 
 ## Discussion 
 
@@ -130,6 +137,8 @@ The performance of the best performin model in the gridsearch for the ```MLPClas
 
         
 It should be pointed out that the gridsearch is limited to the exact values given, which means that a better performance might have been found somewhere between some of these values. Tuning other parameters might also have introduced increase in performance not gained with the chosen parameters in this assignment.  
+
+Finally, shap discussion 
 
 \
 *```codecarbon``` was used to track the environmental impact when running this code, the results and an exploration of this can be found in the ```Assignment-5``` folder in the repository.*
