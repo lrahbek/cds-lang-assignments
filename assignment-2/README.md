@@ -82,29 +82,37 @@ To reproduce the analysis:
 
 - Download the ```fake_or_real_news.csv``` file from the source given above, and place it in the ```in``` folder.  
 
-- Run ```bash setup.sh``` in the terminal, it creates a virtual environment and installs packages and dependencies in to it. 
+- Run ```setup.sh``` in the terminal, it creates a virtual environment and installs packages and dependencies in to it: 
 
-- Open the virtual enviornment by writting ```source ./env/bin/activate``` in the terminal.  
+  ```bash
+  bash setup.sh
+  ```
+
+- Open the virtual enviornment by writting the following in the terminal;   
+
+  ```bash
+  source ./env/bin/activate
+  ```
   
-- To run either of the two scripts; ```LR_classifier.py``` or ```MLP_classifier.py```, it should be specified whether or not to perform gridsearch with the flag -g (*gridsearch*) and it can be specified which metric the gridsearch should be tuned for with the flag -s (*score*), the default is accuracy.  
+To run either of the two scripts; ```LR_classifier.py``` or ```MLP_classifier.py```, it should be specified whether or not to perform gridsearch with the flag -g (*gridsearch*) and it can be specified which metric the gridsearch should be tuned for with the flag -s (*score*), the default is accuracy.  
 
-To run ```LR_classifier.py``` with gridsearch and tunning for f1 write: 
+- To run ```LR_classifier.py``` with gridsearch and tunning for f1 write: 
 
-```
-python src/LR_classifier.py -g "GS" -s "f1"
-```
+  ```py
+  python src/LR_classifier.py -g "GS" -s "f1"
+  ```
 
-Or to run ```MLP_classifier.py``` with no gridsearch write: 
+- Or to run ```MLP_classifier.py``` with no gridsearch write: 
 
-```
-python src/MLP_classifier.py
-```
+  ```py
+  python src/MLP_classifier.py
+  ```
 
 - To run ```shap_plots.py```, remain in the virtual envrionment and make sure that a ```LogisticRegression``` classifier has been saved. Then it can be run with the two flags -i and -l. E.g. to save a force plot of the features from the third article in the test data, using the model fitted with gridsearch to accuracy, run: 
 
-```
-python src/shap_plots.py -i 3 -l LRC_accuracy_GS
-```
+  ```py
+  python src/shap_plots.py -i 3 -l LRC_accuracy_GS
+  ```
 
 - To exit the virtual environment write ```deactivate``` in the terminal. 
 
@@ -125,7 +133,7 @@ The performance of the best performing model in the gridsearch for the ```Logist
 |LRC_GS|1.0|l1|saga|0.00001|0.88|0.88|0.88|0.88|
 |LRC_%GS|1.0|l2|lbfgs|0.0001|0.89|0.89|0.89|0.89|
 
-The performance of the best performin model in the gridsearch for the ```MLPClassifier```, were even closer to the base-model performance, at 0.89. As stated, the cross-validation affects the results, as each parameter-combination was fitted five times, this can be seen clearly in the loss and validation accuracy plots for the [base model](https://github.com/lrahbek/cds-lang-assignments/blob/main/assignment-2/out/MLP_accuracy_%25GS_plot.png) and the [cross-validated model](https://github.com/lrahbek/cds-lang-assignments/blob/main/assignment-2/out/MLP_accuracy_GS_plot.png). Implementing gridsearch did not help argue that the CNN should be used in the first place, the ```LogisiticRegression``` classifier remains the best option for this data. 
+The performance of the best performing model in the gridsearch for the ```MLPClassifier```, were even closer to the base-model performance, at 0.89. As stated, the cross-validation affects the results, as each parameter-combination was fitted five times, this can be seen clearly in the loss and validation accuracy plots for the [base model](https://github.com/lrahbek/cds-lang-assignments/blob/main/assignment-2/out/MLP_accuracy_%25GS_plot.png) and the [cross-validated model](https://github.com/lrahbek/cds-lang-assignments/blob/main/assignment-2/out/MLP_accuracy_GS_plot.png). Implementing gridsearch did not help argue that the CNN should be used in the first place, the ```LogisiticRegression``` classifier remains the best option for this data. 
 \
 
 ***MLP Classifier: Parameter Values and Evaluation Metrics***
@@ -136,14 +144,18 @@ The performance of the best performin model in the gridsearch for the ```MLPClas
 |LRC_%GS|relu|0.0001|100|0.89|0.89|0.89|0.89|
 
         
-It should be pointed out that the gridsearch is limited to the exact values given, which means that a better performance might have been found somewhere between some of these values. Tuning other parameters might also have introduced increase in performance not gained with the chosen parameters in this assignment.  
+It should be pointed out that the gridsearch is limited to the exact values given, which means that a better performance might have been found somewhere between some of these values. Tuning other parameters might also have introduced increase in performance not gained with the chosen parameters in this assignment. 
 
-Finally, shap discussion 
+The ```shap_plots.py``` script was run on several samples from the test data, with both the ```LogisiticRegression``` classifier with and without gridsearch. All the resulting .html files is in ```out/shap_plots/```. I have included two examples of the plots generated, below. Both display the index 500 in the test data (label = REAL), the first plot is from the model without gridsearch and the second with gridsearch. 
+\
+
+***SHAP Plots of The Features Resulting in ***
 
 ![](out/shap_plots/plotI500_LRC_accuracy_%GS.png)
 ![](out/shap_plots/plotI500_LRC_accuracy_GS.png)
 
+The bold number represent the prediction of the model, with higher values leading the preditction to be 1 (REAL) and lower to be 0 (FAKE). The words below the red and blue bar are the TF-IDF Vectorizer features, and the values represent how much they contribute to the given score. E.g. In the top plot, 'donald trumpp' pulled the score downwards and 'percent' pulled it upwards. Interestingly; the absense of 'hillary' also pulled the score upwards. Both models correctly predicted the text in question as REAL, but the plots still look slighlty different, as different features in their respective trainings have been given weight. However overall, in this example they are very alike, which again reflects the classification reports conclusions that the models perform very similarly. 
 
-
+\
 \
 *```codecarbon``` was used to track the environmental impact when running this code, the results and an exploration of this can be found in the ```Assignment-5``` folder in the repository.*
