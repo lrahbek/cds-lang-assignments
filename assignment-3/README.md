@@ -44,16 +44,17 @@ To perform the expanded query using ```keywordcounter.py``` do the following:
 
 - Place the downloaded file ```Spotify Million Song Datset_exported.csv``` in the ```in``` folder.  
 
-- Run ```bash setup.sh``` from the command line, it creates a virtual environment and installs packages and dependencies in to it.  
+- Run the bash script```setup.sh``` in the terminal, it creates a virtual environment and installs packages and dependencies in to it: 
 
-- Run  ```bash run.sh``` in the terminal with the two arguments -a and -k, this opens the virtual environment and runs ```keywordcounter.py``` on the given input and returns an appende row to the ```output.csv``` file, then exits the environment again. (Note: if the artist' name conatins a space, put it in quoatation marks, e.g. "Taylor Swift"). 
+  ```bash 
+  bash setup.sh
+  ```
 
-For example to find out how many songs Taylor Swift has about words related to love, run the following in the terminal: 
+- Run the bash script ```run.sh``` in the terminal with the two arguments -a and -k, this opens the virtual environment and runs ```keywordcounter.py``` on the given inputs and returns and appends a row to the ```output.csv``` file, then exits the environment again. (Note: if the artist' name conatins a space, put it in quoatation marks, e.g. "Taylor Swift"). E.g.; to find out how many songs Taylor Swift has about words related to love, run the following in the terminal: 
 
-```
-bash run.sh -a "Taylor Swift" -k love
-```
-
+  ```bash
+  bash run.sh -a "Taylor Swift" -k love
+  ```
 
 ## Discussion 
 
@@ -61,5 +62,6 @@ The results of the expanded keyword query are reflective of the method used; wor
 
 Further, the individual word embeddings are kept as different conjugations and versions of the same word. An example of this is in the ```output.csv``` file, where both 'loves' and 'loving' are returned as some of the closest words to 'love'. When performing the exapnded query, there are limits to how much additional information is given when these words are included in addition to 'love'. There are of course work arounds to this, for example extracting the root of the returned words and only keeping them if they aren't identical to the keyword. This could potentially be implemented to increase the scope of the query. 
 
+\
 \
 *```codecarbon``` was used to track the environmental impact when running this code, the results and an exploration of this can be found in the ```Assignment-5``` folder in the repository.*
