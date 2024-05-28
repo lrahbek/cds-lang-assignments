@@ -22,7 +22,7 @@ This folder contains assignment 4 for Language Analytics. The objective of the a
 
 The model used can be found [here](https://huggingface.co/j-hartmann/emotion-english-distilroberta-base), and is a pretrained DistilRoBERTa-base model, finetuned on emotion-data. Details on the training data etc can be found at the link above. 
 
-The ```classify_emotions.py``` script does the following: 
+The ```classify_emotions.py``` script does the following:   
 
 - Loads in the ```j-hartmann/emotion-english-distilroberta-base``` classifier.  
 
@@ -47,30 +47,41 @@ The data used in this assignment can be found [here](https://www.kaggle.com/data
 
 ## Usage and Reproducing of Analysis 
 
-To reproduce the analysis: 
+To reproduce the analysis; 
 
 - Download the dataset from the source described above, and place it in the ```in``` folder, as ```GoT-scripts/Game_of_Thrones_Script.csv```.  
 
-- Run ```bash setup.sh``` from the command line, it creates a virtual environment and installs packages and dependencies in to it.   
+- Run the bash script ```setup.sh``` in the terminal, it creates a virtual environment and installs packages and dependencies in to it:
+  
+  ```bash
+  bash setup.sh
+  ```  
+  
+- Enter the virtual environment by writting the following in the terminal: 
 
-- Enter the virtual environment by writting ```source ./env/bin/activate``` in the terminal. 
+   ```bash
+   source ./env/bin/activate
+   ```  
 
-- Extract the emotion labels from each sentence in the dataset, by running ```python src/classify_emotions.py```.  
+- Extract the emotion labels from each sentence in the dataset, by running: 
 
-- Visualize the results without the neutral label by running:
+  ```py
+  python src/classify_emotions.py 
+  ```  
+
+- To visualize the results without the neutral label run; 
     
-```
-python src/plot_emotions.py -n rm_neut
-```
+  ```py
+  python src/plot_emotions.py -n rm_neut
+  ```  
 
 - Or alternatively with the neutral label: 
 
-```
-python src/plot_emotions.py -n rm_neut
-```
-
-- Finally to exit the virtual environment write ```deactivate``` in the termminal. 
-
+  ```py
+  python src/plot_emotions.py -n rm_neut
+  ```  
+  
+- Finally to exit the virtual environment write ```deactivate``` in the termminal.  
 
 ## Discussion
 
@@ -82,7 +93,7 @@ The immidiate visuzalization of the emotional profile of Game of Thrones, shows 
 ```
 ***Relative Frequency of each Emotion in each Season***
 
-![](out/Season_subplot_rm_neut.png) 
+![](out/Season_subplot_rm_neut.png){height=270}
 ```{=latex}
 \end{center}
 ```
@@ -95,16 +106,15 @@ When inspecting the plots, where the neutral emotion label have been removed, th
 ```
 ***Relative Frequency of each Emotion across all Seasons ***
 
-![](out/emotion_label_subplot_w_neut.png)
+![](out/emotion_label_subplot_w_neut.png){height=270}
 ```{=latex}
 \end{center}
 ```
 
-The second plot show the relative frequency of each emotion label in the entire series, as seen above. 
+The second plot, shown above, shows the relative frequency of each emotion label in the entire series. Contrary to the previous plot, the length of the different seasons have not been taken into account, which is very visible when looking at season 8 across all seven emotion labels; it is by far the shortest season. Even though the visualization is affected by the differing season lengths, it reveals a lot. The most prominent emotion label is sadness; the distribution of relative frequency across the eight seasons look a lot alike in most of the subplots, but sadness stands out. Especially for season 6, where it seems a disproportional amount of the 'sad' lines are, compared to the proportions in the remaining subplots. 
 
+As the extend of this assignment and the visualizations included show little variety in the eight seasons of Game of Thrones, it would be interesting to take an even closer look. The visual evaluation and inspection of the emotional profile of the seasons in Game of Thrones could be further advanced by including episode-wise changes or the emotion scores for each lines' emotion label. In addition to this, the overal distribution of emotion scores in the seven emotio categories could be interesting to look at through the series.  
 
-
-A further inspection, could include an episode wise timeseries for each season or the scores for each emotion. 
- 
+\ 
 \
 *```codecarbon``` was used to track the environmental impact when running this code, the results and an exploration of this can be found in the ```Assignment-5``` folder in the repository.*
