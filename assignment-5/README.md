@@ -61,7 +61,7 @@ The above table showcases the total emissions (in $CO_2eq$) for each of the four
 ```
 ***To the Left: Total Emissions per Assignment, To the Right: Task with Highest Emission per Assignment***
 
-![](plots/total_emissions.png){height=200 width=auto}![](plots/perc_emmissions.png){height=200 width=auto}
+![](plots/total_emissions.pdf){height=190 width=auto}![](plots/perc_emmissions.pdf){height=190 width=auto}
 ```{=latex}
 \end{center}
 ```
