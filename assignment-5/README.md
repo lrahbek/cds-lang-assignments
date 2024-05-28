@@ -59,17 +59,17 @@ The above table showcases the total emissions (in $CO_2eq$) for each of the four
 ```{=latex}
 \begin{center}
 ```
-***To the Left: Total Emissions per Assignment, To the Right: Task with Highest Emission per Assignment***
+***To the Left: Total Emissions per Assignment, To the Right: Percentage of Total Emissions per Task Group for each Assignment***
 
 ![](plots/total_emissions.pdf){height=190 width=auto}![](plots/perc_emmissions.pdf){height=190 width=auto}
 ```{=latex}
 \end{center}
 ```
 
-*The plot to the left shows the total emissions from each of the assignments and the plot to the right show emissions from the task emitting the most in each assignment. As discussed it is the use and training of large models that primarily drives the emissions*
+*The left plot: Total emissions per assignment in $CO_2eq$, the right plot: The percentage of the total emissions from each assignment emitted from the different task-groups (as seen on the legend)*
 
 
-As touched upon above, for each of the assignments it is one task that is responssible for most of the emissions for that assignment. The horizontal lines, visible on some of the bars representing emissions for each assignment in the plot above, shows emissions for the most impactful task for that assignment. It is the use and training of large machine learning models that overwhelmingly costs the most. However, as seen on the plot below, the difference in emission rate (CO_2eq/second) is minimal between all the tasks - based on this
+As touched upon above, for each of the assignments it is one task that is responssible for most of the emissions for that assignment. It is the use and training of large machine learning models that overwhelmingly costs the most. However, as seen on the plot below, the difference in emission rate ($CO_2eq$/s) is minimal between all the tasks. An additional plot showing the correlation between duration and emissions
 
 **plot with rate or duration included??**
 
@@ -83,3 +83,13 @@ Task discussion:
 
 - Which specific tasks generated the most emissions in terms of CO_2eq? Again, explain why this might be.
 
+
+```{=latex}
+\begin{center}
+```
+***Emissions Rate for each Task***
+
+![](plots/emissions_rate.pdf){height=300 width=auto}
+```{=latex}
+\end{center}
+```
