@@ -126,33 +126,50 @@ Before evaluating the results of the gridsearch, the two base-classifiers are co
 The performance of the best performing model in the gridsearch for the ```LogisticRegression``` classifier, is slighlty worse than the base-model at 0.88. First of all, this is likely due to aggregating when evaluating the cross validation. However, even if the accuracy, macro and weighted averages of precision, recall and f1, were slighlty higher than 0.88, the minimal difference in performance cannot justify the implementation of gridsearch. In this case the default parameters performed very well on their own. Some evaluation metrics and the parameter values for the two models can be seen in the table below: 
 \
 
+```{=latex}
+\begin{center}
+```
 ***Logisitic Regression Classifier: Parameter Values and Evaluation Metrics***
 
 |model|C|penalty|solver|tol|accuracy|precision|recall|f1|
 |-|-|-|-|-|-|-|-|-|
 |LRC_GS|1.0|l1|saga|0.00001|0.88|0.88|0.88|0.88|
 |LRC_%GS|1.0|l2|lbfgs|0.0001|0.89|0.89|0.89|0.89|
+```{=latex}
+\end{center}
+```
 
 The performance of the best performing model in the gridsearch for the ```MLPClassifier```, were even closer to the base-model performance, at 0.89. As stated, the cross-validation affects the results, as each parameter-combination was fitted five times, this can be seen clearly in the loss and validation accuracy plots for the [base model](https://github.com/lrahbek/cds-lang-assignments/blob/main/assignment-2/out/MLP_accuracy_%25GS_plot.png) and the [cross-validated model](https://github.com/lrahbek/cds-lang-assignments/blob/main/assignment-2/out/MLP_accuracy_GS_plot.png). Implementing gridsearch did not help argue that the CNN should be used in the first place, the ```LogisiticRegression``` classifier remains the best option for this data. 
 \
 
+```{=latex}
+\begin{center}
+```
 ***MLP Classifier: Parameter Values and Evaluation Metrics***
 
 |model|activation|tol|hidden_layer_sizes|accuracy|precision|recall|f1|
 |-|-|-|-|-|-|-|-|
 |LRC_GS|relu|0.00001|75|0.89|0.89|0.89|0.89|
 |LRC_%GS|relu|0.0001|100|0.89|0.89|0.89|0.89|
-
+```{=latex}
+\end{center}
+```
         
 It should be pointed out that the gridsearch is limited to the exact values given, which means that a better performance might have been found somewhere between some of these values. Tuning other parameters might also have introduced increase in performance not gained with the chosen parameters in this assignment. 
 
 The ```shap_plots.py``` script was run on several samples from the test data, with both the ```LogisiticRegression``` classifier with and without gridsearch. All the resulting .html files is in ```out/shap_plots/```. I have included two examples of the plots generated, below. Both display the index 500 in the test data (label = REAL), the first plot is from the model without gridsearch and the second with gridsearch. 
 \
 
-***SHAP Plots of The Features Resulting in ***
+```{=latex}
+\begin{center}
+```
+***SHAP Force Plots***
 
 ![](out/shap_plots/plotI500_LRC_accuracy_%GS.png)
 ![](out/shap_plots/plotI500_LRC_accuracy_GS.png)
+```{=latex}
+\end{center}
+```
 
 The bold number represent the prediction of the model, with higher values leading the preditction to be 1 (REAL) and lower to be 0 (FAKE). The words below the red and blue bar are the TF-IDF Vectorizer features, and the values represent how much they contribute to the given score. E.g. In the top plot, 'donald trumpp' pulled the score downwards and 'percent' pulled it upwards. Interestingly; the absense of 'hillary' also pulled the score upwards. Both models correctly predicted the text in question as REAL, but the plots still look slighlty different, as different features in their respective trainings have been given weight. However overall, in this example they are very alike, which again reflects the classification reports conclusions that the models perform very similarly. 
 
